@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA682E401902593500058604 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA682E3F1902593500058604 /* main.cpp */; };
 		AA682E421902593500058604 /* Mazel.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA682E411902593500058604 /* Mazel.1 */; };
+		AA682E4919025D9000058604 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA682E4819025D9000058604 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		AA682E3C1902593500058604 /* Mazel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazel; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA682E3F1902593500058604 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AA682E411902593500058604 /* Mazel.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Mazel.1; sourceTree = "<group>"; };
+		AA682E4819025D9000058604 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Softwares/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA682E4919025D9000058604 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 		AA682E331902593400058604 = {
 			isa = PBXGroup;
 			children = (
+				AA682E4819025D9000058604 /* SDL2.framework */,
 				AA682E3E1902593500058604 /* Mazel */,
 				AA682E3D1902593500058604 /* Products */,
 			);
@@ -198,6 +202,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/muhdmirzamz/Documents/Softwares,
+				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -207,6 +215,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/muhdmirzamz/Documents/Softwares,
+				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
