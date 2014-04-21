@@ -12,7 +12,7 @@ using namespace std;
 
 MainMenu::MainMenu() {
 	running = true;
-	gameManager = new GameManager();
+	gameState = new GameState();
 	
 	window = SDL_CreateWindow(
 		"TestThree",
@@ -50,7 +50,7 @@ void MainMenu::events() {
 		
 		if (event.type == SDL_KEYDOWN) {
 			if (event.key.keysym.sym == SDLK_KP_1) {
-				gameManager->changeState(1);
+				gameState->changeGameState(1);
 			}
 		}
 	}
@@ -66,8 +66,8 @@ void MainMenu::render() {
 }
 
 MainMenu::~MainMenu() {
-	delete gameManager;
-	gameManager = NULL;
+	delete gameState;
+	gameState = NULL;
 	SDL_DestroyRenderer(renderer);
 	renderer = NULL;
 	SDL_DestroyWindow(window);

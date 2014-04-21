@@ -11,7 +11,7 @@
 using namespace std;
 
 GameState::GameState() {
-	
+	gameManager = new GameManager();
 }
 
 void GameState::events() {
@@ -24,4 +24,12 @@ void GameState::update() {
 
 void GameState::render() {
 	
+}
+
+void GameState::changeGameState(int state) {
+	gameManager->changeState(state);
+}
+
+GameState::~GameState() {
+	delete gameManager;
 }

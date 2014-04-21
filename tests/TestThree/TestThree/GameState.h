@@ -11,17 +11,23 @@
 
 #include <iostream>
 
+#include "GameManager.h"
+
 using namespace std;
 
 class GameState {
 	public:
 		GameState();
+		~GameState();
 		
 		virtual void events();
 		virtual void update();
 		virtual void render();
+		
+		void changeGameState(int state);
 	
 	private:
+		GameManager *gameManager;
 };
 
 #endif /* defined(__TestThree__GameState__) */

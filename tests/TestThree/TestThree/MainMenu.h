@@ -15,7 +15,6 @@
 #include "SDL_render.h"
 #include "SDL_events.h"
 
-#include "GameManager.h"
 #include "GameState.h"
 
 using namespace std;
@@ -38,7 +37,7 @@ class MainMenu: public GameState {
 		SDL_Renderer *renderer;
 		SDL_Event event;
 		
-		GameManager *gameManager;
+		GameState *gameState;
 };
 
 #endif /* defined(__TestThree__MainMenu__) */

@@ -11,8 +11,6 @@
 
 #include <iostream>
 
-#include "LevelOne.h"
-
 using namespace std;
 
 class GameManager {
@@ -26,8 +24,6 @@ class GameManager {
 			LEVEL_ONE,
 			LEVEL_TWO
 		};
-	
-		LevelOne *levelOne;
 };
 
 #endif /* defined(__TestThree__GameManager__) */
