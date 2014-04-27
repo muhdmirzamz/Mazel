@@ -8,11 +8,33 @@
 
 #include <iostream>
 
+#include "SDL.h"
+
+#include "MainMenu.h"
+#include "GameManager.h"
+
+using namespace std;
+
+bool init() {
+	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
+		return true;
+	}
+	
+	return false;
+}
+
 int main(int argc, const char * argv[])
 {
-
-	// insert code here...
-	std::cout << "Hello, World!\n";
+	if (!(init())) {
+		cout << "SDL failed to initialise!\n";
+	}
+	
+	GameManager *gameManager = new GameManager();
+	gameManager->changeState(0);
+	
+	delete gameManager;
+	SDL_Quit();
+	
     return 0;
 }
 

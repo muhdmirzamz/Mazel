@@ -11,4 +11,20 @@
 
 #include <iostream>
 
+using namespace std;
+
+class GameManager {
+	public:
+		GameManager();
+	
+		void changeState(int state);
+		
+	private:
+		enum state {
+			MAIN_MENU,
+			LEVEL_ONE,
+		};
+	
+};
+
 #endif /* defined(__TestFour__GameManager__) */

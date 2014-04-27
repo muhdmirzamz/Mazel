@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		AACD78391909379D0003A552 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACD78381909379D0003A552 /* main.cpp */; };
 		AACD783B1909379D0003A552 /* TestFour.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = AACD783A1909379D0003A552 /* TestFour.1 */; };
+		AACD7842190937F60003A552 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD7841190937F60003A552 /* SDL2.framework */; };
+		AACD78451909380D0003A552 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACD78431909380D0003A552 /* GameManager.cpp */; };
+		AACD7848190938200003A552 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACD7846190938200003A552 /* GameState.cpp */; };
+		AACD784B1909382F0003A552 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACD78491909382F0003A552 /* MainMenu.cpp */; };
+		AACD784E1909383A0003A552 /* LevelOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AACD784C1909383A0003A552 /* LevelOne.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +33,15 @@
 		AACD78351909379D0003A552 /* TestFour */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestFour; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACD78381909379D0003A552 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AACD783A1909379D0003A552 /* TestFour.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TestFour.1; sourceTree = "<group>"; };
+		AACD7841190937F60003A552 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Softwares/SDL2.framework; sourceTree = "<group>"; };
+		AACD78431909380D0003A552 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		AACD78441909380D0003A552 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		AACD7846190938200003A552 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		AACD7847190938200003A552 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		AACD78491909382F0003A552 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
+		AACD784A1909382F0003A552 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		AACD784C1909383A0003A552 /* LevelOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelOne.cpp; sourceTree = "<group>"; };
+		AACD784D1909383A0003A552 /* LevelOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelOne.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACD7842190937F60003A552 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +59,7 @@
 		AACD782C1909379D0003A552 = {
 			isa = PBXGroup;
 			children = (
+				AACD7841190937F60003A552 /* SDL2.framework */,
 				AACD78371909379D0003A552 /* TestFour */,
 				AACD78361909379D0003A552 /* Products */,
 			);
@@ -61,6 +77,14 @@
 			isa = PBXGroup;
 			children = (
 				AACD78381909379D0003A552 /* main.cpp */,
+				AACD78431909380D0003A552 /* GameManager.cpp */,
+				AACD78441909380D0003A552 /* GameManager.h */,
+				AACD7846190938200003A552 /* GameState.cpp */,
+				AACD7847190938200003A552 /* GameState.h */,
+				AACD78491909382F0003A552 /* MainMenu.cpp */,
+				AACD784A1909382F0003A552 /* MainMenu.h */,
+				AACD784C1909383A0003A552 /* LevelOne.cpp */,
+				AACD784D1909383A0003A552 /* LevelOne.h */,
 				AACD783A1909379D0003A552 /* TestFour.1 */,
 			);
 			path = TestFour;
@@ -118,6 +142,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACD78391909379D0003A552 /* main.cpp in Sources */,
+				AACD784E1909383A0003A552 /* LevelOne.cpp in Sources */,
+				AACD7848190938200003A552 /* GameState.cpp in Sources */,
+				AACD78451909380D0003A552 /* GameManager.cpp in Sources */,
+				AACD784B1909382F0003A552 /* MainMenu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +155,7 @@
 		AACD783C1909379D0003A552 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -156,6 +184,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/muhdmirzamz/Documents/Softwares/SDL2.framework/Versions/A/Headers,
+					"$(inherited)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -165,7 +197,7 @@
 		AACD783D1909379D0003A552 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -189,6 +221,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Users/muhdmirzamz/Documents/Softwares/SDL2.framework/Versions/A/Headers,
+					"$(inherited)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -197,6 +233,12 @@
 		AACD783F1909379D0003A552 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/muhdmirzamz/Documents/Softwares,
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +246,12 @@
 		AACD78401909379D0003A552 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/muhdmirzamz/Documents/Softwares,
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

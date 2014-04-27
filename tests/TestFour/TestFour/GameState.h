@@ -11,4 +11,19 @@
 
 #include <iostream>
 
+using namespace std;
+
+class GameState {
+	public:
+		GameState();
+		
+		virtual void events();
+		virtual void update();
+		virtual void render();
+		
+		void changeGameState(int state);
+	
+	private:
+};
+
 #endif /* defined(__TestFour__GameState__) */

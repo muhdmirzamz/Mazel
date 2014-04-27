@@ -7,3 +7,27 @@
 //
 
 #include "GameState.h"
+#include "GameManager.h"
+
+using namespace std;
+
+GameState::GameState() {
+}
+
+void GameState::events() {
+	
+}
+
+void GameState::update() {
+	
+}
+
+void GameState::render() {
+	
+}
+
+void GameState::changeGameState(int state) {
+	GameManager *gameManager = new GameManager();
+	gameManager->changeState(state);
+	delete gameManager;
+}

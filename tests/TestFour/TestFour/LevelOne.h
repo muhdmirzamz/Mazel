@@ -11,4 +11,30 @@
 
 #include <iostream>
 
+#include "SDL_video.h"
+#include "SDL_render.h"
+#include "SDL_events.h"
+
+#include "GameState.h"
+
+class LevelOne: public GameState {
+	public:
+		LevelOne();
+		
+		void run();
+		
+		void events();
+		void update();
+		void render();
+	
+	private:
+		SDL_Window *_window;
+		SDL_Renderer *_renderer;
+		SDL_Event _event;
+		
+		bool _running;
+		
+		GameState *_gameState;
+};
+
 #endif /* defined(__TestFour__LevelOne__) */
