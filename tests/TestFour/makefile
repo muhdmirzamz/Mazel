@@ -1,6 +1,6 @@
-CXX=gcc
+CXX=g++
 CFLAGS=-Wall -c
-LFLAGS=-Wall -std=c++11 -lSDL -o
+LFLAGS=-Wall -std=c++11 'sdl-config --cflags --libs' -framework Cocoa -o 
 VPATH=TestFour
 
 Test: main.o GameManager.o GameState.o MainMenu.o LevelOne.o

@@ -1,5 +1,9 @@
 CHANGELOG
 
+28 April 2014
+* Improved game state
+* Fixed bug where screen would not be rendered
+
 27 April 2014
 * Game state working
 

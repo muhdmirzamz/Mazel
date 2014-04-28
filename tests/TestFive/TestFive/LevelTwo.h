@@ -1,25 +1,27 @@
 //
-//  LevelOne.h
-//  TestFour
+//  LevelTwo.h
+//  TestFive
 //
-//  Created by Muhd Mirza on 24/4/14.
+//  Created by Muhd Mirza on 28/4/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#ifndef __TestFour__LevelOne__
-#define __TestFour__LevelOne__
+#ifndef __TestFive__LevelTwo__
+#define __TestFive__LevelTwo__
 
 #include <iostream>
 
-#include <SDL2/SDL_video.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_events.h>
+#include "SDL_video.h"
+#include "SDL_render.h"
+#include "SDL_events.h"
 
 #include "GameState.h"
 
-class LevelOne: public GameState {
+using namespace std;
+
+class LevelTwo: public GameState {
 	public:
-		LevelOne();
+		LevelTwo();
 		
 		void run();
 		
@@ -37,4 +39,4 @@ class LevelOne: public GameState {
 		GameState *_gameState;
 };
 
-#endif /* defined(__TestFour__LevelOne__) */
+#endif /* defined(__TestFive__LevelTwo__) */

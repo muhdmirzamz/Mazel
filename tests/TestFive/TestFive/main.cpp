@@ -1,16 +1,15 @@
 //
 //  main.cpp
-//  TestFour
+//  TestFive
 //
-//  Created by Muhd Mirza on 24/4/14.
+//  Created by Muhd Mirza on 28/4/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
 #include <iostream>
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
-#include "MainMenu.h"
 #include "GameManager.h"
 
 using namespace std;
@@ -25,7 +24,7 @@ bool init() {
 
 int main(int argc, const char * argv[])
 {
-	if (!(init())) {
+	if (!init()) {
 		cout << "SDL failed to initialise!\n";
 	}
 	
@@ -34,7 +33,6 @@ int main(int argc, const char * argv[])
 	
 	delete gameManager;
 	SDL_Quit();
-	
     return 0;
 }
 
