@@ -46,6 +46,11 @@ void LevelTwo::run() {
 void LevelTwo::events() {
 	while (SDL_PollEvent(&_event) != 0) {
 		if (_event.type == SDL_QUIT) {
+			SDL_DestroyWindow(_window);
+			_window = NULL;
+			SDL_DestroyRenderer(_renderer);
+			_renderer = NULL;
+		
 			_running = false;
 		}
 		

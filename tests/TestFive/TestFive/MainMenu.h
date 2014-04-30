@@ -29,6 +29,9 @@ class MainMenu: public GameState {
 		void update();
 		void render();
 		
+		void renderBackground();
+		void drawRectangle();
+		
 	private:
 		SDL_Window *_window;
 		SDL_Renderer *_renderer;
@@ -37,6 +40,16 @@ class MainMenu: public GameState {
 		bool _running;
 		
 		GameState *_gameState;
+		
+		SDL_Rect _rect;
+		SDL_Rect _rectTwo;
+		SDL_Rect _rectThree;
+		SDL_Rect _rectFour;
+		SDL_Rect _rectFive;
+		SDL_Rect _rectSix;
+		SDL_Rect _rectSeven;
+		SDL_Rect _rectEight;
+		SDL_Rect _rectNine;
 };
 
 #endif /* defined(__TestFive__MainMenu__) */

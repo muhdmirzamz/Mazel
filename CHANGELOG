@@ -1,5 +1,8 @@
 CHANGELOG
 
+30 April 2014
+* Rendering bug (unable to render 100x100 squares)
+
 28 April 2014
 * Improved game state
 * Fixed bug where screen would not be rendered
