@@ -1,5 +1,10 @@
 CHANGELOG
 
+3 May 2014
+* Fixed rendering bug
+* Animations up and running
+* Improved game state machine
+
 30 April 2014
 * Rendering bug (unable to render 100x100 squares)
 
