@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		AA5CE99E191B906500CB69F7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE99D191B906500CB69F7 /* main.cpp */; };
 		AA5CE9A0191B906600CB69F7 /* TestTen.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA5CE99F191B906600CB69F7 /* TestTen.1 */; };
-		AA5CE9A7191B90BA00CB69F7 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5CE9A6191B90BA00CB69F7 /* SDL2.framework */; };
 		AA5CE9AA191B90E500CB69F7 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9A8191B90E500CB69F7 /* GameManager.cpp */; };
 		AA5CE9AD191B90EE00CB69F7 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9AB191B90EE00CB69F7 /* GameState.cpp */; };
 		AA5CE9B3191B910100CB69F7 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9B1191B910100CB69F7 /* MainMenu.cpp */; };
 		AA5CE9B6191B910C00CB69F7 /* LevelOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9B4191B910B00CB69F7 /* LevelOne.cpp */; };
 		AA5CE9B9191B911A00CB69F7 /* LevelTwo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9B7191B911A00CB69F7 /* LevelTwo.cpp */; };
 		AA5CE9BC191BA02F00CB69F7 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5CE9BA191BA02F00CB69F7 /* RenderObject.cpp */; };
+		AA77A6ED1927A0E500CEC9C4 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5CE9A6191B90BA00CB69F7 /* SDL2.framework */; };
 		AAFBC769191CAF400064D75F /* CollisionDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAFBC767191CAF400064D75F /* CollisionDetection.cpp */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA5CE9A7191B90BA00CB69F7 /* SDL2.framework in Frameworks */,
+				AA77A6ED1927A0E500CEC9C4 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +206,7 @@
 					/Users/muhdmirzamz/Documents/Softwares/SDL2.framework/Versions/A/Headers,
 					"$(inherited)",
 				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -243,6 +244,7 @@
 					/Users/muhdmirzamz/Documents/Softwares/SDL2.framework/Versions/A/Headers,
 					"$(inherited)",
 				);
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
