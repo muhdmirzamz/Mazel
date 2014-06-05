@@ -1,4 +1,9 @@
 CHANGELOG
+6 June 2014
+* Improved collision detection
+* Improved rendering 
+* First playable version
+* Added makefile
 
 9 May 2014
 * Added separate collision detection class
