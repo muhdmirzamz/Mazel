@@ -11,7 +11,15 @@
 using namespace std;
 
 MainMenu::MainMenu() {
+	if (_gameState->setupWindow()) {
+		_gameState->showErrorMessage("MainMenu", "Window");
+	}
 	
+	if (_gameState->setupRenderer()) {
+		_gameState->showErrorMessage("MainMenu", "Renderer");
+	}
+	
+	_gameState->startRunning();
 }
 
 void MainMenu::run() {

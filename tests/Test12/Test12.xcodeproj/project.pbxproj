@@ -281,6 +281,7 @@
 				AA6CB58A1957CBB600C28206 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

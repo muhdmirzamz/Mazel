@@ -13,6 +13,13 @@
 
 #include <iostream>
 
+#include "SDL_video.h"
+#include "SDL_render.h"
+#include "SDL_events.h"
+
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+
 using namespace std;
 
 class GameState {
@@ -26,11 +33,26 @@ class GameState {
 		virtual void update() = 0;
 		virtual void render() = 0;
 		
-		// this need not be virtual
+		// these need not be virtual
 		// need to use this through at least a pointer
+		// so that you do not have to retype all these in different classes
 		void changeState(int state);
 		
+		// these are very useful methods
+		// takes parameter as component and level to output error for different levels
+		void showErrorMessage(string level, string comp);
+		 // set return type as bool to do if statement in different classes
+		 // for error messages
+		bool setupWindow();
+		bool setupRenderer();
+		void startRunning();
+		
 	private:
+		SDL_Window *_window;
+		SDL_Renderer *_renderer;
+		SDL_Event _event;
+		
+		bool _running;
 };
 
 #endif /* defined(__Test12__GameState__) */

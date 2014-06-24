@@ -21,3 +21,38 @@ void GameState::changeState(int state) {
 	gameManager->changeGameState(state);
 	delete gameManager;
 }
+
+void GameState::showErrorMessage(string level, string comp) {
+	cout << level << " " << comp << " failed to initialise!\n" << endl;
+}
+
+bool GameState::setupWindow() {
+	_window = SDL_CreateWindow(
+	"Test12",
+	SDL_WINDOWPOS_CENTERED,
+	SDL_WINDOWPOS_CENTERED,
+	WINDOW_WIDTH,
+	WINDOW_HEIGHT,
+	SDL_WINDOW_SHOWN
+	);
+	
+	if (!_window) {
+		return false;
+	}
+	
+	return true;
+}
+
+bool GameState::setupRenderer() {
+	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_PRESENTVSYNC);
+	
+	if (!_renderer) {
+		return false;
+	}
+	
+	return true;
+}
+
+void GameState::startRunning() {
+	_running = false;
+}

@@ -1,6 +1,7 @@
 //
 //  MainMenu.h
 //  Test12
+//	Main Menu page
 //
 //  Created by Muhd Mirza on 23/6/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
@@ -12,10 +13,7 @@
 #include <iostream>
 
 // got to find a way to make including these files more efficient
-#include "SDL_video.h"
-#include "SDL_render.h"
-#include "SDL_events.h"
-
+// done 
 #include "GameState.h"
 
 using namespace std;
@@ -30,7 +28,7 @@ class MainMenu: public GameState {
 		void render();
 		
 	private:
-		SDL
+		GameState *_gameState;
 };
 
 #endif /* defined(__Test12__MainMenu__) */
