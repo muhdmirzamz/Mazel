@@ -11,29 +11,47 @@
 using namespace std;
 
 MainMenu::MainMenu() {
-	if (_gameState->setupWindow()) {
-		_gameState->showErrorMessage("MainMenu", "Window");
-	}
+	_window = _gameState->setupWindow("Main Menu", "Window");
+	_renderer = _gameState->setupRenderer(_window, "Main Menu", "Renderer");
 	
-	if (_gameState->setupRenderer()) {
-		_gameState->showErrorMessage("MainMenu", "Renderer");
-	}
+	_gameState->setRunning(_running);
 	
-	_gameState->startRunning();
+	_renderObject = new RenderObject();
+	
+	if (!_renderObject) {
+		cout << "Main Menu render object failed to initialise!\n";
+	}
 }
 
 void MainMenu::run() {
-	
+	while (_running) {
+		event();
+		update();
+		render();
+	}
 }
 
 void MainMenu::event() {
-	
+	while (SDL_PollEvent(&_event) != 0) {
+		while (_event.type == SDL_QUIT) {
+			cleanup();
+		
+			_running = false;
+		}
+	}
 }
 
 void MainMenu::update() {
-	
+	SDL_RenderPresent(_renderer);
 }
 
 void MainMenu::render() {
-	
+	_renderObject->renderMainMenuBackground(_renderer);
+}
+
+void MainMenu::cleanup() {
+	SDL_DestroyRenderer(_renderer);
+	_renderer = NULL;
+	SDL_DestroyWindow(_window);
+	_window = NULL;
 }

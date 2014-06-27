@@ -7,3 +7,13 @@
 //
 
 #include "RenderObject.h"
+
+using namespace std;
+
+RenderObject::RenderObject() {
+	
+}
+void RenderObject::renderMainMenuBackground(SDL_Renderer *mainMenuBackgroundRenderer) {
+	SDL_SetRenderDrawColor(mainMenuBackgroundRenderer, 0, 255, 0, 0);
+	SDL_RenderClear(mainMenuBackgroundRenderer);
+}

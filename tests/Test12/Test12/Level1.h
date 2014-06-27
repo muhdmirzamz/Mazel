@@ -11,4 +11,13 @@
 
 #include <iostream>
 
+#include "GameState.h"
+
+class Level1: public GameState {
+	public:
+		Level1();
+		
+	private:
+};
+
 #endif /* defined(__Test12__Level1__) */

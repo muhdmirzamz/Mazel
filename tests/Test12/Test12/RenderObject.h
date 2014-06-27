@@ -11,4 +11,17 @@
 
 #include <iostream>
 
+#include "SDL_render.h"
+
+using namespace std;
+
+class RenderObject {
+	public:
+		RenderObject();
+		
+		void renderMainMenuBackground(SDL_Renderer *mainMenuBackgroundRenderer);
+	
+	private:
+};
+
 #endif /* defined(__Test12__RenderObject__) */

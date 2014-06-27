@@ -15,6 +15,7 @@
 // got to find a way to make including these files more efficient
 // done 
 #include "GameState.h"
+#include "RenderObject.h"
 
 using namespace std;
 
@@ -26,9 +27,18 @@ class MainMenu: public GameState {
 		void event();
 		void update();
 		void render();
+		void cleanup();
 		
 	private:
 		GameState *_gameState;
+		
+		SDL_Window *_window;
+		SDL_Renderer *_renderer;
+		SDL_Event _event;
+		
+		bool _running;
+		
+		RenderObject *_renderObject;
 };
 
 #endif /* defined(__Test12__MainMenu__) */

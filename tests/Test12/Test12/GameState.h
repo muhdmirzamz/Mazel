@@ -25,6 +25,13 @@ using namespace std;
 class GameState {
 	public:
 		GameState();
+		virtual ~GameState();
+		
+		// set return type as bool to do if statement in different classes
+		// for error messages
+		virtual SDL_Window* setupWindow(string level, string comp);
+		virtual SDL_Renderer* setupRenderer(SDL_Window *window, string level, string comp);
+		virtual void setRunning(bool running);
 		
 		// make this an abstract class, not completely
 		// every class inherits these functions except changeState(int state)
@@ -32,27 +39,16 @@ class GameState {
 		virtual void event() = 0;
 		virtual void update() = 0;
 		virtual void render() = 0;
+		virtual void cleanup() = 0;
 		
 		// these need not be virtual
 		// need to use this through at least a pointer
 		// so that you do not have to retype all these in different classes
 		void changeState(int state);
 		
-		// these are very useful methods
-		// takes parameter as component and level to output error for different levels
-		void showErrorMessage(string level, string comp);
-		 // set return type as bool to do if statement in different classes
-		 // for error messages
-		bool setupWindow();
-		bool setupRenderer();
-		void startRunning();
-		
 	private:
 		SDL_Window *_window;
 		SDL_Renderer *_renderer;
-		SDL_Event _event;
-		
-		bool _running;
 };
 
 #endif /* defined(__Test12__GameState__) */

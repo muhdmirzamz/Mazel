@@ -36,6 +36,8 @@ int main(int argc, const char * argv[])
 	GameManager *gameManager = new GameManager();
 	gameManager->changeGameState(0); // switch to main menu
 	delete gameManager;
+	
+	SDL_Quit();
     return 0;
 }
 

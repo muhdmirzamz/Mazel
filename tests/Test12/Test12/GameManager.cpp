@@ -23,13 +23,19 @@ void GameManager::changeGameState(int state) {
 			// use a gamestate pointer for a MainMenu object
 			// polymorphism is used here
 			GameState *mainMenu = new MainMenu();
+			mainMenu->run();
+			delete mainMenu;
 			break;
 		}
+		/*
 		case LEVEL_ONE: {
 			// use a gamestate pointer for a level1 object
 			GameState *level1 = new Level1();
+			level1->run();
+			delete level1;
 			break;
 		}
+		*/
 		default:
 			break;
 	}

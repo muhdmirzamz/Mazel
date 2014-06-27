@@ -15,18 +15,7 @@ using namespace std;
 GameState::GameState() {
 }
 
-// need this function to access a similar function in GameManager class
-void GameState::changeState(int state) {
-	GameManager *gameManager = new GameManager();
-	gameManager->changeGameState(state);
-	delete gameManager;
-}
-
-void GameState::showErrorMessage(string level, string comp) {
-	cout << level << " " << comp << " failed to initialise!\n" << endl;
-}
-
-bool GameState::setupWindow() {
+SDL_Window* GameState::setupWindow(string level, string comp) {
 	_window = SDL_CreateWindow(
 	"Test12",
 	SDL_WINDOWPOS_CENTERED,
@@ -37,22 +26,32 @@ bool GameState::setupWindow() {
 	);
 	
 	if (!_window) {
-		return false;
+		cout << level << " " << comp << " failed to initialise!\n";
 	}
 	
-	return true;
+	return _window;
 }
 
-bool GameState::setupRenderer() {
-	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_PRESENTVSYNC);
+SDL_Renderer* GameState::setupRenderer(SDL_Window *window, string level, string comp) {
+	_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	
-	if (!_renderer) {
-		return false;
+	if (!_window) {
+		cout << level << " " << comp << " failed to initialise!\n";
 	}
-	
-	return true;
+
+	return _renderer;
 }
 
-void GameState::startRunning() {
-	_running = false;
+void GameState::setRunning(bool running) {
+	running = true;
+}
+
+// need this function to access a similar function in GameManager class
+void GameState::changeState(int state) {
+	GameManager *gameManager = new GameManager();
+	gameManager->changeGameState(state);
+	delete gameManager;
+}
+
+GameState::~GameState() {
 }
