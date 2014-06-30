@@ -29,8 +29,14 @@ class GameState {
 		
 		// set return type as bool to do if statement in different classes
 		// for error messages
-		virtual SDL_Window* setupWindow(string level, string comp);
-		virtual SDL_Renderer* setupRenderer(SDL_Window *window, string level, string comp);
+		/*
+		virtual void setupWindow(SDL_Window *window);
+		virtual void setupRenderer(SDL_Renderer *renderer, SDL_Window *window2);
+		virtual void setRunning(bool running);
+		*/
+		
+		virtual bool setupWindow(SDL_Window *window);
+		virtual bool setupRenderer(SDL_Renderer *renderer, SDL_Window *window2);
 		virtual void setRunning(bool running);
 		
 		// make this an abstract class, not completely
@@ -45,10 +51,9 @@ class GameState {
 		// need to use this through at least a pointer
 		// so that you do not have to retype all these in different classes
 		void changeState(int state);
+		void showErrorMessage(string level, string comp);
 		
 	private:
-		SDL_Window *_window;
-		SDL_Renderer *_renderer;
 };
 
 #endif /* defined(__Test12__GameState__) */

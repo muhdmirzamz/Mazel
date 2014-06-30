@@ -14,9 +14,9 @@ using namespace std;
 
 GameState::GameState() {
 }
-
-SDL_Window* GameState::setupWindow(string level, string comp) {
-	_window = SDL_CreateWindow(
+/*
+void GameState::setupWindow(SDL_Window *window) {
+	window = SDL_CreateWindow(
 	"Test12",
 	SDL_WINDOWPOS_CENTERED,
 	SDL_WINDOWPOS_CENTERED,
@@ -24,33 +24,61 @@ SDL_Window* GameState::setupWindow(string level, string comp) {
 	WINDOW_HEIGHT,
 	SDL_WINDOW_SHOWN
 	);
-	
-	if (!_window) {
-		cout << level << " " << comp << " failed to initialise!\n";
-	}
-	
-	return _window;
 }
 
-SDL_Renderer* GameState::setupRenderer(SDL_Window *window, string level, string comp) {
-	_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-	
-	if (!_window) {
-		cout << level << " " << comp << " failed to initialise!\n";
-	}
+void GameState::setupRenderer(SDL_Renderer *renderer, SDL_Window *window2) {
+	renderer = SDL_CreateRenderer(window2, -1, SDL_RENDERER_PRESENTVSYNC);
+}
 
-	return _renderer;
+void GameState::setRunning(bool running) {
+	running = true;
+}
+*/
+
+
+
+bool GameState::setupWindow(SDL_Window *window) {
+	window = SDL_CreateWindow(
+	"Test12",
+	SDL_WINDOWPOS_CENTERED,
+	SDL_WINDOWPOS_CENTERED,
+	WINDOW_WIDTH,
+	WINDOW_HEIGHT,
+	SDL_WINDOW_SHOWN
+	);
+				
+	if (!window) {
+		return false;
+	}
+	
+	return true;
+}
+
+bool GameState::setupRenderer(SDL_Renderer *renderer, SDL_Window *window2) {
+	renderer = SDL_CreateRenderer(window2, -1, SDL_RENDERER_PRESENTVSYNC);
+	
+	if (!renderer) {
+		return false;
+	}
+	
+	return true;
 }
 
 void GameState::setRunning(bool running) {
 	running = true;
 }
 
+
+
 // need this function to access a similar function in GameManager class
 void GameState::changeState(int state) {
 	GameManager *gameManager = new GameManager();
 	gameManager->changeGameState(state);
 	delete gameManager;
+}
+
+void GameState::showErrorMessage(string level, string comp) {
+	cout << level << " " << comp << " unable to be initiaiised!\n";
 }
 
 GameState::~GameState() {
