@@ -24,21 +24,14 @@ class MainMenu: public GameState {
 		MainMenu();
 		
 		void run();
-		void event();
-		void update();
 		void render();
-		void cleanup();
 		
 	private:
-		GameState *_gameState;
-		
 		SDL_Window *_window;
 		SDL_Renderer *_renderer;
 		SDL_Event _event;
 		
 		bool _running;
-		
-		RenderObject *_renderObject;
 };
 
 #endif /* defined(__Test12__MainMenu__) */

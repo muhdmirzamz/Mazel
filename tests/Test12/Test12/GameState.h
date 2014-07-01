@@ -28,32 +28,36 @@ class GameState {
 		virtual ~GameState();
 		
 		// set return type as bool to do if statement in different classes
-		// for error messages
-		/*
+		// for error message
 		virtual void setupWindow(SDL_Window *window);
-		virtual void setupRenderer(SDL_Renderer *renderer, SDL_Window *window2);
+		virtual void setupRenderer(SDL_Renderer* renderer, SDL_Window *window2);
 		virtual void setRunning(bool running);
-		*/
 		
-		virtual bool setupWindow(SDL_Window *window);
-		virtual bool setupRenderer(SDL_Renderer *renderer, SDL_Window *window2);
-		virtual void setRunning(bool running);
 		
 		// make this an abstract class, not completely
 		// every class inherits these functions except changeState(int state)
-		virtual void run() = 0;
-		virtual void event() = 0;
-		virtual void update() = 0;
-		virtual void render() = 0;
-		virtual void cleanup() = 0;
+		virtual void run();
+		virtual void event();
+		virtual void update();
+		virtual void render();
+		virtual void cleanup();
 		
 		// these need not be virtual
 		// need to use this through at least a pointer
 		// so that you do not have to retype all these in different classes
 		void changeState(int state);
 		void showErrorMessage(string level, string comp);
+		SDL_Window* getWindow();
+		SDL_Renderer* getRenderer();
+		bool getRunningVar();
+		SDL_Event getEvent();
 		
-	private:
+	protected:
+		SDL_Window *_window;
+		SDL_Renderer *_renderer;
+		SDL_Event _event;
+		
+		bool _running;
 };
 
 #endif /* defined(__Test12__GameState__) */
