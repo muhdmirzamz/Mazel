@@ -26,7 +26,7 @@ void GameState::setupWindow(SDL_Window *window) {
 	);
 	
 	if (window == NULL) {
-		cout << "Problem\n";
+		cout << "Window Problem\n";
 	}
 }
 
@@ -34,20 +34,12 @@ void GameState::setupRenderer(SDL_Renderer *renderer, SDL_Window *window2) {
 	renderer = SDL_CreateRenderer(window2, -1, SDL_RENDERER_PRESENTVSYNC);
 	
 	if (renderer == NULL) {
-		cout << "Problem\n";
+		cout << "Renderer Problem\n";
 	}
 }
 
 void GameState::setRunning(bool running) {
 	running = true;
-}
-
-void GameState::run() {
-	while (_running) {
-		event();
-		update();
-		render();
-	}
 }
 
 void GameState::event() {
@@ -81,22 +73,6 @@ void GameState::changeState(int state) {
 
 void GameState::showErrorMessage(string level, string comp) {
 	cout << level << " " << comp << " unable to be initiaiised!\n";
-}
-
-SDL_Window* GameState::getWindow() {
-	return _window;
-}
-
-SDL_Renderer* GameState::getRenderer() {
-	return _renderer;
-}
-
-bool GameState::getRunningVar() {
-	return _running;
-}
-
-SDL_Event GameState::getEvent() {
-	return _event;
 }
 
 GameState::~GameState() {

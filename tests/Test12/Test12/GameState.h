@@ -36,7 +36,7 @@ class GameState {
 		
 		// make this an abstract class, not completely
 		// every class inherits these functions except changeState(int state)
-		virtual void run();
+		virtual void run() = 0;
 		virtual void event();
 		virtual void update();
 		virtual void render();
@@ -47,17 +47,8 @@ class GameState {
 		// so that you do not have to retype all these in different classes
 		void changeState(int state);
 		void showErrorMessage(string level, string comp);
-		SDL_Window* getWindow();
-		SDL_Renderer* getRenderer();
-		bool getRunningVar();
-		SDL_Event getEvent();
 		
-	protected:
-		SDL_Window *_window;
-		SDL_Renderer *_renderer;
-		SDL_Event _event;
-		
-		bool _running;
+	private:
 };
 
 #endif /* defined(__Test12__GameState__) */

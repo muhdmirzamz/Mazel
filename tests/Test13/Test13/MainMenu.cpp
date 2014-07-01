@@ -1,8 +1,8 @@
 //
 //  MainMenu.cpp
-//  Test12
+//  Test13
 //
-//  Created by Muhd Mirza on 23/6/14.
+//  Created by Muhd Mirza on 1/7/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
@@ -11,15 +11,13 @@
 using namespace std;
 
 MainMenu::MainMenu() {
-	setupWindow(_window);
-	setupRenderer(_renderer, _window);
-	setRunning(_running);
+	setup(&_window, &_renderer, _running);
 }
 
 void MainMenu::run() {
 	while (_running) {
-		event();
-		update();
+		event(_event, _running);
+		update(&_renderer);
 		render();
 	}
 }
