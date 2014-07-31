@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "SDL.h"
+#include "SDL_error.h"
 
 #include "GameManager.h"
 
@@ -30,8 +31,16 @@ int main(int argc, const char *argv[])
 	// and if SDL fails to initialise
 	// print out error message
 	if (!init()) {
-		cout << "SDL failed to initialise!\n";
+		cout << "SDL failed to initialise! SDL Error message: " << SDL_GetError() << endl;
 	}
+	
+	// enter program through GameManager
+	GameManager *gameManager = new GameManager();
+	gameManager->changeGameState(0); // switch to Main Menu
+	
+	// release memory and quit SDL
+	delete gameManager;
+	SDL_Quit();
 	return 0;
 }
 

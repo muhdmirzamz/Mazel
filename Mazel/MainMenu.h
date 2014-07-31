@@ -11,4 +11,30 @@
 
 #include <iostream>
 
+#include "GameState.h"
+
+using namespace std;
+
+class MainMenu: public GameState {
+	public:
+		MainMenu();
+	
+		// inherited functions to override
+		void setup();
+		void run();
+		void event();
+		void update();
+		void render();
+		void cleanup();
+		
+	private:
+		SDL_Window *_window; // free
+		SDL_Window *_windowRef;
+		SDL_Renderer *_renderer; // free
+		SDL_Renderer *_rendererRef;
+		SDL_Event _event;
+		
+		bool _running;
+};
+
 #endif /* defined(__Mazel__MainMenu__) */
