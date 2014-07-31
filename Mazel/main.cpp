@@ -1,19 +1,38 @@
 //
 //  main.cpp
 //  Mazel
+//	Program entry point
 //
-//  Created by Muhd Mirza on 19/4/14.
+//  Created by Muhd Mirza on 31/7/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
 #include <iostream>
-#include <SDL2/SDL.h>
 
-int main(int argc, const char * argv[])
-{
+#include "SDL.h"
 
-	// insert code here...
-	std::cout << "Hello, World!\n";
-    return 0;
+#include "GameManager.h"
+
+using namespace std;
+
+bool init() {
+	// if SDL initialises, along with its video commponent
+	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
+		return true;
+	}
+	
+	return false;
 }
+
+int main(int argc, const char *argv[])
+{
+	// if video component fails to initialise
+	// and if SDL fails to initialise
+	// print out error message
+	if (!init()) {
+		cout << "SDL failed to initialise!\n";
+	}
+	return 0;
+}
+
 
