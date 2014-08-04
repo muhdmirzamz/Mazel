@@ -1,5 +1,14 @@
 CHANGELOG
 
+4 August 2014
+* Fixed: Crash on launch
+
+4 July 2014(Estimated)
+* Improved program structure
+* Improved memory management
+* Improved ball and wall collision
+* Added image and art
+
 3 July 2014
 * Improved program code structure
 * Added images

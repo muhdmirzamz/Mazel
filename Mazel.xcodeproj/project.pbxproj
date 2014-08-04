@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		AA43481A1989506000E3F306 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348181989506000E3F306 /* main.cpp */; };
 		AA43481C198950E800E3F306 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43481B198950E800E3F306 /* SDL2.framework */; };
-		AA43481F1989510D00E3F306 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA43481D1989510D00E3F306 /* GameManager.cpp */; };
 		AA4348221989511600E3F306 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348201989511600E3F306 /* GameState.cpp */; };
 		AA4348251989511C00E3F306 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348231989511C00E3F306 /* MainMenu.cpp */; };
 		AA4348281989512200E3F306 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348261989512200E3F306 /* Level1.cpp */; };
 		AA43482B1989512800E3F306 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348291989512800E3F306 /* Level2.cpp */; };
+		AAD08F9F198D51A9008DFA5C /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAD08F9D198D51A9008DFA5C /* GameManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,8 +31,6 @@
 /* Begin PBXFileReference section */
 		AA4348181989506000E3F306 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AA43481B198950E800E3F306 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Mazel/SDL2.framework; sourceTree = "<group>"; };
-		AA43481D1989510D00E3F306 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
-		AA43481E1989510D00E3F306 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		AA4348201989511600E3F306 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		AA4348211989511600E3F306 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		AA4348231989511C00E3F306 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
@@ -42,6 +40,9 @@
 		AA4348291989512800E3F306 /* Level2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level2.cpp; sourceTree = "<group>"; };
 		AA43482A1989512800E3F306 /* Level2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
 		AA682E3C1902593500058604 /* Mazel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazel; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD08F9D198D51A9008DFA5C /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		AAD08F9E198D51A9008DFA5C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		AAE8E2AC198E4F9200DB37AA /* Includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				AA4348181989506000E3F306 /* main.cpp */,
-				AA43481D1989510D00E3F306 /* GameManager.cpp */,
-				AA43481E1989510D00E3F306 /* GameManager.h */,
+				AAE8E2AC198E4F9200DB37AA /* Includes.h */,
+				AAD08F9D198D51A9008DFA5C /* GameManager.cpp */,
+				AAD08F9E198D51A9008DFA5C /* GameManager.h */,
 				AA4348201989511600E3F306 /* GameState.cpp */,
 				AA4348211989511600E3F306 /* GameState.h */,
 				AA4348231989511C00E3F306 /* MainMenu.cpp */,
@@ -143,9 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA43481A1989506000E3F306 /* main.cpp in Sources */,
+				AAD08F9F198D51A9008DFA5C /* GameManager.cpp in Sources */,
 				AA43482B1989512800E3F306 /* Level2.cpp in Sources */,
 				AA4348221989511600E3F306 /* GameState.cpp in Sources */,
-				AA43481F1989510D00E3F306 /* GameManager.cpp in Sources */,
 				AA4348251989511C00E3F306 /* MainMenu.cpp in Sources */,
 				AA4348281989512200E3F306 /* Level1.cpp in Sources */,
 			);

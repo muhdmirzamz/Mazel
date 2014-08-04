@@ -1,10 +1,9 @@
 //
 //  GameManager.h
 //  Mazel
-//	this class is in charge of handling the switching
-//	of game states
+//	In charge of changing states and levels
 //
-//  Created by Muhd Mirza on 31/7/14.
+//  Created by Muhd Mirza on 3/8/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
@@ -20,13 +19,8 @@ class GameManager {
 		GameManager();
 		
 		void changeGameState(int state);
-	
+		
 	private:
-		enum states {
-			MAIN_MENU,
-			LEVEL_ONE,
-			LEVEL_TWO
-		};
 };
 
 #endif /* defined(__Mazel__GameManager__) */

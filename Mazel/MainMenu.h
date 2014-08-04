@@ -35,6 +35,13 @@ class MainMenu: public GameState {
 		SDL_Event _event;
 		
 		bool _running;
+		
+		//SDL_Surface *_icon; 
+		SDL_Surface *_image;
+		SDL_Texture *_imageTexture; // free
+		SDL_Texture *_imageTextureRef;
+		
+		SDL_Rect _imageTextureRect;
 };
 
 #endif /* defined(__Mazel__MainMenu__) */

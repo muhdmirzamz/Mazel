@@ -33,12 +33,10 @@ int main(int argc, const char *argv[])
 	if (!init()) {
 		cout << "SDL failed to initialise! SDL Error message: " << SDL_GetError() << endl;
 	}
-	
-	// enter program through GameManager
+
 	GameManager *gameManager = new GameManager();
-	gameManager->changeGameState(0); // switch to Main Menu
+	gameManager->changeGameState(0);
 	
-	// release memory and quit SDL
 	delete gameManager;
 	SDL_Quit();
 	return 0;
