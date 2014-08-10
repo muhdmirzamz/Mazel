@@ -44,7 +44,7 @@ SDL_Renderer* GameState::initRenderer(SDL_Window *window2, SDL_Renderer *rendere
 	
 	return renderer;
 }
-/*
+
 void GameState::setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon) {
 	icon = SDL_LoadBMP(filePathOfIcon.c_str());
 	if (!icon) {
@@ -53,13 +53,14 @@ void GameState::setIcon(SDL_Window *window3, SDL_Surface *icon, const string fil
 
 	SDL_SetWindowIcon(window3, icon);
 }
-*/
+
 SDL_Texture* GameState::loadImageOntoTexture
 (SDL_Surface *imageSurface, string filePathOfImage, SDL_Texture *imageTexture, SDL_Renderer *renderer2) {
 	// load image
 	imageSurface = SDL_LoadBMP(filePathOfImage.c_str());
 	
 	// get rid of white background
+	// comment out for debugging
 	SDL_SetColorKey(imageSurface, SDL_TRUE, SDL_MapRGB(imageSurface->format, 255, 255, 255));
 	
 	imageTexture = SDL_CreateTextureFromSurface(renderer2, imageSurface);

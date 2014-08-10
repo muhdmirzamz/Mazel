@@ -12,6 +12,7 @@
 #include "SDL.h"
 #include "SDL_error.h"
 
+#include "Includes.h"
 #include "GameManager.h"
 
 using namespace std;
@@ -35,7 +36,7 @@ int main(int argc, const char *argv[])
 	}
 
 	GameManager *gameManager = new GameManager();
-	gameManager->changeGameState(0);
+	gameManager->changeGameState(INTRO_SCENE);
 	
 	delete gameManager;
 	SDL_Quit();
