@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA130BD5199777B200A7E322 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA130BD3199777B200A7E322 /* Collision.cpp */; };
+		AA3788751992017500101005 /* IntroScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3788731992017500101005 /* IntroScene.cpp */; };
+		AA382B3B1991F7B400120E47 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA382B3A1991F7B400120E47 /* SDL2.framework */; };
 		AA43481A1989506000E3F306 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348181989506000E3F306 /* main.cpp */; };
-		AA43481C198950E800E3F306 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43481B198950E800E3F306 /* SDL2.framework */; };
 		AA4348221989511600E3F306 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348201989511600E3F306 /* GameState.cpp */; };
 		AA4348251989511C00E3F306 /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348231989511C00E3F306 /* MainMenu.cpp */; };
 		AA4348281989512200E3F306 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4348261989512200E3F306 /* Level1.cpp */; };
@@ -29,8 +31,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA130BD3199777B200A7E322 /* Collision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
+		AA130BD4199777B200A7E322 /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
+		AA3788731992017500101005 /* IntroScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntroScene.cpp; sourceTree = "<group>"; };
+		AA3788741992017500101005 /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
+		AA382B3A1991F7B400120E47 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		AA4348181989506000E3F306 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		AA43481B198950E800E3F306 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Mazel/SDL2.framework; sourceTree = "<group>"; };
 		AA4348201989511600E3F306 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		AA4348211989511600E3F306 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		AA4348231989511C00E3F306 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
@@ -50,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA43481C198950E800E3F306 /* SDL2.framework in Frameworks */,
+				AA382B3B1991F7B400120E47 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +66,7 @@
 		AA682E331902593400058604 = {
 			isa = PBXGroup;
 			children = (
-				AA43481B198950E800E3F306 /* SDL2.framework */,
+				AA382B3A1991F7B400120E47 /* SDL2.framework */,
 				AA682E3E1902593500058604 /* Mazel */,
 				AA682E3D1902593500058604 /* Products */,
 			);
@@ -83,6 +89,10 @@
 				AAD08F9E198D51A9008DFA5C /* GameManager.h */,
 				AA4348201989511600E3F306 /* GameState.cpp */,
 				AA4348211989511600E3F306 /* GameState.h */,
+				AA130BD3199777B200A7E322 /* Collision.cpp */,
+				AA130BD4199777B200A7E322 /* Collision.h */,
+				AA3788731992017500101005 /* IntroScene.cpp */,
+				AA3788741992017500101005 /* IntroScene.h */,
 				AA4348231989511C00E3F306 /* MainMenu.cpp */,
 				AA4348241989511C00E3F306 /* MainMenu.h */,
 				AA4348261989512200E3F306 /* Level1.cpp */,
@@ -145,6 +155,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA43481A1989506000E3F306 /* main.cpp in Sources */,
+				AA3788751992017500101005 /* IntroScene.cpp in Sources */,
+				AA130BD5199777B200A7E322 /* Collision.cpp in Sources */,
 				AAD08F9F198D51A9008DFA5C /* GameManager.cpp in Sources */,
 				AA43482B1989512800E3F306 /* Level2.cpp in Sources */,
 				AA4348221989511600E3F306 /* GameState.cpp in Sources */,
@@ -173,7 +185,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = /Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/Mazel;
+				FRAMEWORK_SEARCH_PATHS = /Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -215,7 +227,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = /Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/Mazel;
+				FRAMEWORK_SEARCH_PATHS = /Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -238,6 +250,7 @@
 					"$(inherited)",
 					/Users/muhdmirzamz/Documents/Softwares,
 					"$(PROJECT_DIR)/Mazel",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -252,6 +265,7 @@
 					"$(inherited)",
 					/Users/muhdmirzamz/Documents/Softwares,
 					"$(PROJECT_DIR)/Mazel",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";

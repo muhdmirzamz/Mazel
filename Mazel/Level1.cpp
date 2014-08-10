@@ -12,7 +12,6 @@ using namespace std;
 
 Level1::Level1() {
 	setup();
-	run();
 }
 
 void Level1::setup() {
@@ -24,7 +23,7 @@ void Level1::setup() {
 	if (!_renderer) {
 		printErrorMessage("Main Menu", "Renderer");
 	}
-	//setIcon(_window, _icon, "images/MazelLogo.bmp");
+	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
 	_running = true;
 }
@@ -77,8 +76,6 @@ void Level1::render() {
 }
 
 void Level1::cleanup() {
-	//SDL_FreeSurface(_icon);
-	//_icon = NULL;
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

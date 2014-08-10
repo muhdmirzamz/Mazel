@@ -12,7 +12,6 @@ using namespace std;
 
 MainMenu::MainMenu() {
 	setup();
-	run();
 }
 
 void MainMenu::setup() {
@@ -24,21 +23,58 @@ void MainMenu::setup() {
 	if (!_renderer) {
 		printErrorMessage("Main Menu", "Renderer");
 	}
-	//setIcon(_window, _icon, "images/MazelLogo.bmp");
+	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
-	_imageTexture = loadImageOntoTexture(_image, "images/MazelLogo.bmp", _imageTextureRef, _renderer);
-	if (!_imageTexture) {
+	_logoTexture = loadImageOntoTexture(_logo, "images/MazelLogo.bmp", _logoTextureRef, _renderer);
+	if (!_logoTexture) {
 		printErrorMessage("Main Menu", "image texture");
 	}
 	
+	_mainMenuHalfBackgroundTexture = loadImageOntoTexture(_mainMenuHalfBackground, "images/main_menu_half_background.bmp", _mainMenuHalfBackgroundTextureRef, _renderer);
+	if (!_mainMenuHalfBackgroundTexture) {
+		printErrorMessage("Main Menu", "Half Background");
+	}
+	
+	_startTexture = loadImageOntoTexture(_startImage, "images/mazelstart.bmp", _startTextureRef, _renderer);
+	if (!_startTexture) {
+		printErrorMessage("Main Menu", "Start image");
+	}
+	
+	_ballTexture = loadImageOntoTexture(_ballImage, "images/ball.bmp", _ballTextureRef, _renderer);
+	if (!_ballTexture) {
+		printErrorMessage("Main Menu", "Ball texture");
+	}
+	
+	_collision = new Collision();
+	if (!_collision) {
+		printErrorMessage("Main Menu", "Collision pointer");
+	}
+	
 	_running = true;
+	
+	_ballRect.x = 20;
+	_ballRect.y = 20;
+	_ballRect.w = 40;
+	_ballRect.h = 40;
+	
+	_ballSpeedX = 5;
+	_ballSpeedY = 5;
 }
 
 void MainMenu::run() {
-	while (_running) {	
+	while (_running) {
 		event();
+		moveBall();
 		update();
 		render();
+		
+		if (_ballRect.y < 0) {
+			_ballSpeedY = 5;
+		}
+		
+		if (_collision->ballDidCollideWithGround(_ballRect)) {
+			_ballSpeedY = -5;
+		}
 	}
 }
 
@@ -77,23 +113,50 @@ void MainMenu::update() {
 }
 
 void MainMenu::render() {
-	_imageTextureRect.x = 50;
-	_imageTextureRect.y = 50;
-	_imageTextureRect.w = 400;
-	_imageTextureRect.h = 400;
-	SDL_SetRenderDrawColor(_renderer, 240, 240, 240, 0);
+	// render background
 	SDL_RenderClear(_renderer);
-	SDL_RenderCopy(_renderer, _imageTexture, NULL, &_imageTextureRect);
-			
+	SDL_SetRenderDrawColor(_renderer, 240, 240, 240, 0);
+
+	// render logo
+	_logoTextureRect.x = 180;
+	_logoTextureRect.y = 50;
+	_logoTextureRect.w = 300;
+	_logoTextureRect.h = 300;
+	SDL_RenderCopy(_renderer, _logoTexture, NULL, &_logoTextureRect);
+	
+	// render main menu ground
+	_mainMenuHalfBackGroundRect.x = 0;
+	_mainMenuHalfBackGroundRect.y = 280;
+	_mainMenuHalfBackGroundRect.w = WINDOW_WIDTH;
+	_mainMenuHalfBackGroundRect.h = 200;
+	SDL_RenderCopy(_renderer, _mainMenuHalfBackgroundTexture, NULL, &_mainMenuHalfBackGroundRect);
+	
+	// render main menu start button
+	_startRect.x = 200;
+	_startRect.y = 345;
+	_startRect.w = 200;
+	_startRect.h = 200;
+	SDL_RenderCopy(_renderer, _startTexture, NULL, &_startRect);
+	
+	// render ball
+	SDL_RenderCopy(_renderer, _ballTexture, NULL, &_ballRect);
 }
 
 void MainMenu::cleanup() {
-	//SDL_FreeSurface(_icon);
-	//_icon = NULL;
-	SDL_DestroyTexture(_imageTexture);
-	_imageTexture = NULL;
+	SDL_DestroyTexture(_logoTexture);
+	_logoTexture = NULL;
+	SDL_DestroyTexture(_mainMenuHalfBackgroundTexture);
+	_mainMenuHalfBackgroundTexture = NULL;
+	SDL_DestroyTexture(_startTexture);
+	_startTexture = NULL;
+	SDL_DestroyTexture(_ballTexture);
+	_ballTexture = NULL;
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);
 	_window = NULL;
+}
+
+void MainMenu::moveBall() {
+	_ballRect.y += _ballSpeedY;
 }

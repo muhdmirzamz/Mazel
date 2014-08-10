@@ -20,7 +20,18 @@
 // error header file
 #include "SDL_error.h"
 
+// constant window macros
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+#define WINDOW_X_POS 300
+#define WINDOW_Y_POS 300
+
+// constant macros for clicking positions
+#define CLICKED_AT_XPOS _event.button.x
+#define CLICKED_AT_YPOS _event.button.y
+
 enum GameStates {
+	INTRO_SCENE,
 	MAIN_MENU,
 	LEVEL_ONE,
 	LEVEL_TWO,

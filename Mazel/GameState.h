@@ -15,12 +15,6 @@
 
 #include "Includes.h"
 
-// define constant window variables
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
-#define WINDOW_X_POS 300
-#define WINDOW_Y_POS 300
-
 using namespace std;
 
 class GameState {
@@ -41,7 +35,7 @@ class GameState {
 		// declared in each subclass due to memory issues
 		virtual SDL_Window* initWindow(SDL_Window *window);
 		virtual SDL_Renderer* initRenderer(SDL_Window *window2, SDL_Renderer *renderer);
-		//virtual void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);
+		virtual void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);
 		virtual SDL_Texture* loadImageOntoTexture(SDL_Surface *imageSurface, string filePathOfImage, SDL_Texture *imageTexture, SDL_Renderer *renderer2);
 		
 		virtual void setup(); // use this function to increase code readability

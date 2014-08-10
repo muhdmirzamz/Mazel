@@ -36,7 +36,7 @@ class Level1: public GameState {
 		
 		bool _running;
 		
-		//SDL_Surface *_icon;
+		SDL_Surface *_icon;
 };
 
 #endif /* defined(__Mazel__Level1__) */
