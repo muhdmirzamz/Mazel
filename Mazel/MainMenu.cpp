@@ -96,13 +96,17 @@ void MainMenu::event() {
 				
 				changeState(EXIT);
 			}
-			
-			if (_event.key.keysym.sym == SDLK_c) {
-				_running = false;
-				
-				cleanup();
-				
-				changeState(LEVEL_ONE);
+		}
+		
+		if (_event.type == SDL_MOUSEBUTTONDOWN) {
+			if (CLICKED_AT_XPOS >= 200 && CLICKED_AT_XPOS <= 400) {
+				if (CLICKED_AT_YPOS >= 345 && CLICKED_AT_YPOS <= 545) {
+					_running = false;
+					
+					cleanup();
+					
+					changeState(LEVEL_ONE);
+				}
 			}
 		}
 	}

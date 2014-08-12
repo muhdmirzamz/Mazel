@@ -14,10 +14,14 @@ LFLAGS=-Wall $(SDL_FRAMEWORK) -o
 #look for files in Mazel folder
 VPATH=Mazel
 
-MazelGame: main.o GameManager.o GameState.o Collision.o IntroScene.o MainMenu.o Level1.o
+MazelGame: main.o GameManager.o GameState.o Collision.o IntroScene.o MainMenu.o Level1.o Level2.o
 	@echo "Linking object files"
 	@$(CXX) $(LFLAGS) $@ $^
 	@echo "Done."
+
+Level2.o: Level2.cpp
+	@echo "Compiling Level2.cpp"
+	@$(CXX) $(CFLAGS) $^
 
 Level1.o: Level1.cpp
 	@echo "Compiling Level1.cpp"

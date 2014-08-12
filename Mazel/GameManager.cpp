@@ -11,6 +11,7 @@
 #include "IntroScene.h"
 #include "MainMenu.h"
 #include "Level1.h"
+#include "Level2.h"
 
 using namespace std;
 
@@ -31,16 +32,25 @@ void GameManager::changeGameState(int state) {
 			gameState->run();
 			break;
 		}
+		
 		case MAIN_MENU: {
 			gameState = new MainMenu();
 			gameState->run();
 			break;
 		}
+		
 		case LEVEL_ONE: {
 			gameState = new Level1();
 			gameState->run();
 			break;
 		}
+		
+		case LEVEL_TWO: {
+			gameState = new Level2();
+			gameState->run();
+			break;
+		}
+		
 		default:
 			break;
 	}
