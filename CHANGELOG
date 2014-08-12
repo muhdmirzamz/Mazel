@@ -1,5 +1,9 @@
 CHANGELOG
 
+v0.1.1-alpha 12 August 2014
+* Added level code structure
+* Added clicking to select feature in main menu
+
 v0.1.0-alpha 10 August 2014
 * Added intro scene
 * Fully working main menu
