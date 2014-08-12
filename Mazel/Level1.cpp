@@ -60,7 +60,7 @@ void Level1::event() {
 				
 				cleanup();
 				
-				changeState(MAIN_MENU);
+				changeState(LEVEL_TWO);
 			}
 		}
 	}

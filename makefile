@@ -19,6 +19,10 @@ MazelGame: main.o GameManager.o GameState.o Collision.o IntroScene.o MainMenu.o 
 	@$(CXX) $(LFLAGS) $@ $^
 	@echo "Done."
 
+Level2.o: Level2.cpp
+	@echo "Compiling Level2.cpp"
+	@$(CXX) $(CFLAGS) $^
+
 Level1.o: Level1.cpp
 	@echo "Compiling Level1.cpp"
 	@$(CXX) $(CFLAGS) $^
