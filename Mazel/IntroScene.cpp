@@ -27,6 +27,11 @@ void IntroScene::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
+	_renderIntroScene = new RenderIntroScene();
+	if (!_renderIntroScene) {
+		printErrorMessage("Intro Scene", "Render");
+	}
+	
 	_continueButtonTexture = loadImageOntoTexture(_continueButton, "images/intro_scene_continue_button.bmp", _continueButtonTextureRef, _renderer);
 	if (!_continueButtonTexture) {
 		printErrorMessage("IntroScene", "Continue button");
@@ -88,20 +93,9 @@ void IntroScene::update() {
 }
 
 void IntroScene::render() {
-	SDL_SetRenderDrawColor(_renderer, 0, 100, 100, 0);
-	SDL_RenderClear(_renderer);
-
-	_continueButtonRect.x = 120;
-	_continueButtonRect.y = 150;
-	_continueButtonRect.w = 400;
-	_continueButtonRect.h = 400;
-	SDL_RenderCopy(_renderer, _continueButtonTexture, NULL, &_continueButtonRect);
-	
-	_introLogoRect.x = 120;
-	_introLogoRect.y = 10;
-	_introLogoRect.w = 400;
-	_introLogoRect.h = 400;
-	SDL_RenderCopy(_renderer, _introLogoTexture, NULL, &_introLogoRect);
+	_renderIntroScene->renderIntroSceneBackground(_renderer);
+	_renderIntroScene->renderIntroSceneLogo(_renderer, _introLogoTexture);
+	_renderIntroScene->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
 }
 
 void IntroScene::cleanup() {
@@ -109,6 +103,10 @@ void IntroScene::cleanup() {
 	_introLogoTexture = NULL;
 	SDL_DestroyTexture(_continueButtonTexture);
 	_continueButtonTexture = NULL;
+	
+	delete _renderIntroScene;
+	_renderIntroScene = NULL;
+	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

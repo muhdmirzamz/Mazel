@@ -50,6 +50,11 @@ void MainMenu::setup() {
 		printErrorMessage("Main Menu", "Collision pointer");
 	}
 	
+	_renderMainMenu = new RenderMainMenu();
+	if (!_renderMainMenu) {
+		printErrorMessage("Main Menu", "Render pointer");
+	}
+	
 	_running = true;
 	
 	_ballRect.x = 20;
@@ -57,7 +62,6 @@ void MainMenu::setup() {
 	_ballRect.w = 40;
 	_ballRect.h = 40;
 	
-	_ballSpeedX = 5;
 	_ballSpeedY = 5;
 }
 
@@ -67,14 +71,7 @@ void MainMenu::run() {
 		moveBall();
 		update();
 		render();
-		
-		if (_ballRect.y < 0) {
-			_ballSpeedY = 5;
-		}
-		
-		if (_collision->ballDidCollideWithGround(_ballRect)) {
-			_ballSpeedY = -5;
-		}
+		checkCollision();
 	}
 }
 
@@ -117,33 +114,21 @@ void MainMenu::update() {
 }
 
 void MainMenu::render() {
-	// render background
-	SDL_RenderClear(_renderer);
-	SDL_SetRenderDrawColor(_renderer, 240, 240, 240, 0);
+	_renderMainMenu->renderMainMenuBackground(_renderer);
+	_renderMainMenu->renderMainMenuLogo(_renderer, _logoTexture);
+	_renderMainMenu->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
+	_renderMainMenu->renderMainMenuStartButton(_renderer, _startTexture);
+	_renderMainMenu->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
+}
 
-	// render logo
-	_logoTextureRect.x = 180;
-	_logoTextureRect.y = 50;
-	_logoTextureRect.w = 300;
-	_logoTextureRect.h = 300;
-	SDL_RenderCopy(_renderer, _logoTexture, NULL, &_logoTextureRect);
+void MainMenu::checkCollision() {
+	if (_collision->ballDidCollideWithTopOfWindow(_ballRect)) {
+		_ballSpeedY = 5;
+	}
 	
-	// render main menu ground
-	_mainMenuHalfBackGroundRect.x = 0;
-	_mainMenuHalfBackGroundRect.y = 280;
-	_mainMenuHalfBackGroundRect.w = WINDOW_WIDTH;
-	_mainMenuHalfBackGroundRect.h = 200;
-	SDL_RenderCopy(_renderer, _mainMenuHalfBackgroundTexture, NULL, &_mainMenuHalfBackGroundRect);
-	
-	// render main menu start button
-	_startRect.x = 200;
-	_startRect.y = 345;
-	_startRect.w = 200;
-	_startRect.h = 200;
-	SDL_RenderCopy(_renderer, _startTexture, NULL, &_startRect);
-	
-	// render ball
-	SDL_RenderCopy(_renderer, _ballTexture, NULL, &_ballRect);
+	if (_collision->ballDidCollideWithGround(_ballRect)) {
+		_ballSpeedY = -5;
+	}
 }
 
 void MainMenu::cleanup() {
@@ -155,6 +140,12 @@ void MainMenu::cleanup() {
 	_startTexture = NULL;
 	SDL_DestroyTexture(_ballTexture);
 	_ballTexture = NULL;
+	
+	delete _collision;
+	_collision = NULL;
+	delete _renderMainMenu;
+	_renderMainMenu = NULL;
+	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

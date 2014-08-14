@@ -1,5 +1,11 @@
 CHANGELOG
 
+* Added rendering classes
+* Added window collision
+* Refactored level classes
+* Fixed error messages
+* Added virtual collision checking function for gamestate class
+
 v0.1.1-alpha 12 August 2014
 * Added level code structure
 * Added clicking to select feature in main menu

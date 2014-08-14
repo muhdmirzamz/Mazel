@@ -95,6 +95,10 @@ void GameState::render() {
 	
 }
 
+void GameState::checkCollision() {
+	
+}
+
 void GameState::cleanup() {
 	
 }

@@ -13,7 +13,25 @@
 
 #include <iostream>
 
+// include all files which level classes require
+// level classes only need to import this class(GameState.h)
 #include "Includes.h"
+#include "RenderIntroScene.h"
+#include "RenderMainMenu.h"
+#include "RenderLevel1.h"
+#include "Collision.h"
+
+// constant macros for clicking positions
+#define CLICKED_AT_XPOS _event.button.x
+#define CLICKED_AT_YPOS _event.button.y
+
+enum GameStates {
+	INTRO_SCENE,
+	MAIN_MENU,
+	LEVEL_ONE,
+	LEVEL_TWO,
+	EXIT
+};
 
 using namespace std;
 
@@ -43,6 +61,7 @@ class GameState {
 		virtual void event(); // handles events
 		virtual void update(); // updates game variables
 		virtual void render(); // render the updated look
+		virtual void checkCollision(); // check for collision
 		virtual void cleanup(); // release allocated memory
 		
 		virtual void changeState(int state);
