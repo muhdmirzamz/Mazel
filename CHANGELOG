@@ -1,5 +1,6 @@
 CHANGELOG
 
+v0.2.0-alpha 15 August 2014
 * Added rendering classes
 * Added window collision
 * Refactored level classes
