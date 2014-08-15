@@ -20,16 +20,14 @@ class MainMenu: public GameState {
 	public:
 		MainMenu();
 	
-		// inherited functions to override
 		void setup();
 		void run();
 		void event();
+		void moveBall();
+		void checkCollision();
 		void update();
 		void render();
 		void cleanup();
-		
-		void moveBall();
-		void checkCollision();
 		
 	private:
 		SDL_Window *_window; // free

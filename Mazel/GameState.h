@@ -37,11 +37,6 @@
 */
 #define DEBUG_MODE 1
 
-// ball speed for levels
-// NOT FOR MAIN MENU
-#define LEVEL_BALL_SPEEDX 5
-#define LEVEL_BALL_SPEEDY 5
-
 enum GameStates {
 	INTRO_SCENE,
 	MAIN_MENU,

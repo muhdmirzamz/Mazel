@@ -111,16 +111,8 @@ void MainMenu::event() {
 	}
 }
 
-void MainMenu::update() {
-	SDL_RenderPresent(_renderer);
-}
-
-void MainMenu::render() {
-	_renderMainMenu->renderMainMenuBackground(_renderer);
-	_renderMainMenu->renderMainMenuLogo(_renderer, _logoTexture);
-	_renderMainMenu->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
-	_renderMainMenu->renderMainMenuStartButton(_renderer, _startTexture);
-	_renderMainMenu->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
+void MainMenu::moveBall() {
+	_ballRect.y += _ballSpeedY;
 }
 
 void MainMenu::checkCollision() {
@@ -131,6 +123,18 @@ void MainMenu::checkCollision() {
 	if (_collision->ballDidCollideWithGround(_ballRect)) {
 		_ballSpeedY = -5;
 	}
+}
+
+void MainMenu::update() {
+	SDL_RenderPresent(_renderer);
+}
+
+void MainMenu::render() {
+	_renderMainMenu->renderMainMenuBackground(_renderer);
+	_renderMainMenu->renderMainMenuLogo(_renderer, _logoTexture);
+	_renderMainMenu->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
+	_renderMainMenu->renderMainMenuStartButton(_renderer, _startTexture);
+	_renderMainMenu->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
 }
 
 void MainMenu::cleanup() {
@@ -152,8 +156,4 @@ void MainMenu::cleanup() {
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);
 	_window = NULL;
-}
-
-void MainMenu::moveBall() {
-	_ballRect.y += _ballSpeedY;
 }

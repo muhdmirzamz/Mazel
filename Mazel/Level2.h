@@ -19,7 +19,6 @@ class Level2: public GameState {
 	public:
 		Level2();
 		
-		// inherited functions to override
 		void setup();
 		void run();
 		void event();

@@ -19,10 +19,10 @@ class Level1: public GameState {
 	public:
 		Level1();
 		
-		// inherited functions to override
 		void setup();
 		void run();
 		void event();
+		void checkCollision();
 		void update();
 		void render();
 		void cleanup();
@@ -39,11 +39,16 @@ class Level1: public GameState {
 		SDL_Surface *_icon;
 		
 		RenderLevel1 *_renderLevel1; // free
+		Collision *_collision; // free
 		
 		SDL_Surface *_ballImage;
 		SDL_Texture *_ballTexture; // free
 		SDL_Texture *_ballTextureRef;
 		SDL_Rect _ballRect;
+		int _ballSpeedXLeft;
+		int _ballSpeedXRight;
+		int _ballSpeedYUp;
+		int _ballSpeedYDown;
 };
 
 #endif /* defined(__Mazel__Level1__) */

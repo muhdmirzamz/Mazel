@@ -15,7 +15,7 @@ Collision::Collision() {
 }
 
 bool Collision::ballDidCollideWithTopOfWindow(SDL_Rect ball) {
-	if (ball.y < 0) {
+	if (ball.y <= 0) {
 		return true;
 	}
 	
@@ -23,7 +23,7 @@ bool Collision::ballDidCollideWithTopOfWindow(SDL_Rect ball) {
 }
 
 bool Collision::ballDidCollideWithBottomOfWindow(SDL_Rect ball2) {
-	if (ball2.y + ball2.h > WINDOW_HEIGHT) {
+	if (ball2.y + ball2.h >= WINDOW_HEIGHT) {
 		return true;
 	}
 	
@@ -31,7 +31,7 @@ bool Collision::ballDidCollideWithBottomOfWindow(SDL_Rect ball2) {
 }
 
 bool Collision::ballDidCollideWithLeftOfWindow(SDL_Rect ball3) {
-	if (ball3.x < 0) {
+	if (ball3.x <= 0) {
 		return true;
 	}
 	
@@ -39,7 +39,7 @@ bool Collision::ballDidCollideWithLeftOfWindow(SDL_Rect ball3) {
 }
 
 bool Collision::ballDidCollideWithRightOfWindow(SDL_Rect ball4) {
-	if (ball4.x + ball4.w > WINDOW_WIDTH) {
+	if (ball4.x + ball4.w >= WINDOW_WIDTH) {
 		return true;
 	}
 	

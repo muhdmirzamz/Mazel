@@ -32,6 +32,11 @@ void Level1::setup() {
 		printErrorMessage("Level 1", "render object for level 1");
 	}
 	
+	_collision = new Collision();
+	if (!_collision) {
+		printErrorMessage("Level 1", "Collision pointer");
+	}
+	
 	_ballTexture = loadImageOntoTexture(_ballImage, "images/ball.bmp", _ballTextureRef, _renderer);
 	if (!_ballTexture) {
 		printErrorMessage("Level 1", "ball");
@@ -41,14 +46,20 @@ void Level1::setup() {
 	
 	_ballRect.x = 20;
 	_ballRect.y = 20;
-	_ballRect.w = 25;
-	_ballRect.h = 25;
+	_ballRect.w = 20;
+	_ballRect.h = 20;
+	
+	_ballSpeedXLeft = 10;
+	_ballSpeedXRight = 10;
+	_ballSpeedYUp = 10;
+	_ballSpeedYDown = 10;
 }
 
 void Level1::run() {
 	while (_running) {
 		event();
 		update();
+		checkCollision();
 		render();
 	}
 }
@@ -83,21 +94,43 @@ void Level1::event() {
 #endif
 			// ball controls
 			if (PRESSED_KEY == SDLK_w) {
-				_ballRect.y -= LEVEL_BALL_SPEEDY;
+				_ballSpeedYDown = 10;
+				_ballRect.y -= _ballSpeedYUp;
 			}
 			
 			if (PRESSED_KEY == SDLK_s) {
-				_ballRect.y += LEVEL_BALL_SPEEDY;
+				_ballSpeedYUp = 10;
+				_ballRect.y += _ballSpeedYDown;
 			}
 			
 			if (PRESSED_KEY == SDLK_a) {
-				_ballRect.x -= LEVEL_BALL_SPEEDX;
+				_ballSpeedXRight = 10;
+				_ballRect.x -= _ballSpeedXLeft;
 			}
 			
 			if (PRESSED_KEY == SDLK_d) {
-				_ballRect.x += LEVEL_BALL_SPEEDX;
+				_ballSpeedXLeft = 10;
+				_ballRect.x += _ballSpeedXRight;
 			}
 		}
+	}
+}
+
+void Level1::checkCollision() {
+	if (_collision->ballDidCollideWithTopOfWindow(_ballRect)) {
+		_ballSpeedYUp = 0;
+	}
+	
+	if (_collision->ballDidCollideWithBottomOfWindow(_ballRect)) {
+		_ballSpeedYDown = 0;
+	}
+	
+	if (_collision->ballDidCollideWithLeftOfWindow(_ballRect)) {
+		_ballSpeedXLeft = 0;
+	}
+	
+	if (_collision->ballDidCollideWithRightOfWindow(_ballRect)) {
+		_ballSpeedXRight = 0;
 	}
 }
 
@@ -113,6 +146,8 @@ void Level1::render() {
 void Level1::cleanup() {
 	delete _renderLevel1;
 	_renderLevel1 = NULL;
+	delete _collision;
+	_collision = NULL;
 
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
