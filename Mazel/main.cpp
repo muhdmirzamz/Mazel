@@ -14,6 +14,7 @@
 
 #include "Includes.h"
 #include "GameManager.h"
+#include "GameState.h"
 
 using namespace std;
 

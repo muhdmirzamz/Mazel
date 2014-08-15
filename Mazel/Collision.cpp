@@ -14,8 +14,40 @@ Collision::Collision() {
 	
 }
 
-bool Collision::ballDidCollideWithGround(SDL_Rect ball1) {
-	if (ball1.y >= 300) {
+bool Collision::ballDidCollideWithTopOfWindow(SDL_Rect ball) {
+	if (ball.y <= 0) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Collision::ballDidCollideWithBottomOfWindow(SDL_Rect ball2) {
+	if (ball2.y + ball2.h >= WINDOW_HEIGHT) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Collision::ballDidCollideWithLeftOfWindow(SDL_Rect ball3) {
+	if (ball3.x <= 0) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Collision::ballDidCollideWithRightOfWindow(SDL_Rect ball4) {
+	if (ball4.x + ball4.w >= WINDOW_WIDTH) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Collision::ballDidCollideWithGround(SDL_Rect ball5) {
+	if (ball5.y >= 300) {
 		return true;
 	}
 	

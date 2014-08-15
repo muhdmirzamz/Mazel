@@ -19,7 +19,6 @@ class Level2: public GameState {
 	public:
 		Level2();
 		
-		// inherited functions to override
 		void setup();
 		void run();
 		void event();
@@ -37,6 +36,8 @@ class Level2: public GameState {
 		bool _running;
 		
 		SDL_Surface *_icon;
+		
+		RenderLevel2 *_renderLevel2; // free
 };
 
 #endif /* defined(__Mazel__Level2__) */

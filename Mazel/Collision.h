@@ -20,8 +20,14 @@ class Collision {
 	public:
 		Collision();
 		
+		// basic collision with window
+		bool ballDidCollideWithTopOfWindow(SDL_Rect ball);
+		bool ballDidCollideWithBottomOfWindow(SDL_Rect ball2);
+		bool ballDidCollideWithLeftOfWindow(SDL_Rect ball3);
+		bool ballDidCollideWithRightOfWindow(SDL_Rect ball4);
+		
 		// main menu collision
-		bool ballDidCollideWithGround(SDL_Rect ball1); // bouncing ball collide with ground
+		bool ballDidCollideWithGround(SDL_Rect ball5); // bouncing ball collide with ground
 		
 	private:
 };

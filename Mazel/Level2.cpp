@@ -27,6 +27,10 @@ void Level2::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
+	_renderLevel2 = new RenderLevel2();
+	if (!_renderLevel2) {
+		printErrorMessage("Level 2", "Level 2 renderer object");
+	}
 	
 	_running = true;
 }
@@ -54,11 +58,13 @@ void Level2::update() {
 }
 
 void Level2::render() {
-	SDL_SetRenderDrawColor(_renderer, 0, 100, 0, 0);
-	SDL_RenderClear(_renderer);
+	_renderLevel2->renderLevel2Background(_renderer);
 }
 
 void Level2::cleanup() {
+	delete _renderLevel2;
+	_renderLevel2 = NULL;
+
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);
