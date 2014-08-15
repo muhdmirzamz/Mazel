@@ -87,15 +87,15 @@ void GameState::event() {
 	
 }
 
+void GameState::checkCollision() {
+	
+}
+
 void GameState::update() {
 	
 }
 
 void GameState::render() {
-	
-}
-
-void GameState::checkCollision() {
 	
 }
 

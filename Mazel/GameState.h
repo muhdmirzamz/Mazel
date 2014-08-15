@@ -19,11 +19,28 @@
 #include "RenderIntroScene.h"
 #include "RenderMainMenu.h"
 #include "RenderLevel1.h"
+#include "RenderLevel2.h"
 #include "Collision.h"
 
 // constant macros for clicking positions
 #define CLICKED_AT_XPOS _event.button.x
 #define CLICKED_AT_YPOS _event.button.y
+
+// constant macro for key
+#define PRESSED_KEY _event.key.keysym.sym
+
+/*
+	Currently, there are two ways to exit the game
+	Apply this macro to the escape key and 'c' key
+	for easy debugging
+	Change to 0 if not debugging
+*/
+#define DEBUG_MODE 1
+
+// ball speed for levels
+// NOT FOR MAIN MENU
+#define LEVEL_BALL_SPEEDX 5
+#define LEVEL_BALL_SPEEDY 5
 
 enum GameStates {
 	INTRO_SCENE,
@@ -59,9 +76,9 @@ class GameState {
 		virtual void setup(); // use this function to increase code readability
 		virtual void run(); // main game loop
 		virtual void event(); // handles events
+		virtual void checkCollision(); // check for collision
 		virtual void update(); // updates game variables
 		virtual void render(); // render the updated look
-		virtual void checkCollision(); // check for collision
 		virtual void cleanup(); // release allocated memory
 		
 		virtual void changeState(int state);

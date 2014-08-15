@@ -69,9 +69,9 @@ void MainMenu::run() {
 	while (_running) {
 		event();
 		moveBall();
+		checkCollision();
 		update();
 		render();
-		checkCollision();
 	}
 }
 
@@ -85,6 +85,7 @@ void MainMenu::event() {
 			changeState(EXIT);
 		}
 		
+#if DEBUG_MODE == 1
 		if (_event.type == SDL_KEYDOWN) {
 			if (_event.key.keysym.sym == SDLK_ESCAPE) {
 				_running = false;
@@ -94,6 +95,7 @@ void MainMenu::event() {
 				changeState(EXIT);
 			}
 		}
+#endif
 		
 		if (_event.type == SDL_MOUSEBUTTONDOWN) {
 			if (CLICKED_AT_XPOS >= 200 && CLICKED_AT_XPOS <= 400) {

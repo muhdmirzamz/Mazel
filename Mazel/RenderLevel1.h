@@ -20,6 +20,7 @@ class RenderLevel1 {
 		RenderLevel1();
 		
 		void renderLevel1Background(SDL_Renderer *level1Renderer);
+		void renderLevel1Ball(SDL_Renderer *level1Renderer2, SDL_Texture *ballTexture, SDL_Rect ballRect);
 	
 	private:
 };

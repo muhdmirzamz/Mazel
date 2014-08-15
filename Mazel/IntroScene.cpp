@@ -62,7 +62,8 @@ void IntroScene::event() {
 			
 			changeState(EXIT);
 		}
-		
+
+#if DEBUG_MODE == 1
 		if (_event.type == SDL_KEYDOWN) {
 			if (_event.key.keysym.sym == SDLK_ESCAPE) {
 				_running = false;
@@ -72,6 +73,7 @@ void IntroScene::event() {
 				changeState(EXIT);
 			}
 		}
+#endif
 		
 		// click screen to continue to main menu
 		if (_event.type == SDL_MOUSEBUTTONDOWN) {

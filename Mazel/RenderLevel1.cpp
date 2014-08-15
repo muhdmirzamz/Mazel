@@ -18,3 +18,7 @@ void RenderLevel1::renderLevel1Background(SDL_Renderer *level1Renderer) {
 	SDL_SetRenderDrawColor(level1Renderer, 240, 240, 240, 0);
 	SDL_RenderClear(level1Renderer);
 }
+
+void RenderLevel1::renderLevel1Ball(SDL_Renderer *level1Renderer2, SDL_Texture *ballTexture, SDL_Rect ballRect) {
+	SDL_RenderCopy(level1Renderer2, ballTexture, NULL, &ballRect);
+}

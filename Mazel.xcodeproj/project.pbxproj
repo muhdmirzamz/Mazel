@@ -18,6 +18,7 @@
 		AA4B925E199BA4DE00AB4D89 /* RenderMainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4B925C199BA4DE00AB4D89 /* RenderMainMenu.cpp */; };
 		AA538871199CD20E00EE9299 /* RenderLevel1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53886F199CD20E00EE9299 /* RenderLevel1.cpp */; };
 		AA5994B0199B7820008E3E9D /* RenderIntroScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA5994AE199B7820008E3E9D /* RenderIntroScene.cpp */; };
+		AAA27414199DC09000549427 /* RenderLevel2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA27412199DC09000549427 /* RenderLevel2.cpp */; };
 		AAD08F9F198D51A9008DFA5C /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAD08F9D198D51A9008DFA5C /* GameManager.cpp */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		AA5994AE199B7820008E3E9D /* RenderIntroScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderIntroScene.cpp; sourceTree = "<group>"; };
 		AA5994AF199B7820008E3E9D /* RenderIntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderIntroScene.h; sourceTree = "<group>"; };
 		AA682E3C1902593500058604 /* Mazel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazel; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA27412199DC09000549427 /* RenderLevel2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderLevel2.cpp; sourceTree = "<group>"; };
+		AAA27413199DC09000549427 /* RenderLevel2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderLevel2.h; sourceTree = "<group>"; };
 		AAD08F9D198D51A9008DFA5C /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		AAD08F9E198D51A9008DFA5C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		AAE8E2AC198E4F9200DB37AA /* Includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				AA4B925D199BA4DE00AB4D89 /* RenderMainMenu.h */,
 				AA53886F199CD20E00EE9299 /* RenderLevel1.cpp */,
 				AA538870199CD20E00EE9299 /* RenderLevel1.h */,
+				AAA27412199DC09000549427 /* RenderLevel2.cpp */,
+				AAA27413199DC09000549427 /* RenderLevel2.h */,
 				AA3788731992017500101005 /* IntroScene.cpp */,
 				AA3788741992017500101005 /* IntroScene.h */,
 				AA4348231989511C00E3F306 /* MainMenu.cpp */,
@@ -172,6 +177,7 @@
 				AA43481A1989506000E3F306 /* main.cpp in Sources */,
 				AA3788751992017500101005 /* IntroScene.cpp in Sources */,
 				AA130BD5199777B200A7E322 /* Collision.cpp in Sources */,
+				AAA27414199DC09000549427 /* RenderLevel2.cpp in Sources */,
 				AAD08F9F198D51A9008DFA5C /* GameManager.cpp in Sources */,
 				AA43482B1989512800E3F306 /* Level2.cpp in Sources */,
 				AA4348221989511600E3F306 /* GameState.cpp in Sources */,

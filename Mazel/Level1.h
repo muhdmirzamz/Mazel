@@ -39,6 +39,11 @@ class Level1: public GameState {
 		SDL_Surface *_icon;
 		
 		RenderLevel1 *_renderLevel1; // free
+		
+		SDL_Surface *_ballImage;
+		SDL_Texture *_ballTexture; // free
+		SDL_Texture *_ballTextureRef;
+		SDL_Rect _ballRect;
 };
 
 #endif /* defined(__Mazel__Level1__) */
