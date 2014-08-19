@@ -20,11 +20,19 @@ class Level1: public GameState {
 		Level1();
 		
 		void setup();
+		void setupObjects();
+		void setupTextures();
+		void setupBall();
+		void setupObstacles();
+		
 		void run();
+		
 		void event();
 		void checkCollision();
+		
 		void update();
 		void render();
+		
 		void cleanup();
 		
 	private:
@@ -49,6 +57,10 @@ class Level1: public GameState {
 		int _ballSpeedXRight;
 		int _ballSpeedYUp;
 		int _ballSpeedYDown;
+		
+		SDL_Rect _level1Obstacles[2];
+		SDL_Rect _obstacle1;
+		SDL_Rect _obstacle2;
 };
 
 #endif /* defined(__Mazel__Level1__) */

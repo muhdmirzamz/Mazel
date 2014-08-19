@@ -27,12 +27,28 @@ void Level2::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
+	setupObjects();
+	
+	_running = true;
+}
+
+void Level2::setupObjects() {
 	_renderLevel2 = new RenderLevel2();
 	if (!_renderLevel2) {
 		printErrorMessage("Level 2", "Level 2 renderer object");
 	}
+}
+
+void Level2::setupTextures() {
 	
-	_running = true;
+}
+
+void Level2::setupBall() {
+	
+}
+
+void Level2::setupObstacles() {
+	
 }
 
 void Level2::run() {
