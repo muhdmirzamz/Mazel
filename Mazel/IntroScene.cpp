@@ -27,11 +27,20 @@ void IntroScene::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
+	setupObjects();
+	setupTextures();
+	
+	_running = true;
+}
+
+void IntroScene::setupObjects() {
 	_renderIntroScene = new RenderIntroScene();
 	if (!_renderIntroScene) {
 		printErrorMessage("Intro Scene", "Render");
 	}
-	
+}
+
+void IntroScene::setupTextures() {
 	_continueButtonTexture = loadImageOntoTexture(_continueButton, "images/intro_scene_continue_button.bmp", _continueButtonTextureRef, _renderer);
 	if (!_continueButtonTexture) {
 		printErrorMessage("IntroScene", "Continue button");
@@ -41,8 +50,6 @@ void IntroScene::setup() {
 	if (!_introLogoTexture) {
 		printErrorMessage("IntroScene", "Intro logo");
 	}
-	
-	_running = true;
 }
 
 void IntroScene::run() {

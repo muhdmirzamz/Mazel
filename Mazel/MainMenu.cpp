@@ -25,6 +25,26 @@ void MainMenu::setup() {
 	}
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
+	setupObjects();
+	setupTextures();
+	setupBall();
+	
+	_running = true;
+}
+
+void MainMenu::setupObjects() {
+	_collision = new Collision();
+	if (!_collision) {
+		printErrorMessage("Main Menu", "Collision pointer");
+	}
+	
+	_renderMainMenu = new RenderMainMenu();
+	if (!_renderMainMenu) {
+		printErrorMessage("Main Menu", "Render pointer");
+	}
+}
+
+void MainMenu::setupTextures() {
 	_logoTexture = loadImageOntoTexture(_logo, "images/MazelLogo.bmp", _logoTextureRef, _renderer);
 	if (!_logoTexture) {
 		printErrorMessage("Main Menu", "image texture");
@@ -44,19 +64,9 @@ void MainMenu::setup() {
 	if (!_ballTexture) {
 		printErrorMessage("Main Menu", "Ball texture");
 	}
-	
-	_collision = new Collision();
-	if (!_collision) {
-		printErrorMessage("Main Menu", "Collision pointer");
-	}
-	
-	_renderMainMenu = new RenderMainMenu();
-	if (!_renderMainMenu) {
-		printErrorMessage("Main Menu", "Render pointer");
-	}
-	
-	_running = true;
-	
+}
+
+void MainMenu::setupBall() {
 	_ballRect.x = 20;
 	_ballRect.y = 20;
 	_ballRect.w = 40;

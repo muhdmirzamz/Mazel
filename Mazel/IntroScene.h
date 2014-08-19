@@ -21,10 +21,16 @@ class IntroScene: public GameState {
 		IntroScene();
 		
 		void setup();
+		void setupObjects();
+		void setupTextures();
+		
 		void run();
+		
 		void event();
+		
 		void update();
 		void render();
+		
 		void cleanup();
 	
 	private:

@@ -21,12 +21,19 @@ class MainMenu: public GameState {
 		MainMenu();
 	
 		void setup();
+		void setupObjects();
+		void setupTextures();
+		void setupBall();
+		
 		void run();
+		
 		void event();
 		void moveBall();
 		void checkCollision();
+		
 		void update();
 		void render();
+		
 		void cleanup();
 		
 	private:

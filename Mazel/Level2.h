@@ -20,10 +20,18 @@ class Level2: public GameState {
 		Level2();
 		
 		void setup();
+		void setupObjects();
+		void setupTextures();
+		void setupBall();
+		void setupObstacles();
+		
 		void run();
+		
 		void event();
+		
 		void update();
 		void render();
+		
 		void cleanup();
 		
 	private:

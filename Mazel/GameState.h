@@ -35,7 +35,7 @@
 	for easy debugging
 	Change to 0 if not debugging
 */
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 enum GameStates {
 	INTRO_SCENE,
@@ -68,15 +68,27 @@ class GameState {
 		virtual void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);
 		virtual SDL_Texture* loadImageOntoTexture(SDL_Surface *imageSurface, string filePathOfImage, SDL_Texture *imageTexture, SDL_Renderer *renderer2);
 		
+		// setup
 		virtual void setup(); // use this function to increase code readability
+		virtual void setupObjects(); // set up other classes objects, mostly pointers
+		virtual void setupTextures(); // sets up textures
+		virtual void setupBall(); // sets up ball
+		virtual void setupObstacles(); // sets up obstacles
+		
+		// loop
 		virtual void run(); // main game loop
+		
+		// events
 		virtual void event(); // handles events
+		virtual void changeState(int state); // change state
 		virtual void checkCollision(); // check for collision
+		
+		// update and render
 		virtual void update(); // updates game variables
 		virtual void render(); // render the updated look
-		virtual void cleanup(); // release allocated memory
 		
-		virtual void changeState(int state);
+		// cleanup
+		virtual void cleanup(); // release allocated memory
 	
 	private:
 };

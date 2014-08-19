@@ -79,6 +79,22 @@ void GameState::setup() {
 	
 }
 
+void GameState::setupObjects() {
+	
+}
+
+void GameState::setupTextures() {
+	
+}
+
+void GameState::setupBall() {
+	
+}
+
+void GameState::setupObstacles() {
+	
+}
+
 void GameState::run() {
 	
 }
