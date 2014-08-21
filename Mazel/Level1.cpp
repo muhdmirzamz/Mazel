@@ -208,9 +208,15 @@ void Level1::checkCollision() {
 		_ballSpeedXRight = 0;
 	}
 	
+	// loop through array to check collision
 	for (int i = 0; i <= 2; i++) {
 		if (_collision->ballDidCollideWithTopOfObstacle(_ballRect, _level1Obstacles[i])) {
-			_ballSpeedYDown = 0;
+			//_ballSpeedYDown = 0;
+			_running = false;
+			
+			cleanup();
+			
+			changeState(GAME_OVER);
 		}
 
 		if (_collision->ballDidCollideWithBottomOfObstacle(_ballRect, _level1Obstacles[i])) {

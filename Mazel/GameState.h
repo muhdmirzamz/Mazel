@@ -20,6 +20,7 @@
 #include "RenderMainMenu.h"
 #include "RenderLevel1.h"
 #include "RenderLevel2.h"
+#include "RenderGameOverScene.h"
 #include "Collision.h"
 
 // constant macros for clicking positions
@@ -35,13 +36,14 @@
 	for easy debugging
 	Change to 0 if not debugging
 */
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 enum GameStates {
 	INTRO_SCENE,
 	MAIN_MENU,
 	LEVEL_ONE,
 	LEVEL_TWO,
+	GAME_OVER,
 	EXIT
 };
 

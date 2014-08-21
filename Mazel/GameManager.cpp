@@ -12,6 +12,7 @@
 #include "MainMenu.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "GameOverScene.h"
 
 using namespace std;
 
@@ -47,6 +48,12 @@ void GameManager::changeGameState(int state) {
 		
 		case LEVEL_TWO: {
 			gameState = new Level2();
+			gameState->run();
+			break;
+		}
+		
+		case GAME_OVER: {
+			gameState = new GameOverScene();
 			gameState->run();
 			break;
 		}
