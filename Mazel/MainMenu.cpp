@@ -77,8 +77,9 @@ void MainMenu::setupBall() {
 
 void MainMenu::run() {
 	while (_running) {
+		_ballRect.y += _ballSpeedY;
+	
 		event();
-		moveBall();
 		checkCollision();
 		update();
 		render();
@@ -87,7 +88,7 @@ void MainMenu::run() {
 
 void MainMenu::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
 		
 			cleanup();
@@ -96,8 +97,8 @@ void MainMenu::event() {
 		}
 		
 #if DEBUG_MODE == 1
-		if (_event.type == SDL_KEYDOWN) {
-			if (_event.key.keysym.sym == SDLK_ESCAPE) {
+		if (EVENT_TYPE == SDL_KEYDOWN) {
+			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
 			
 				cleanup();
@@ -107,9 +108,9 @@ void MainMenu::event() {
 		}
 #endif
 		
-		if (_event.type == SDL_MOUSEBUTTONDOWN) {
-			if (CLICKED_AT_XPOS >= 200 && CLICKED_AT_XPOS <= 400) {
-				if (CLICKED_AT_YPOS >= 345 && CLICKED_AT_YPOS <= 545) {
+		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			if (CLICK_AT_XPOS >= 200 && CLICK_AT_XPOS <= 400) {
+				if (CLICK_AT_YPOS >= 345 && CLICK_AT_YPOS <= 545) {
 					_running = false;
 					
 					cleanup();
@@ -119,10 +120,6 @@ void MainMenu::event() {
 			}
 		}
 	}
-}
-
-void MainMenu::moveBall() {
-	_ballRect.y += _ballSpeedY;
 }
 
 void MainMenu::checkCollision() {

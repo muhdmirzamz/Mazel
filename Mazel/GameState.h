@@ -23,12 +23,19 @@
 #include "RenderGameOverScene.h"
 #include "Collision.h"
 
-// constant macros for clicking positions
-#define CLICKED_AT_XPOS _event.button.x
-#define CLICKED_AT_YPOS _event.button.y
+// constant macro for event type
+#define EVENT_TYPE _event.type
 
-// constant macro for key
+// constant macro for key press
 #define PRESSED_KEY _event.key.keysym.sym
+
+// constant macros for mouse cursor coordinates
+#define POINT_AT_XPOS _event.motion.x
+#define POINT_AT_YPOS _event.motion.y
+
+// constant macros for mouse clicking coordinates
+#define CLICK_AT_XPOS _event.button.x
+#define CLICK_AT_YPOS _event.button.y
 
 /*
 	Currently, there are two ways to exit the game

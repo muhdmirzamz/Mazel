@@ -28,7 +28,6 @@ class MainMenu: public GameState {
 		void run();
 		
 		void event();
-		void moveBall();
 		void checkCollision();
 		
 		void update();

@@ -11,7 +11,7 @@ GLOBAL_INCLUDE=-I/Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/Ma
 CFLAGS=-c -Wall -std=c++11 $(SDL_INCLUDE) $(GLOBAL_INCLUDE)
 LFLAGS=-Wall $(SDL_FRAMEWORK) -o
 
-OBJECT_FILES = main.o GameManager.o GameState.o Collision.o RenderIntroScene.o RenderMainMenu.o RenderLevel1.o RenderLevel2.o IntroScene.o MainMenu.o Level1.o Level2.o
+OBJECT_FILES = main.o GameManager.o GameState.o Collision.o RenderIntroScene.o RenderMainMenu.o RenderLevel1.o RenderLevel2.o RenderGameOverScene.o IntroScene.o GameOverScene.o MainMenu.o Level1.o Level2.o
 
 #look for files in Mazel folder
 VPATH=Mazel
@@ -33,8 +33,16 @@ MainMenu.o: MainMenu.cpp
 	@echo "Compiling MainMenu.cpp"
 	@$(CXX) $(CFLAGS) $^
 
+GameOverScene.o: GameOverScene.cpp
+	@echo "Compiling GameOverScene.cpp"
+	@$(CXX) $(CFLAGS) $^
+
 IntroScene.o: IntroScene.cpp
 	@echo "Compiling IntroScene.cpp"
+	@$(CXX) $(CFLAGS) $^
+
+RenderGameOverScene.o: RenderGameOverScene.cpp
+	@echo "Compiling RenderGameOverScene.cpp"
 	@$(CXX) $(CFLAGS) $^
 
 RenderLevel2.o: RenderLevel2.cpp

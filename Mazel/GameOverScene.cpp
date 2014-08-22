@@ -61,6 +61,31 @@ void GameOverScene::event() {
 			_running = false;
 			cleanup();
 		}
+#if DEBUG_MODE == 1
+		// tracks mouse coordinates
+		if (EVENT_TYPE == SDL_MOUSEMOTION) {
+			cout << "X-axis: " << POINT_AT_XPOS << endl;
+			cout << "Y-axis: " << POINT_AT_YPOS << endl;
+		}
+#endif
+		/*
+			Coordinates:
+			X: 147 260
+			Y: 255 287
+		*/
+		// x-axis
+		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			if (CLICK_AT_XPOS >= 147 && CLICK_AT_XPOS <= 260) {
+				// y-axis
+				if (CLICK_AT_YPOS >= 255 && CLICK_AT_YPOS <= 287) {
+					_running = false;
+					
+					cleanup();
+					
+					changeState(LEVEL_ONE);
+				}
+			}
+		}
 	}
 }
 

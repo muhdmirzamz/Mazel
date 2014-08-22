@@ -61,7 +61,7 @@ void Level2::run() {
 
 void Level2::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			 _running = false;
 			 
 			 cleanup();

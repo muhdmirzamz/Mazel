@@ -92,7 +92,7 @@ void Level1::run() {
 
 void Level1::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
 			
 			cleanup();
@@ -100,9 +100,9 @@ void Level1::event() {
 			changeState(EXIT);
 		}
 		
-		if (_event.type == SDL_KEYDOWN) {
+		if (EVENT_TYPE == SDL_KEYDOWN) {
 #if DEBUG_MODE == 1
-			if (_event.key.keysym.sym == SDLK_ESCAPE) {
+			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
 				
 				cleanup();
@@ -110,7 +110,7 @@ void Level1::event() {
 				changeState(EXIT);
 			}
 
-			if (_event.key.keysym.sym == SDLK_c) {
+			if (PRESSED_KEY == SDLK_c) {
 				_running = false;
 				
 				cleanup();

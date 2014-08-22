@@ -62,7 +62,7 @@ void IntroScene::run() {
 
 void IntroScene::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
 			
 			cleanup();
@@ -72,7 +72,7 @@ void IntroScene::event() {
 
 #if DEBUG_MODE == 1
 		if (_event.type == SDL_KEYDOWN) {
-			if (_event.key.keysym.sym == SDLK_ESCAPE) {
+			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
 				
 				cleanup();
@@ -84,8 +84,8 @@ void IntroScene::event() {
 		
 		// click screen to continue to main menu
 		if (_event.type == SDL_MOUSEBUTTONDOWN) {
-			if (CLICKED_AT_XPOS >= 0 && CLICKED_AT_XPOS <= WINDOW_WIDTH) {
-				if (CLICKED_AT_YPOS >= 0 && CLICKED_AT_YPOS <= WINDOW_HEIGHT) {
+			if (CLICK_AT_XPOS >= 0 && CLICK_AT_XPOS <= WINDOW_WIDTH) {
+				if (CLICK_AT_YPOS >= 0 && CLICK_AT_YPOS <= WINDOW_HEIGHT) {
 					_running = false;
 					
 					cleanup();
