@@ -4,6 +4,9 @@ CHANGELOG
 * Added more debugging macros
 * Refactored macros to improve readability
 * Minor performance improvements
+* Implemented collision detection for all in-game obstacles
+* Fixed: A bug where exiting level 2 would render level 2 again
+* Refactored collision code 
 
 v0.3.0-alpha 19 August 2014
 * Added collision with objects

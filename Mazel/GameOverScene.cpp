@@ -59,7 +59,10 @@ void GameOverScene::event() {
 	while (SDL_PollEvent(&_event) != 0) {
 		if (_event.type == SDL_QUIT) {
 			_running = false;
+			
 			cleanup();
+			
+			changeState(EXIT);
 		}
 #if DEBUG_MODE == 1
 		// tracks mouse coordinates

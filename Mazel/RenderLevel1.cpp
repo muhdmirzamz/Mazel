@@ -25,5 +25,9 @@ void RenderLevel1::renderLevel1Ball(SDL_Renderer *level1Renderer2, SDL_Texture *
 
 void RenderLevel1::renderLevel1Obstacle1(SDL_Renderer *level1Renderer3, SDL_Rect level1Obstacle[]) {
 	SDL_SetRenderDrawColor(level1Renderer3, 0, 0, 100, 0);
-	SDL_RenderFillRects(level1Renderer3, &level1Obstacle[0], 2);
+	SDL_RenderFillRects(level1Renderer3, &level1Obstacle[0], 16);
+}
+
+void RenderLevel1::renderLevel1FinishImage(SDL_Renderer *level1Renderer4, SDL_Texture *finishImageTexture, SDL_Rect finishImageRect) {
+	SDL_RenderCopy(level1Renderer4, finishImageTexture, NULL, &finishImageRect);
 }

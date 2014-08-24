@@ -65,6 +65,8 @@ void Level2::event() {
 			 _running = false;
 			 
 			 cleanup();
+			 
+			 changeState(EXIT);
 		}
 	}
 }

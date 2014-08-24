@@ -43,7 +43,7 @@
 	for easy debugging
 	Change to 0 if not debugging
 */
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 enum GameStates {
 	INTRO_SCENE,
@@ -82,6 +82,7 @@ class GameState {
 		virtual void setupObjects(); // set up other classes objects, mostly pointers
 		virtual void setupTextures(); // sets up textures
 		virtual void setupBall(); // sets up ball
+		virtual void setupFinishRect(); // sets up finish line
 		virtual void setupObstacles(); // sets up obstacles
 		
 		// loop

@@ -30,8 +30,9 @@ void Level1::setup() {
 	setupObjects();
 	setupTextures();
 	
-	srand((int)time(NULL));
+	srand((int) time(NULL));
 	
+	setupFinishRect();
 	setupBall();
 	setupObstacles();
 
@@ -55,6 +56,11 @@ void Level1::setupTextures() {
 	if (!_ballTexture) {
 		printErrorMessage("Level 1", "ball");
 	}
+	
+	_finishImageTexture = loadImageOntoTexture(_finishImage, "images/finish.bmp", _finishImageTextureRef, _renderer);
+	if (!_finishImageTexture) {
+		printErrorMessage("Level 1 ", "Finish image");
+	}
 }
 
 void Level1::setupBall() {
@@ -69,15 +75,56 @@ void Level1::setupBall() {
 	_ballSpeedYDown = 10;
 }
 
+void Level1::setupFinishRect() {
+	/*
+		take rand() % 100
+		You get a range from 0 - 100
+		max is 99(take it down a notch)
+		
+		Window width is 640
+		We want the rectange to spawn between range of 600 - 640(?)
+		Make use of max to get a number less than 640
+		
+		Workaround/Solution is to add a number to 99 to make it less than 640
+		Consider rectangle width too
+		
+		0 - 100
+		99 + ___ = <(640 - rectangle width)
+		
+		491 perhaps?
+	*/
+	_finishImageRect.x = rand() % 100 + 491;
+	_finishImageRect.y = rand() % 100 + 301; // same math concept applies to y-axis
+	_finishImageRect.w = 50;
+	_finishImageRect.h = 80;
+#if DEBUG_MODE == 1
+	cout << _finishImageRect.x << endl;
+#endif
+}
+
 void Level1::setupObstacles() {
 	_level1Obstacles[0] = _obstacle1;
 	_level1Obstacles[1] = _obstacle2;
+	_level1Obstacles[2] = _obstacle3;
+	_level1Obstacles[3] = _obstacle4;
+	_level1Obstacles[4] = _obstacle5;
+	_level1Obstacles[5] = _obstacle6;
+	_level1Obstacles[6] = _obstacle7;
+	_level1Obstacles[7] = _obstacle8;
+	_level1Obstacles[8] = _obstacle9;
+	_level1Obstacles[9] = _obstacle10;
+	_level1Obstacles[10] = _obstacle11;
+	_level1Obstacles[11] = _obstacle12;
+	_level1Obstacles[12] = _obstacle13;
+	_level1Obstacles[13] = _obstacle14;
+	_level1Obstacles[14] = _obstacle15;
+	_level1Obstacles[15] = _obstacle16;
 	
-	for (int i = 0; i <= 2; i++) {
-		_level1Obstacles[i].x = rand() % 640;
-		_level1Obstacles[i].y = rand() % 480;
-		_level1Obstacles[i].w = 40;
-		_level1Obstacles[i].h = 40;
+	for (int i = 0; i <= 16; i++) {
+		_level1Obstacles[i].x = 50 + rand() % 640;
+		_level1Obstacles[i].y = 50 + rand() % 480;
+		_level1Obstacles[i].w = 80;
+		_level1Obstacles[i].h = 50;
 	}
 }
 
@@ -192,45 +239,34 @@ void Level1::event() {
 
 void Level1::checkCollision() {
 	// wall collision
-	if (_collision->ballDidCollideWithTopOfWindow(_ballRect)) {
-		_ballSpeedYUp = 0;
+	if (_collision->ballDidCollideWithWindow(_ballRect)) {
+		_running = false;
+		
+		cleanup();
+		
+		changeState(GAME_OVER);
 	}
 	
-	if (_collision->ballDidCollideWithBottomOfWindow(_ballRect)) {
-		_ballSpeedYDown = 0;
-	}
-	
-	if (_collision->ballDidCollideWithLeftOfWindow(_ballRect)) {
-		_ballSpeedXLeft = 0;
-	}
-	
-	if (_collision->ballDidCollideWithRightOfWindow(_ballRect)) {
-		_ballSpeedXRight = 0;
-	}
-	
-	// loop through array to check collision
-	for (int i = 0; i <= 2; i++) {
-		if (_collision->ballDidCollideWithTopOfObstacle(_ballRect, _level1Obstacles[i])) {
-			//_ballSpeedYDown = 0;
+	// obstacle collision
+	// NOTE: arrays start with 0, so watch out for the middle number
+	//		 make sure no overflows happen
+	for (int i = 0; i <= 16; i++) {
+		if (_collision->ballDidCollideWithObstacle(_ballRect, _level1Obstacles[i])) {
 			_running = false;
 			
 			cleanup();
 			
 			changeState(GAME_OVER);
 		}
-
-		if (_collision->ballDidCollideWithBottomOfObstacle(_ballRect, _level1Obstacles[i])) {
-			_ballSpeedYUp = 0;
-		}
+	}
+	
+	// collision with finish rectangle
+	if (_collision->ballDidCollideWithObstacle(_ballRect, _finishImageRect)) {
+		_running = false;
 		
+		cleanup();
 		
-		if (_collision->ballDidCollideWithLeftOfObstacle(_ballRect, _level1Obstacles[i])) {
-			_ballSpeedXRight = 0;
-		}
-		
-		if (_collision->ballDidCollideWithRightOfObstacle(_ballRect, _level1Obstacles[i])) {
-			_ballSpeedXLeft = 0;
-		}
+		changeState(LEVEL_TWO);
 	}
 }
 
@@ -242,6 +278,7 @@ void Level1::render() {
 	_renderLevel1->renderLevel1Background(_renderer);
 	_renderLevel1->renderLevel1Ball(_renderer, _ballTexture, _ballRect);
 	_renderLevel1->renderLevel1Obstacle1(_renderer, _level1Obstacles);
+	_renderLevel1->renderLevel1FinishImage(_renderer, _finishImageTexture, _finishImageRect);
 }
 
 void Level1::cleanup() {
@@ -249,6 +286,11 @@ void Level1::cleanup() {
 	_renderLevel1 = NULL;
 	delete _collision;
 	_collision = NULL;
+	
+	SDL_DestroyTexture(_ballTexture);
+	_ballTexture = NULL;
+	SDL_DestroyTexture(_finishImageTexture);
+	_finishImageTexture = NULL;
 
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;

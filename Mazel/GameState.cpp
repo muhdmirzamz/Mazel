@@ -91,6 +91,10 @@ void GameState::setupBall() {
 	
 }
 
+void GameState::setupFinishRect() {
+	
+}
+
 void GameState::setupObstacles() {
 	
 }
