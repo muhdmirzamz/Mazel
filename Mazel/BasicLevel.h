@@ -1,13 +1,13 @@
 //
-//  Level1.h
+//  BasicLevel.h
 //  Mazel
 //
-//  Created by Muhd Mirza on 31/7/14.
+//  Created by Muhd Mirza on 26/8/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#ifndef __Mazel__Level1__
-#define __Mazel__Level1__
+#ifndef __Mazel__BasicLevel__
+#define __Mazel__BasicLevel__
 
 #include <iostream>
 
@@ -15,9 +15,9 @@
 
 using namespace std;
 
-class Level1: public GameState {
+class BasicLevel: public GameState {
 	public:
-		Level1();
+		BasicLevel();
 		
 		void setup();
 		void setupObjects();
@@ -35,7 +35,7 @@ class Level1: public GameState {
 		void render();
 		
 		void cleanup();
-		
+	
 	private:
 		SDL_Window *_window; // free
 		SDL_Window *_windowRef;
@@ -47,7 +47,7 @@ class Level1: public GameState {
 		
 		SDL_Surface *_icon;
 		
-		RenderLevel1 *_renderLevel1; // free
+		Render *_render; // free
 		Collision *_collision; // free
 		
 		SDL_Surface *_ballImage;
@@ -62,27 +62,15 @@ class Level1: public GameState {
 		/*
 			To change number of rectangles,
 			make sure you change the array number below,
-			assignments in setupObstacles(), 
+			assignments in setupObstacles(),
 			the for loop in checkCollision()
 			and the render class for the specified class
 		*/
-		SDL_Rect _level1Obstacles[16];
 		SDL_Rect _obstacle1;
 		SDL_Rect _obstacle2;
 		SDL_Rect _obstacle3;
 		SDL_Rect _obstacle4;
 		SDL_Rect _obstacle5;
-		SDL_Rect _obstacle6;
-		SDL_Rect _obstacle7;
-		SDL_Rect _obstacle8;
-		SDL_Rect _obstacle9;
-		SDL_Rect _obstacle10;
-		SDL_Rect _obstacle11;
-		SDL_Rect _obstacle12;
-		SDL_Rect _obstacle13;
-		SDL_Rect _obstacle14;
-		SDL_Rect _obstacle15;
-		SDL_Rect _obstacle16;
 		
 		SDL_Surface *_finishImage;
 		SDL_Texture *_finishImageTexture; // free
@@ -90,4 +78,4 @@ class Level1: public GameState {
 		SDL_Rect _finishImageRect;
 };
 
-#endif /* defined(__Mazel__Level1__) */
+#endif /* defined(__Mazel__BasicLevel__) */

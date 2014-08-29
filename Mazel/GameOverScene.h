@@ -43,7 +43,7 @@ class GameOverScene: public GameState {
 		
 		SDL_Surface *_icon;
 		
-		RenderGameOverScene *_renderGameOverScene; // free
+		Render *_render; // free
 		
 		SDL_Surface *_gameOverBackground;
 		SDL_Texture *_gameOverBackgroundTexture; // free

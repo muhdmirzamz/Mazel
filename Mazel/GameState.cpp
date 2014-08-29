@@ -20,7 +20,7 @@ GameState::~GameState() {
 
 SDL_Window* GameState::initWindow(SDL_Window *window) {
 	window = SDL_CreateWindow(
-	  "Mazel",
+	  GAME_TITLE,
 	  WINDOW_X_POS,
 	  WINDOW_Y_POS,
 	  WINDOW_WIDTH,

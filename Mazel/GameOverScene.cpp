@@ -12,6 +12,8 @@ using namespace std;
 
 GameOverScene::GameOverScene() {
 	setup();
+	setupObjects();
+	setupTextures();
 }
 
 void GameOverScene::setup() {
@@ -27,15 +29,12 @@ void GameOverScene::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
-	setupObjects();
-	setupTextures();
-	
 	_running = true;
 }
 
 void GameOverScene::setupObjects() {
-	_renderGameOverScene = new RenderGameOverScene();
-	if (!_renderGameOverScene) {
+	_render = new Render();
+	if (!_render) {
 		printErrorMessage("GameOverScene", "render object");
 	}
 }
@@ -64,28 +63,33 @@ void GameOverScene::event() {
 			
 			changeState(EXIT);
 		}
-#if DEBUG_MODE == 1
+#if DEBUG_MODE == true
 		// tracks mouse coordinates
 		if (EVENT_TYPE == SDL_MOUSEMOTION) {
 			cout << "X-axis: " << POINT_AT_XPOS << endl;
 			cout << "Y-axis: " << POINT_AT_YPOS << endl;
 		}
 #endif
-		/*
-			Coordinates:
-			X: 147 260
-			Y: 255 287
-		*/
-		// x-axis
 		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			// clicked retry
 			if (CLICK_AT_XPOS >= 147 && CLICK_AT_XPOS <= 260) {
-				// y-axis
 				if (CLICK_AT_YPOS >= 255 && CLICK_AT_YPOS <= 287) {
 					_running = false;
 					
 					cleanup();
 					
-					changeState(LEVEL_ONE);
+					changeState(BASIC_LEVEL);
+				}
+			}
+			
+			// clicked main menu
+			if (CLICK_AT_XPOS >= 288 && CLICK_AT_XPOS <= 488) {
+				if (CLICK_AT_YPOS >= 258 && CLICK_AT_YPOS <= 289) {
+					_running = false;
+					
+					cleanup();
+					
+					changeState(MAIN_MENU);
 				}
 			}
 		}
@@ -97,15 +101,15 @@ void GameOverScene::update() {
 }
 
 void GameOverScene::render() {
-	_renderGameOverScene->renderGameOverSceneBackground(_renderer, _gameOverBackgroundTexture);
+	_render->renderGameOverSceneBackground(_renderer, _gameOverBackgroundTexture);
 }
 
 void GameOverScene::cleanup() {
 	SDL_DestroyTexture(_gameOverBackgroundTexture);
 	_gameOverBackgroundTexture = NULL;
 	
-	delete _renderGameOverScene;
-	_renderGameOverScene = NULL;
+	delete _render;
+	_render = NULL;
 
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;

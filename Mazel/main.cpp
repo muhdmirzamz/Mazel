@@ -12,14 +12,13 @@
 #include "SDL.h"
 #include "SDL_error.h"
 
-#include "Includes.h"
 #include "GameManager.h"
 #include "GameState.h"
 
 using namespace std;
 
 bool init() {
-	// if SDL initialises, along with its video commponent
+	// if SDL initialises, along with its video commponent, return true
 	if (SDL_Init(SDL_INIT_VIDEO) == 0) {
 		return true;
 	}
@@ -29,15 +28,12 @@ bool init() {
 
 int main(int argc, const char *argv[])
 {
-	// if video component fails to initialise
-	// and if SDL fails to initialise
-	// print out error message
 	if (!init()) {
 		cout << "SDL failed to initialise! SDL Error message: " << SDL_GetError() << endl;
 	}
 
 	GameManager *gameManager = new GameManager();
-	gameManager->changeGameState(INTRO_SCENE);
+	gameManager->changeGameState(INTRO_SCENE); // go to intro scene
 	
 	delete gameManager;
 	SDL_Quit();

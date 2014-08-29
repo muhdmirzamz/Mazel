@@ -47,7 +47,7 @@ class MainMenu: public GameState {
 		SDL_Surface *_icon;
 		
 		Collision *_collision; // free
-		RenderMainMenu *_renderMainMenu; // free
+		Render *_render; // free
 		
 		SDL_Surface *_logo;
 		SDL_Texture *_logoTexture; // free

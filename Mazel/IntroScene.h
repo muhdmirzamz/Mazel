@@ -44,7 +44,7 @@ class IntroScene: public GameState {
 		
 		SDL_Surface *_icon;
 		
-		RenderIntroScene *_renderIntroScene; // free
+		Render *_render; // free
 		
 		// logo
 		SDL_Surface *_introLogo;

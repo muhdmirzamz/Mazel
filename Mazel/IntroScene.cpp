@@ -12,6 +12,8 @@ using namespace std;
 
 IntroScene::IntroScene() {
 	setup();
+	setupObjects();
+	setupTextures();
 }
 
 void IntroScene::setup() {
@@ -27,15 +29,12 @@ void IntroScene::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
-	setupObjects();
-	setupTextures();
-	
 	_running = true;
 }
 
 void IntroScene::setupObjects() {
-	_renderIntroScene = new RenderIntroScene();
-	if (!_renderIntroScene) {
+	_render = new Render();
+	if (!_render) {
 		printErrorMessage("Intro Scene", "Render");
 	}
 }
@@ -70,7 +69,7 @@ void IntroScene::event() {
 			changeState(EXIT);
 		}
 
-#if DEBUG_MODE == 1
+#if DEBUG_MODE == true
 		if (_event.type == SDL_KEYDOWN) {
 			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
@@ -102,9 +101,9 @@ void IntroScene::update() {
 }
 
 void IntroScene::render() {
-	_renderIntroScene->renderIntroSceneBackground(_renderer);
-	_renderIntroScene->renderIntroSceneLogo(_renderer, _introLogoTexture);
-	_renderIntroScene->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
+	_render->renderIntroSceneBackground(_renderer);
+	_render->renderIntroSceneLogo(_renderer, _introLogoTexture);
+	_render->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
 }
 
 void IntroScene::cleanup() {
@@ -113,8 +112,8 @@ void IntroScene::cleanup() {
 	SDL_DestroyTexture(_continueButtonTexture);
 	_continueButtonTexture = NULL;
 	
-	delete _renderIntroScene;
-	_renderIntroScene = NULL;
+	delete _render;
+	_render = NULL;
 	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
