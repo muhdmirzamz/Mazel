@@ -10,13 +10,13 @@
 #include "GameState.h"
 #include "IntroScene.h"
 #include "MainMenu.h"
-#include "Level1.h"
-#include "Level2.h"
+#include "BasicLevel.h"
+#include "GameOverScene.h"
 
 using namespace std;
 
 GameManager::GameManager() {
-	
+
 }
 
 void GameManager::changeGameState(int state) {
@@ -39,14 +39,14 @@ void GameManager::changeGameState(int state) {
 			break;
 		}
 		
-		case LEVEL_ONE: {
-			gameState = new Level1();
+		case BASIC_LEVEL: {
+			gameState = new BasicLevel();
 			gameState->run();
 			break;
 		}
-		
-		case LEVEL_TWO: {
-			gameState = new Level2();
+	
+		case GAME_OVER: {
+			gameState = new GameOverScene();
 			gameState->run();
 			break;
 		}

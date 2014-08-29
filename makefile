@@ -11,7 +11,7 @@ GLOBAL_INCLUDE=-I/Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/Ma
 CFLAGS=-c -Wall -std=c++11 $(SDL_INCLUDE) $(GLOBAL_INCLUDE)
 LFLAGS=-Wall $(SDL_FRAMEWORK) -o
 
-OBJECT_FILES = main.o GameManager.o GameState.o Collision.o RenderIntroScene.o RenderMainMenu.o RenderLevel1.o RenderLevel2.o IntroScene.o MainMenu.o Level1.o Level2.o
+OBJECT_FILES = main.o GameManager.o GameState.o Collision.o Render.o IntroScene.o GameOverScene.o MainMenu.o BasicLevel.o
 
 #look for files in Mazel folder
 VPATH=Mazel
@@ -21,36 +21,24 @@ MazelGame: $(OBJECT_FILES)
 	@$(CXX) $(LFLAGS) $@ $^
 	@echo "Done."
 
-Level2.o: Level2.cpp
-	@echo "Compiling Level2.cpp"
-	@$(CXX) $(CFLAGS) $^
-
-Level1.o: Level1.cpp
-	@echo "Compiling Level1.cpp"
+BasicLevel.o: BasicLevel.cpp
+	@echo "Compiling BasicLevel.cpp"
 	@$(CXX) $(CFLAGS) $^
 
 MainMenu.o: MainMenu.cpp
 	@echo "Compiling MainMenu.cpp"
 	@$(CXX) $(CFLAGS) $^
 
+GameOverScene.o: GameOverScene.cpp
+	@echo "Compiling GameOverScene.cpp"
+	@$(CXX) $(CFLAGS) $^
+
 IntroScene.o: IntroScene.cpp
 	@echo "Compiling IntroScene.cpp"
 	@$(CXX) $(CFLAGS) $^
 
-RenderLevel2.o: RenderLevel2.cpp
-	@echo "Compiling RenderLevel2.cpp"
-	@$(CXX) $(CFLAGS) $^
-
-RenderLevel1.o: RenderLevel1.cpp
-	@echo "Compiling RenderLevel1.cpp"
-	@$(CXX) $(CFLAGS) $^
-
-RenderMainMenu.o: RenderMainMenu.cpp
-	@echo "Compiling RenderMainMenu.cpp"
-	@$(CXX) $(CFLAGS) $^
-
-RenderIntroScene.o: RenderIntroScene.cpp
-	@echo "Compiling RenderIntroScene.cpp"
+Render.o: Render.cpp
+	@echo "Compiling Render.cpp"
 	@$(CXX) $(CFLAGS) $^
 
 Collision.o: Collision.cpp

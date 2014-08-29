@@ -1,5 +1,18 @@
 CHANGELOG
 
+v0.4.0-beta 29 August 2014
+* Added game over screen
+* Added more debugging macros
+* Added more coordinate macros
+* Implemented collision detection for all in-game obstacles
+* Removes use of random number generator
+* Minor performance improvements
+* Refactored collision code 
+* Refactored rendering code
+* Refactored global include
+* Refactored macros to improve readability
+* Fixed: A bug where exiting a window renders the window again
+
 v0.3.0-alpha 19 August 2014
 * Added collision with objects
 * Added random number generation for ball and obstacles

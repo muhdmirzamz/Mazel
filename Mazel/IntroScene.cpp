@@ -12,6 +12,8 @@ using namespace std;
 
 IntroScene::IntroScene() {
 	setup();
+	setupObjects();
+	setupTextures();
 }
 
 void IntroScene::setup() {
@@ -27,15 +29,12 @@ void IntroScene::setup() {
 	
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
-	setupObjects();
-	setupTextures();
-	
 	_running = true;
 }
 
 void IntroScene::setupObjects() {
-	_renderIntroScene = new RenderIntroScene();
-	if (!_renderIntroScene) {
+	_render = new Render();
+	if (!_render) {
 		printErrorMessage("Intro Scene", "Render");
 	}
 }
@@ -62,7 +61,7 @@ void IntroScene::run() {
 
 void IntroScene::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
 			
 			cleanup();
@@ -70,9 +69,9 @@ void IntroScene::event() {
 			changeState(EXIT);
 		}
 
-#if DEBUG_MODE == 1
+#if DEBUG_MODE == true
 		if (_event.type == SDL_KEYDOWN) {
-			if (_event.key.keysym.sym == SDLK_ESCAPE) {
+			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
 				
 				cleanup();
@@ -84,8 +83,8 @@ void IntroScene::event() {
 		
 		// click screen to continue to main menu
 		if (_event.type == SDL_MOUSEBUTTONDOWN) {
-			if (CLICKED_AT_XPOS >= 0 && CLICKED_AT_XPOS <= WINDOW_WIDTH) {
-				if (CLICKED_AT_YPOS >= 0 && CLICKED_AT_YPOS <= WINDOW_HEIGHT) {
+			if (CLICK_AT_XPOS >= 0 && CLICK_AT_XPOS <= WINDOW_WIDTH) {
+				if (CLICK_AT_YPOS >= 0 && CLICK_AT_YPOS <= WINDOW_HEIGHT) {
 					_running = false;
 					
 					cleanup();
@@ -102,9 +101,9 @@ void IntroScene::update() {
 }
 
 void IntroScene::render() {
-	_renderIntroScene->renderIntroSceneBackground(_renderer);
-	_renderIntroScene->renderIntroSceneLogo(_renderer, _introLogoTexture);
-	_renderIntroScene->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
+	_render->renderIntroSceneBackground(_renderer);
+	_render->renderIntroSceneLogo(_renderer, _introLogoTexture);
+	_render->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
 }
 
 void IntroScene::cleanup() {
@@ -113,8 +112,8 @@ void IntroScene::cleanup() {
 	SDL_DestroyTexture(_continueButtonTexture);
 	_continueButtonTexture = NULL;
 	
-	delete _renderIntroScene;
-	_renderIntroScene = NULL;
+	delete _render;
+	_render = NULL;
 	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;

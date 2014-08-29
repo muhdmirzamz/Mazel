@@ -1,13 +1,13 @@
 //
-//  Level2.h
+//  GameOverScene.h
 //  Mazel
 //
-//  Created by Muhd Mirza on 31/7/14.
+//  Created by Muhd Mirza on 21/8/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#ifndef __Mazel__Level2__
-#define __Mazel__Level2__
+#ifndef __Mazel__GameOverScene__
+#define __Mazel__GameOverScene__
 
 #include <iostream>
 
@@ -15,15 +15,13 @@
 
 using namespace std;
 
-class Level2: public GameState {
+class GameOverScene: public GameState {
 	public:
-		Level2();
+		GameOverScene();
 		
 		void setup();
 		void setupObjects();
 		void setupTextures();
-		void setupBall();
-		void setupObstacles();
 		
 		void run();
 		
@@ -45,7 +43,11 @@ class Level2: public GameState {
 		
 		SDL_Surface *_icon;
 		
-		RenderLevel2 *_renderLevel2; // free
+		Render *_render; // free
+		
+		SDL_Surface *_gameOverBackground;
+		SDL_Texture *_gameOverBackgroundTexture; // free
+		SDL_Texture *_gameOverBackgroundTextureRef;
 };
 
-#endif /* defined(__Mazel__Level2__) */
+#endif /* defined(__Mazel__GameOverScene__) */

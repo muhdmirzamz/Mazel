@@ -12,6 +12,9 @@ using namespace std;
 
 MainMenu::MainMenu() {
 	setup();
+	setupObjects();
+	setupTextures();
+	setupBall();
 }
 
 void MainMenu::setup() {
@@ -25,10 +28,6 @@ void MainMenu::setup() {
 	}
 	setIcon(_window, _icon, "images/MazelLogo.bmp");
 	
-	setupObjects();
-	setupTextures();
-	setupBall();
-	
 	_running = true;
 }
 
@@ -38,8 +37,8 @@ void MainMenu::setupObjects() {
 		printErrorMessage("Main Menu", "Collision pointer");
 	}
 	
-	_renderMainMenu = new RenderMainMenu();
-	if (!_renderMainMenu) {
+	_render = new Render();
+	if (!_render) {
 		printErrorMessage("Main Menu", "Render pointer");
 	}
 }
@@ -67,18 +66,19 @@ void MainMenu::setupTextures() {
 }
 
 void MainMenu::setupBall() {
-	_ballRect.x = 20;
-	_ballRect.y = 20;
-	_ballRect.w = 40;
-	_ballRect.h = 40;
+	_ballRect.x = MAIN_MENU_BALL_XPOS;
+	_ballRect.y = MAIN_MENU_BALL_YPOS;
+	_ballRect.w = MAIN_MENU_BALL_WIDTH;
+	_ballRect.h = MAIN_MENU_BALL_HEIGHT;
 	
-	_ballSpeedY = 5;
+	_ballSpeedY = MAIN_MENU_BALL_SPEEDY;
 }
 
 void MainMenu::run() {
 	while (_running) {
+		_ballRect.y += _ballSpeedY;
+	
 		event();
-		moveBall();
 		checkCollision();
 		update();
 		render();
@@ -87,7 +87,7 @@ void MainMenu::run() {
 
 void MainMenu::event() {
 	while (SDL_PollEvent(&_event) != 0) {
-		if (_event.type == SDL_QUIT) {
+		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
 		
 			cleanup();
@@ -95,9 +95,9 @@ void MainMenu::event() {
 			changeState(EXIT);
 		}
 		
-#if DEBUG_MODE == 1
-		if (_event.type == SDL_KEYDOWN) {
-			if (_event.key.keysym.sym == SDLK_ESCAPE) {
+#if DEBUG_MODE == true
+		if (EVENT_TYPE == SDL_KEYDOWN) {
+			if (PRESSED_KEY == SDLK_ESCAPE) {
 				_running = false;
 			
 				cleanup();
@@ -107,22 +107,18 @@ void MainMenu::event() {
 		}
 #endif
 		
-		if (_event.type == SDL_MOUSEBUTTONDOWN) {
-			if (CLICKED_AT_XPOS >= 200 && CLICKED_AT_XPOS <= 400) {
-				if (CLICKED_AT_YPOS >= 345 && CLICKED_AT_YPOS <= 545) {
+		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			if (CLICK_AT_XPOS >= BEGIN_OF_START_IMAGE && CLICK_AT_XPOS <= END_OF_START_IMAGE) {
+				if (CLICK_AT_YPOS >= TOP_OF_START_IMAGE && CLICK_AT_YPOS <= BOTTOM_OF_START_IMAGE) {
 					_running = false;
 					
 					cleanup();
 					
-					changeState(LEVEL_ONE);
+					changeState(BASIC_LEVEL);
 				}
 			}
 		}
 	}
-}
-
-void MainMenu::moveBall() {
-	_ballRect.y += _ballSpeedY;
 }
 
 void MainMenu::checkCollision() {
@@ -140,11 +136,11 @@ void MainMenu::update() {
 }
 
 void MainMenu::render() {
-	_renderMainMenu->renderMainMenuBackground(_renderer);
-	_renderMainMenu->renderMainMenuLogo(_renderer, _logoTexture);
-	_renderMainMenu->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
-	_renderMainMenu->renderMainMenuStartButton(_renderer, _startTexture);
-	_renderMainMenu->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
+	_render->renderMainMenuBackground(_renderer);
+	_render->renderMainMenuLogo(_renderer, _logoTexture);
+	_render->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
+	_render->renderMainMenuStartButton(_renderer, _startTexture);
+	_render->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
 }
 
 void MainMenu::cleanup() {
@@ -159,8 +155,8 @@ void MainMenu::cleanup() {
 	
 	delete _collision;
 	_collision = NULL;
-	delete _renderMainMenu;
-	_renderMainMenu = NULL;
+	delete _render;
+	_render = NULL;
 	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
