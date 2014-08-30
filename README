@@ -1,5 +1,0 @@
-MAZEL
-
-Mazel is a puzzle-like maze game written in C++, using the SDL library. This is my first game, so there are errors and tests. I will most likely be showing my progress through tests. 
-
-Basically, this game requires you to move the ball through the maze without hitting the rectangles. As you can tell, it utilises collision detection and game states. This will be fun to make

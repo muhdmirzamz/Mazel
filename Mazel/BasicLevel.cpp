@@ -18,7 +18,7 @@ using namespace std;
 	only way is to declare a static global variable
 	cant use a private variable as value cannot be set straight away
 */
-static int levelCount = 1; // change to level number for easy debugging
+static int levelCount = 4; // change to level number for easy debugging
 
 BasicLevel::BasicLevel() {
 #if DEBUG_MODE == true
