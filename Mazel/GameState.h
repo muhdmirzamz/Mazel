@@ -16,6 +16,7 @@
 // include all files which level classes require
 // level classes only need to import this class(GameState.h)
 #include "Includes.h"
+#include "GameManager.h"
 #include "Render.h"
 #include "Collision.h"
 
@@ -48,6 +49,7 @@ class GameState {
 		virtual void setupBall(); // sets up ball
 		virtual void setupFinishRect(); // sets up finish line
 		virtual void setupObstacles(); // sets up obstacles
+		virtual SDL_Rect plotImage(int x, int y, int w, int h);
 		
 		/*
 			due to the nature of the function
@@ -65,7 +67,7 @@ class GameState {
 		
 		// events
 		virtual void event(); // handles events
-		virtual void changeState(int state); // change state
+		virtual void changeState(GameManager *gameManager, int state); // change state
 		virtual void checkCollision(); // check for collision
 		
 		// update and render

@@ -50,11 +50,15 @@ class IntroScene: public GameState {
 		SDL_Surface *_introLogo;
 		SDL_Texture *_introLogoTexture; // free
 		SDL_Texture *_introLogoTextureRef;
+		SDL_Rect _introLogoRect;
 		
 		// continue button
 		SDL_Surface *_continueButton;
 		SDL_Texture *_continueButtonTexture; // free
 		SDL_Texture *_continueButtonTextureRef;
+		SDL_Rect _continueButtonRect;
+		
+		GameManager *_gameManager; 
 };
 
 #endif /* defined(__Mazel__IntroScene__) */

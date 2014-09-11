@@ -101,6 +101,12 @@ void BasicLevel::setupFinishRect() {
 void BasicLevel::setupObstacles() {
 	// level 1
 	if (levelCount == 1) {
+		_obstacle1 = plotImage(540, 0, 100, 250);
+		_obstacle2 = plotImage(100, 0, 100, 200);
+		_obstacle3 = plotImage(0, 300, 100, 100);
+		_obstacle4 = plotImage(0, 400, 300, 100);
+		_obstacle5 = plotImage(300, 200, 100, 500);
+		/*
 		_obstacle1.x = 540;
 		_obstacle1.y = 0;
 		_obstacle1.w = 100;
@@ -125,10 +131,17 @@ void BasicLevel::setupObstacles() {
 		_obstacle5.y = 200;
 		_obstacle5.w = 100;
 		_obstacle5.h = 500;
+		*/
 	}
 	
 	// level 2
 	if (levelCount == 2) {
+		_obstacle1 = plotImage(0, 100, 200, 50);
+		_obstacle2 = plotImage(400, 0, 240, 200);
+		_obstacle3 = plotImage(0, 200, 300, 50);
+		_obstacle4 = plotImage(200, 300, 440, 50);
+		_obstacle5 = plotImage(400, 400, 50, 80);
+		/*
 		_obstacle1.x = 0;
 		_obstacle1.y = 100;
 		_obstacle1.w = 200;
@@ -153,10 +166,17 @@ void BasicLevel::setupObstacles() {
 		_obstacle5.y = 400;
 		_obstacle5.w = 50;
 		_obstacle5.h = 80;
+		*/
 	}
 	
 	// level 3
 	if (levelCount == 3) {
+		_obstacle1 = plotImage(0, 100, 200, 50);
+		_obstacle2 = plotImage(400, 0, 50, 300);
+		_obstacle3 = plotImage(60, 300, 390, 50);
+		_obstacle4 = plotImage(500, 200, 40, 280);
+		_obstacle5 = plotImage(590, 280, 50, 50);
+		/*
 		_obstacle1.x = 0;
 		_obstacle1.y = 100;
 		_obstacle1.w = 200;
@@ -181,10 +201,17 @@ void BasicLevel::setupObstacles() {
 		_obstacle5.y = 280;
 		_obstacle5.w = 50;
 		_obstacle5.h = 50;
+		*/
 	}
 	
 	// level 4
 	if (levelCount == 4) {
+		_obstacle1 = plotImage(100, 0, 540, 200);
+		_obstacle2 = plotImage(0, 250, 200, 230);
+		_obstacle3 = plotImage(270, 200, 370, 80);
+		_obstacle4 = plotImage(200, 330, 200, 150);
+		_obstacle5 = plotImage(450, 280, 190, 90);
+		/*
 		_obstacle1.x = 100;
 		_obstacle1.y = 0;
 		_obstacle1.w = 540;
@@ -209,6 +236,7 @@ void BasicLevel::setupObstacles() {
 		_obstacle5.y = 280;
 		_obstacle5.w = 190;
 		_obstacle5.h = 90;
+		*/
 	}
 }
 
@@ -228,7 +256,7 @@ void BasicLevel::event() {
 			
 			cleanup();
 			
-			changeState(EXIT);
+			changeState(_gameManager, EXIT);
 		}
 		
 		if (EVENT_TYPE == SDL_KEYDOWN) {
@@ -238,7 +266,7 @@ void BasicLevel::event() {
 				
 				cleanup();
 				
-				changeState(EXIT);
+				changeState(_gameManager, EXIT);
 			}
 			
 			if (PRESSED_KEY == SDLK_c) {
@@ -246,7 +274,7 @@ void BasicLevel::event() {
 				
 				cleanup();
 				
-				changeState(BASIC_LEVEL);
+				changeState(_gameManager, BASIC_LEVEL);
 			}
 #endif
 			// ball controls
@@ -329,7 +357,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	// obstacle collision
@@ -339,7 +367,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle2)) {
@@ -348,7 +376,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle3)) {
@@ -357,7 +385,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle4)) {
@@ -366,7 +394,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle5)) {
@@ -375,7 +403,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(GAME_OVER);
+		changeState(_gameManager, GAME_OVER);
 	}
 	
 	
@@ -386,7 +414,7 @@ void BasicLevel::checkCollision() {
 		
 		cleanup();
 		
-		changeState(BASIC_LEVEL);
+		changeState(_gameManager, BASIC_LEVEL);
 	}
 }
 
@@ -396,7 +424,7 @@ void BasicLevel::update() {
 
 void BasicLevel::render() {
 	_render->renderLevelBackground(_renderer);
-	_render->renderLevelBall(_renderer, _ballTexture, _ballRect);
+	_render->renderTexture(_renderer, _ballTexture, _ballRect);
 	
 	_render->renderLevelObstacle(_renderer, _obstacle1);
 	_render->renderLevelObstacle(_renderer, _obstacle2);
@@ -404,7 +432,7 @@ void BasicLevel::render() {
 	_render->renderLevelObstacle(_renderer, _obstacle4);
 	_render->renderLevelObstacle(_renderer, _obstacle5);
 	
-	_render->renderLevelFinishImage(_renderer, _finishImageTexture, _finishImageRect);
+	_render->renderTexture(_renderer, _finishImageTexture, _finishImageRect);
 }
 
 void BasicLevel::cleanup() {

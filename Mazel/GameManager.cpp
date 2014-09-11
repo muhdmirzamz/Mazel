@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#include "GameManager.h"
-#include "GameState.h"
 #include "IntroScene.h"
 #include "MainMenu.h"
 #include "BasicLevel.h"
@@ -20,34 +18,37 @@ GameManager::GameManager() {
 }
 
 void GameManager::changeGameState(int state) {
-	GameState *gameState = NULL; // use one pointer to rotate all levels
-
-	if (state == EXIT) {
-		delete gameState;
-	}
-	
 	switch (state) {
 		case INTRO_SCENE: {
-			gameState = new IntroScene();
-			gameState->run();
+			IntroScene introScene;
+			GameState *introScenePointer = &introScene;
+			introScenePointer->run();
 			break;
 		}
 		
 		case MAIN_MENU: {
-			gameState = new MainMenu();
-			gameState->run();
+			MainMenu mainMenu;
+			GameState *mainMenuPointer = &mainMenu;
+			mainMenuPointer->run();
 			break;
 		}
 		
 		case BASIC_LEVEL: {
-			gameState = new BasicLevel();
-			gameState->run();
+			BasicLevel basicLevel;
+			GameState *basicLevelPointer = &basicLevel;
+			basicLevelPointer->run();
 			break;
 		}
 	
 		case GAME_OVER: {
-			gameState = new GameOverScene();
-			gameState->run();
+			GameOverScene gameOverScene;
+			GameState *gameOverScenePointer = &gameOverScene;
+			gameOverScenePointer->run();
+			break;
+		}
+		
+		case EXIT: {
+			cout << "Exiting game...\n";
 			break;
 		}
 		

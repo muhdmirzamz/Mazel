@@ -40,15 +40,17 @@ void IntroScene::setupObjects() {
 }
 
 void IntroScene::setupTextures() {
-	_continueButtonTexture = loadImageOntoTexture(_continueButton, "images/intro_scene_continue_button.bmp", _continueButtonTextureRef, _renderer);
-	if (!_continueButtonTexture) {
-		printErrorMessage("IntroScene", "Continue button");
-	}
-	
 	_introLogoTexture = loadImageOntoTexture(_introLogo, "images/mazeltitle.bmp", _introLogoTextureRef, _renderer);
 	if (!_introLogoTexture) {
 		printErrorMessage("IntroScene", "Intro logo");
 	}
+	_introLogoRect = plotImage(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
+
+	_continueButtonTexture = loadImageOntoTexture(_continueButton, "images/intro_scene_continue_button.bmp", _continueButtonTextureRef, _renderer);
+	if (!_continueButtonTexture) {
+		printErrorMessage("IntroScene", "Continue button");
+	}
+	_continueButtonRect = plotImage(WINDOW_WIDTH / 4 + 20, 280, 300, 300);
 }
 
 void IntroScene::run() {
@@ -66,7 +68,7 @@ void IntroScene::event() {
 			
 			cleanup();
 			
-			changeState(EXIT);
+			changeState(_gameManager, EXIT);
 		}
 
 #if DEBUG_MODE == true
@@ -76,7 +78,7 @@ void IntroScene::event() {
 				
 				cleanup();
 				
-				changeState(EXIT);
+				changeState(_gameManager, EXIT);
 			}
 		}
 #endif
@@ -89,7 +91,7 @@ void IntroScene::event() {
 					
 					cleanup();
 				
-					changeState(MAIN_MENU);
+					changeState(_gameManager, MAIN_MENU);
 				}
 			}
 		}
@@ -102,8 +104,8 @@ void IntroScene::update() {
 
 void IntroScene::render() {
 	_render->renderIntroSceneBackground(_renderer);
-	_render->renderIntroSceneLogo(_renderer, _introLogoTexture);
-	_render->renderIntroSceneContinueButton(_renderer, _continueButtonTexture);
+	_render->renderTexture(_renderer, _introLogoTexture, _introLogoRect);
+	_render->renderTexture(_renderer, _continueButtonTexture, _continueButtonRect);
 }
 
 void IntroScene::cleanup() {

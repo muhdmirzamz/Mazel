@@ -48,16 +48,19 @@ void MainMenu::setupTextures() {
 	if (!_logoTexture) {
 		printErrorMessage("Main Menu", "image texture");
 	}
+	_logoRect = plotImage(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
 	
 	_mainMenuHalfBackgroundTexture = loadImageOntoTexture(_mainMenuHalfBackground, "images/main_menu_half_background.bmp", _mainMenuHalfBackgroundTextureRef, _renderer);
 	if (!_mainMenuHalfBackgroundTexture) {
 		printErrorMessage("Main Menu", "Half Background");
 	}
+	_mainMenuHalfBackgroundRect = plotImage(0, WINDOW_HEIGHT / 2 + 40, WINDOW_WIDTH, 200);
 	
 	_startTexture = loadImageOntoTexture(_startImage, "images/mazelstart.bmp", _startTextureRef, _renderer);
 	if (!_startTexture) {
 		printErrorMessage("Main Menu", "Start image");
 	}
+	_startRect = plotImage(START_IMAGE_XPOS, START_IMAGE_YPOS, START_IMAGE_WIDTH, START_IMAGE_HEIGHT);
 	
 	_ballTexture = loadImageOntoTexture(_ballImage, "images/ball.bmp", _ballTextureRef, _renderer);
 	if (!_ballTexture) {
@@ -66,12 +69,12 @@ void MainMenu::setupTextures() {
 }
 
 void MainMenu::setupBall() {
-	_ballRect.x = MAIN_MENU_BALL_XPOS;
-	_ballRect.y = MAIN_MENU_BALL_YPOS;
-	_ballRect.w = MAIN_MENU_BALL_WIDTH;
-	_ballRect.h = MAIN_MENU_BALL_HEIGHT;
+	_ballRect.x = 20;
+	_ballRect.y = 20;
+	_ballRect.w = 40;
+	_ballRect.h = 40;
 	
-	_ballSpeedY = MAIN_MENU_BALL_SPEEDY;
+	_ballSpeedY = 5;
 }
 
 void MainMenu::run() {
@@ -92,7 +95,7 @@ void MainMenu::event() {
 		
 			cleanup();
 			
-			changeState(EXIT);
+			changeState(_gameManager, EXIT);
 		}
 		
 #if DEBUG_MODE == true
@@ -102,7 +105,7 @@ void MainMenu::event() {
 			
 				cleanup();
 				
-				changeState(EXIT);
+				changeState(_gameManager, EXIT);
 			}
 		}
 #endif
@@ -114,7 +117,7 @@ void MainMenu::event() {
 					
 					cleanup();
 					
-					changeState(BASIC_LEVEL);
+					changeState(_gameManager, BASIC_LEVEL);
 				}
 			}
 		}
@@ -137,10 +140,10 @@ void MainMenu::update() {
 
 void MainMenu::render() {
 	_render->renderMainMenuBackground(_renderer);
-	_render->renderMainMenuLogo(_renderer, _logoTexture);
-	_render->renderMainMenuGrassBackground(_renderer, _mainMenuHalfBackgroundTexture);
-	_render->renderMainMenuStartButton(_renderer, _startTexture);
-	_render->renderMainMenuBall(_renderer, _ballTexture, _ballRect);
+	_render->renderTexture(_renderer, _logoTexture, _logoRect);
+	_render->renderTexture(_renderer, _mainMenuHalfBackgroundTexture, _mainMenuHalfBackgroundRect);
+	_render->renderTexture(_renderer, _startTexture, _startRect);
+	_render->renderTexture(_renderer, _ballTexture, _ballRect);
 }
 
 void MainMenu::cleanup() {

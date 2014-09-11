@@ -23,44 +23,20 @@ bool Collision::ballDidCollideWithTopOfWindow(SDL_Rect ball) {
 	return false;
 }
 
-bool Collision::ballDidCollideWithBottomOfWindow(SDL_Rect ball2) {
-	if (ball2.y + ball2.h >= WINDOW_HEIGHT) {
+bool Collision::ballDidCollideWithWindow(SDL_Rect ball) {
+	if (ball.y <= 0) {
 		return true;
 	}
 	
-	return false;
-}
-
-bool Collision::ballDidCollideWithLeftOfWindow(SDL_Rect ball3) {
-	if (ball3.x <= 0) {
+	if (ball.y + ball.h >= WINDOW_HEIGHT) {
 		return true;
 	}
 	
-	return false;
-}
-
-bool Collision::ballDidCollideWithRightOfWindow(SDL_Rect ball4) {
-	if (ball4.x + ball4.w >= WINDOW_WIDTH) {
+	if (ball.x <= 0) {
 		return true;
 	}
 	
-	return false;
-}
-
-bool Collision::ballDidCollideWithWindow(SDL_Rect ball5) {
-	if (ballDidCollideWithTopOfWindow(ball5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithBottomOfWindow(ball5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithLeftOfWindow(ball5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithRightOfWindow(ball5)) {
+	if (ball.x + ball.w >= WINDOW_WIDTH) {
 		return true;
 	}
 	
@@ -68,61 +44,29 @@ bool Collision::ballDidCollideWithWindow(SDL_Rect ball5) {
 }
 
 // basic collision with obstacles
-bool Collision::ballDidCollideWithLeftOfObstacle(SDL_Rect ball6, SDL_Rect obstacle1) {
-	if (ball6.y + ball6.h >= obstacle1.y && ball6.y <= obstacle1.y + obstacle1.h) {
-		if (ball6.x + ball6.w >= obstacle1.x && ball6.x <= obstacle1.x) {
+bool Collision::ballDidCollideWithObstacle(SDL_Rect ball2, SDL_Rect obstacle) {
+	if (ball2.x + ball2.w >= obstacle.x && ball2.x <= obstacle.x + obstacle.w) {
+		if (ball2.y + ball2.h >= obstacle.y && ball2.y <= obstacle.y) {
 			return true;
 		}
 	}
 	
-	return false;
-}
-
-bool Collision::ballDidCollideWithRightOfObstacle(SDL_Rect ball7, SDL_Rect obstacle2) {
-	if (ball7.y + ball7.h >= obstacle2.y && ball7.y <= obstacle2.y + obstacle2.h) {
-		if (ball7.x <= obstacle2.x + obstacle2.w && ball7.x >= obstacle2.x) {
+	if (ball2.x + ball2.w >= obstacle.x && ball2.x <= obstacle.x + obstacle.w) {
+		if (ball2.y <= obstacle.y + obstacle.h && ball2.y >= obstacle.y) {
+			return true;
+		}
+	}
+		
+	if (ball2.y + ball2.h >= obstacle.y && ball2.y <= obstacle.y + obstacle.h) {
+		if (ball2.x + ball2.w >= obstacle.x && ball2.x <= obstacle.x) {
 			return true;
 		}
 	}
 	
-	return false;
-}
-
-bool Collision::ballDidCollideWithTopOfObstacle(SDL_Rect ball8, SDL_Rect obstacle3) {
-	if (ball8.x + ball8.w >= obstacle3.x && ball8.x <= obstacle3.x + obstacle3.w) {
-		if (ball8.y + ball8.h >= obstacle3.y && ball8.y <= obstacle3.y) {
+	if (ball2.y + ball2.h >= obstacle.y && ball2.y <= obstacle.y + obstacle.h) {
+		if (ball2.x <= obstacle.x + obstacle.w && ball2.x >= obstacle.x) {
 			return true;
 		}
-	}
-	
-	return false;
-}
-
-bool Collision::ballDidCollideWithBottomOfObstacle(SDL_Rect ball9, SDL_Rect obstacleArray4) {
-	if (ball9.x + ball9.w >= obstacleArray4.x && ball9.x <= obstacleArray4.x + obstacleArray4.w) {
-		if (ball9.y <= obstacleArray4.y + obstacleArray4.h && ball9.y >= obstacleArray4.y) {
-			return true;
-		}
-	}
-	
-	return false;
-}
-
-bool Collision::ballDidCollideWithObstacle(SDL_Rect ball10, SDL_Rect obstacle5) {
-	if (ballDidCollideWithTopOfObstacle(ball10, obstacle5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithBottomOfObstacle(ball10, obstacle5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithLeftOfObstacle(ball10, obstacle5)) {
-		return true;
-	}
-	
-	if (ballDidCollideWithRightOfObstacle(ball10, obstacle5)) {
-		return true;
 	}
 	
 	return false;

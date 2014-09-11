@@ -99,6 +99,16 @@ void GameState::setupObstacles() {
 	
 }
 
+SDL_Rect GameState::plotImage(int x, int y, int w, int h) {
+	SDL_Rect rect;
+	rect.x = x;
+	rect.y = y;
+	rect.w = w;
+	rect.h = h;
+	
+	return rect;
+}
+
 void GameState::run() {
 	
 }
@@ -123,8 +133,7 @@ void GameState::cleanup() {
 	
 }
 
-void GameState::changeState(int state) {
-	GameManager *gameManager = NULL;
+void GameState::changeState(GameManager *gameManager, int state) {
 	gameManager->changeGameState(state);
 }
 

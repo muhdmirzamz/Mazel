@@ -1,11 +1,11 @@
-CXX=g++
+CXX=g++ 
 
 #SDL stuff
-SDL_INCLUDE=-I/Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/SDL2.framework/Versions/A/Headers
-SDL_FRAMEWORK=-F/Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel -framework SDL2
+SDL_INCLUDE=-I./SDL2.framework/Versions/A/Headers
+SDL_FRAMEWORK=-F./ -framework SDL2
 
 #global include for ease of compiling and linking
-GLOBAL_INCLUDE=-I/Users/muhdmirzamz/Documents/Code/Projects/CPPProjects/Mazel/Mazel
+GLOBAL_INCLUDE=-I./Mazel
 
 #use c++11 
 CFLAGS=-c -Wall -std=c++11 $(SDL_INCLUDE) $(GLOBAL_INCLUDE)
@@ -20,6 +20,7 @@ MazelGame: $(OBJECT_FILES)
 	@echo "Linking object files"
 	@$(CXX) $(LFLAGS) $@ $^
 	@echo "Done."
+	@./MazelGame 
 
 BasicLevel.o: BasicLevel.cpp
 	@echo "Compiling BasicLevel.cpp"

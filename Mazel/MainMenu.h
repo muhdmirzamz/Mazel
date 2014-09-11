@@ -52,10 +52,12 @@ class MainMenu: public GameState {
 		SDL_Surface *_logo;
 		SDL_Texture *_logoTexture; // free
 		SDL_Texture *_logoTextureRef;
+		SDL_Rect _logoRect;
 		
 		SDL_Surface *_mainMenuHalfBackground;
 		SDL_Texture *_mainMenuHalfBackgroundTexture; // free
 		SDL_Texture *_mainMenuHalfBackgroundTextureRef;
+		SDL_Rect _mainMenuHalfBackgroundRect;
 		
 		SDL_Surface *_ballImage;
 		SDL_Texture *_ballTexture; // free
@@ -66,6 +68,9 @@ class MainMenu: public GameState {
 		SDL_Surface *_startImage;
 		SDL_Texture *_startTexture; // free
 		SDL_Texture *_startTextureRef;
+		SDL_Rect _startRect;
+		
+		GameManager *_gameManager;
 };
 
 #endif /* defined(__Mazel__MainMenu__) */
