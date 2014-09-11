@@ -76,6 +76,8 @@ class BasicLevel: public GameState {
 		SDL_Texture *_finishImageTexture; // free
 		SDL_Texture *_finishImageTextureRef;
 		SDL_Rect _finishImageRect;
+		
+		GameManager *_gameManager;
 };
 
 #endif /* defined(__Mazel__BasicLevel__) */

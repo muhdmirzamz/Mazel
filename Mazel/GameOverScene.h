@@ -48,6 +48,9 @@ class GameOverScene: public GameState {
 		SDL_Surface *_gameOverBackground;
 		SDL_Texture *_gameOverBackgroundTexture; // free
 		SDL_Texture *_gameOverBackgroundTextureRef;
+		SDL_Rect _gameOverBackgroundRect;
+		
+		GameManager *_gameManager;
 };
 
 #endif /* defined(__Mazel__GameOverScene__) */

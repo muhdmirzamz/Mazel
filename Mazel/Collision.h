@@ -22,24 +22,13 @@ class Collision {
 		
 		// basic collision with window
 		bool ballDidCollideWithTopOfWindow(SDL_Rect ball);
-		bool ballDidCollideWithBottomOfWindow(SDL_Rect ball2);
-		bool ballDidCollideWithLeftOfWindow(SDL_Rect ball3);
-		bool ballDidCollideWithRightOfWindow(SDL_Rect ball4);
-		
-		// a standardised function to check for all sides of window
-		bool ballDidCollideWithWindow(SDL_Rect ball5);
+		bool ballDidCollideWithWindow(SDL_Rect ball);
 		
 		// basic collision with obstacles
-		bool ballDidCollideWithLeftOfObstacle(SDL_Rect ball6, SDL_Rect obstacle1);
-		bool ballDidCollideWithRightOfObstacle(SDL_Rect ball7, SDL_Rect obstacle2);
-		bool ballDidCollideWithTopOfObstacle(SDL_Rect ball8, SDL_Rect obstacle3);
-		bool ballDidCollideWithBottomOfObstacle(SDL_Rect ball9, SDL_Rect obstacle4);
-		
-		// a standardised function to check for all sides of obstacles
-		bool ballDidCollideWithObstacle(SDL_Rect ball10, SDL_Rect obstacle5);
+		bool ballDidCollideWithObstacle(SDL_Rect ball2, SDL_Rect obstacle);
 		
 		// main menu collision
-		bool ballDidCollideWithGround(SDL_Rect ball10); // bouncing ball collide with ground
+		bool ballDidCollideWithGround(SDL_Rect ball3); // bouncing ball collide with ground
 		
 	private:
 };

@@ -44,6 +44,7 @@ void GameOverScene::setupTextures() {
 	if (!_gameOverBackgroundTexture) {
 		printErrorMessage("GameOverScene", "background texture");
 	}
+	_gameOverBackgroundRect = plotImage(WINDOW_WIDTH / 2, 100, 100, 100);
 }
 
 void GameOverScene::run() {
@@ -61,7 +62,7 @@ void GameOverScene::event() {
 			
 			cleanup();
 			
-			changeState(EXIT);
+			changeState(_gameManager, EXIT);
 		}
 #if DEBUG_MODE == true
 		// tracks mouse coordinates
@@ -78,7 +79,7 @@ void GameOverScene::event() {
 					
 					cleanup();
 					
-					changeState(BASIC_LEVEL);
+					changeState(_gameManager, BASIC_LEVEL);
 				}
 			}
 			
@@ -89,7 +90,7 @@ void GameOverScene::event() {
 					
 					cleanup();
 					
-					changeState(MAIN_MENU);
+					changeState(_gameManager, MAIN_MENU);
 				}
 			}
 		}
