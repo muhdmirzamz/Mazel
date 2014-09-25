@@ -1,0 +1,125 @@
+/* restricts the webpage height */
+body {
+	height: 600px;
+}
+
+/* fullscreen effect for all parts of website */
+/* 
+	- background colour
+	- centralising 
+	- width 
+	- positioning 
+*/
+.fullscreen_effect {
+	background-color: #00CCFF;
+
+	margin: auto;
+
+	width: 1300px;
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	position: relative;
+	right: 10px;
+	bottom: 10px;
+}
+
+/* applies to every part of the website */
+.fullscreen_effect p {
+	text-align: center;
+
+	font-family: Helvetica;
+
+	color: white;
+}
+
+/* sets font size for header */
+#header {
+	font-size: 70px;
+}
+
+/* 
+	- the place to hold #outer_div 
+	- sets font size for anything inside nav area 
+	- sets height for anything inside nav area
+*/
+#navigation {
+	/* background-color: brown; */
+	font-size: 40px;
+
+	height: 140px;
+}
+
+/* the place to hold #inner_div */
+#outer_div {
+	/* background-color: yellow; */
+
+	width: 500px;
+	height: 140px;
+
+	margin: auto;
+
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* applies to all the links */
+.inner_div {
+	border-style: solid;
+	border-color: white;
+
+	width: 200px;
+
+	display: inline-block;
+
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* sets background colour for section _for debugging_ */
+/* can adjust height to accomodate different parts */
+#section {
+	background-color: red; 
+	height: 500px;
+}
+
+/* a holder for photos */
+#photos {
+	/* background-color: yellow; */
+
+	height: 300px;
+
+	position: relative;
+	top: 15px;
+}
+
+/* adjusts each image to make them centralised */
+#photos ul li {
+	display: inline;
+
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+img {
+	width: 250px;
+	height: 250px;
+}
+
+/* 
+	sets:
+	- font
+	- position
+*/
+#summary_para {
+	/* background-color: green; */
+
+	font-size: 30px;
+
+	position: relative;
+	top:10px;
+}
