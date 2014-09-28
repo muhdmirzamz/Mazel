@@ -54,27 +54,6 @@ void GameState::setIcon(SDL_Window *window3, SDL_Surface *icon, const string fil
 	SDL_SetWindowIcon(window3, icon);
 }
 
-SDL_Texture* GameState::loadImageOntoTexture
-(SDL_Surface *imageSurface, string filePathOfImage, SDL_Texture *imageTexture, SDL_Renderer *renderer2) {
-	// load image
-	imageSurface = SDL_LoadBMP(filePathOfImage.c_str());
-	
-	// get rid of white background
-	// comment out for debugging
-	SDL_SetColorKey(imageSurface, SDL_TRUE, SDL_MapRGB(imageSurface->format, 255, 255, 255));
-	
-	imageTexture = SDL_CreateTextureFromSurface(renderer2, imageSurface);
-	if (!imageTexture) {
-		cout << "Failed to create texture from surface\n";
-	}
-	
-	// remember to free surface
-	SDL_FreeSurface(imageSurface);
-	imageSurface = NULL;
-	
-	return imageTexture;
-}
-
 void GameState::setup() {
 	
 }
@@ -95,18 +74,8 @@ void GameState::setupFinishRect() {
 	
 }
 
-void GameState::setupObstacles() {
+void GameState::setupObstaclesAndEnemies() {
 	
-}
-
-SDL_Rect GameState::plotImage(int x, int y, int w, int h) {
-	SDL_Rect rect;
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
-	
-	return rect;
 }
 
 void GameState::run() {
@@ -117,7 +86,31 @@ void GameState::event() {
 	
 }
 
-void GameState::checkCollision() {
+void GameState::moveEnemy() {
+	
+}
+
+void GameState::checkBallAndWindowCollision() {
+	
+}
+
+void GameState::checkBallAndObstacleCollision() {
+	
+}
+
+void GameState::checkBallAndFinishRectangleCollision() {
+	
+}
+
+void GameState::checkBallAndEnemiesCollision() {
+	
+}
+
+void GameState::checkEnemiesAndWindowCollision() {
+	
+}
+
+void GameState::checkEnemiesAndObstacleCollision() {
 	
 }
 

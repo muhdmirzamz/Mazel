@@ -1,8 +1,10 @@
 //
 //  GameState.h
 //  Mazel
-//	this class forms the base of every class that represents a running
+//	this class forms the base of every class that a running
 //	process, examples are levels, main menu etc
+//	include all files which level classes require
+//	level classes only need to import this class(GameState.h)
 //
 //  Created by Muhd Mirza on 31/7/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
@@ -13,18 +15,23 @@
 
 #include <iostream>
 
-// include all files which level classes require
-// level classes only need to import this class(GameState.h)
 #include "Includes.h"
 #include "GameManager.h"
-#include "Render.h"
-#include "Collision.h"
+
+#include "Ball.h"
+#include "Obstacle.h"
+#include "Enemy.h"
+#include "Background.h"
+#include "Gui.h"
 
 enum GameStates {
 	INTRO_SCENE,
 	MAIN_MENU,
-	BASIC_LEVEL, // a bunch of levels, not just one
+	INSTRUCTIONS_PAGE,
+	BASIC_LEVEL, // a bunch of levels
+	NEXT_LEVEL_PAGE,
 	GAME_OVER,
+	GAME_END,
 	EXIT
 };
 
@@ -35,40 +42,45 @@ class GameState {
 		GameState();
 		virtual ~GameState();
 	
+		/* 
+			available functions to be used by individual sub classes 
+		*/
+		
 		inline void printErrorMessage(string level, string component) {
 			cout << level << " " << component << " failed to initialise!\n";
 			cout << SDL_GetError() << endl;
 		}
-		
-		/* virtual functions to be inherited by individual sub classes */
 	
 		// setup
-		virtual void setup(); // use this function to increase code readability
-		virtual void setupObjects(); // set up other classes objects, mostly pointers
-		virtual void setupTextures(); // sets up textures
-		virtual void setupBall(); // sets up ball
-		virtual void setupFinishRect(); // sets up finish line
-		virtual void setupObstacles(); // sets up obstacles
-		virtual SDL_Rect plotImage(int x, int y, int w, int h);
+		virtual void setup(); // sets up the window, renderer, icons, and running flag
+		virtual void setupObjects();
+		virtual void setupTextures();
 		
 		/*
-			due to the nature of the function
-			there needs to be 2 variables of the same type
-			declared in each subclass due to memory issues
-			example: SDL_Window *window and SDL_Window *windowRef
+			balls and finish rectangles stay the same position throughout a collection of levels
+			Obstacles and enemies dont
 		*/
-		virtual SDL_Window* initWindow(SDL_Window *window);
-		virtual SDL_Renderer* initRenderer(SDL_Window *window2, SDL_Renderer *renderer);
-		virtual void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);
-		virtual SDL_Texture* loadImageOntoTexture(SDL_Surface *imageSurface, string filePathOfImage, SDL_Texture *imageTexture, SDL_Renderer *renderer2);
+		virtual void setupBall(); // plots coordinates and sets speed
+		virtual void setupFinishRect(); // plots coordinates
+		virtual void setupObstaclesAndEnemies(); // plots coordinates and sets speed
 		
-		// loop
-		virtual void run(); // main game loop
+		SDL_Window* initWindow(SDL_Window *window);
+		SDL_Renderer* initRenderer(SDL_Window *window2, SDL_Renderer *renderer);
+		void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);
+		
+		// main game loop
+		virtual void run();
 		
 		// events
-		virtual void event(); // handles events
-		virtual void changeState(GameManager *gameManager, int state); // change state
-		virtual void checkCollision(); // check for collision
+		virtual void event();
+		virtual void moveEnemy();
+		void changeState(GameManager *gameManager, int state);
+		virtual void checkBallAndWindowCollision();
+		virtual void checkBallAndObstacleCollision();
+		virtual void checkBallAndFinishRectangleCollision();
+		virtual void checkBallAndEnemiesCollision();
+		virtual void checkEnemiesAndWindowCollision();
+		virtual void checkEnemiesAndObstacleCollision();
 		
 		// update and render
 		virtual void update(); // updates game variables
@@ -77,7 +89,19 @@ class GameState {
 		// cleanup
 		virtual void cleanup(); // release allocated memory
 	
-	private:
+	// labelled as protected so that derived classes can inherit them
+	protected:
+		SDL_Window *_window; // remember to release the memory
+		SDL_Window *_windowRef;
+		SDL_Renderer *_renderer; // // remember to release the memory
+		SDL_Renderer *_rendererRef;
+		SDL_Event _event;
+		
+		bool _running;
+		
+		SDL_Surface *_icon;
+		
+		GameManager *_gameManager;
 };
 
 #endif /* defined(__Mazel__GameState__) */

@@ -33,24 +33,17 @@ void IntroScene::setup() {
 }
 
 void IntroScene::setupObjects() {
-	_render = new Render();
-	if (!_render) {
-		printErrorMessage("Intro Scene", "Render");
-	}
+	_background = &backgroundObject;
+	_introLogo = &_introLogoObject;
+	_continueButton = &_continueButtonObject;
 }
 
 void IntroScene::setupTextures() {
-	_introLogoTexture = loadImageOntoTexture(_introLogo, "images/mazeltitle.bmp", _introLogoTextureRef, _renderer);
-	if (!_introLogoTexture) {
-		printErrorMessage("IntroScene", "Intro logo");
-	}
-	_introLogoRect = plotImage(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
-
-	_continueButtonTexture = loadImageOntoTexture(_continueButton, "images/intro_scene_continue_button.bmp", _continueButtonTextureRef, _renderer);
-	if (!_continueButtonTexture) {
-		printErrorMessage("IntroScene", "Continue button");
-	}
-	_continueButtonRect = plotImage(WINDOW_WIDTH / 4 + 20, 280, 300, 300);
+	_introLogo->loadImageOntoTexture("images/mazeltitle.bmp", _renderer);
+	_introLogo->plotGui(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
+	
+	_continueButton->loadImageOntoTexture("images/intro_scene_continue_button.bmp", _renderer);
+	_continueButton->plotGui(WINDOW_WIDTH / 4 + 20, 280, 300, 300);
 }
 
 void IntroScene::run() {
@@ -103,20 +96,12 @@ void IntroScene::update() {
 }
 
 void IntroScene::render() {
-	_render->renderIntroSceneBackground(_renderer);
-	_render->renderTexture(_renderer, _introLogoTexture, _introLogoRect);
-	_render->renderTexture(_renderer, _continueButtonTexture, _continueButtonRect);
+	_background->renderIntroSceneBackground(_renderer);
+	_introLogo->render(_renderer);
+	_continueButton->render(_renderer);
 }
 
 void IntroScene::cleanup() {
-	SDL_DestroyTexture(_introLogoTexture);
-	_introLogoTexture = NULL;
-	SDL_DestroyTexture(_continueButtonTexture);
-	_continueButtonTexture = NULL;
-	
-	delete _render;
-	_render = NULL;
-	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

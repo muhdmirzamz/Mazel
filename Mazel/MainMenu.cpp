@@ -32,54 +32,37 @@ void MainMenu::setup() {
 }
 
 void MainMenu::setupObjects() {
-	_collision = new Collision();
-	if (!_collision) {
-		printErrorMessage("Main Menu", "Collision pointer");
-	}
-	
-	_render = new Render();
-	if (!_render) {
-		printErrorMessage("Main Menu", "Render pointer");
-	}
+	_background = &_backgroundObject;
+	_grass = &_grassObject;
+	_logo = &_logoObject;
+	_start = &_startObject;
+	_instructions = &_instructionsObject;
 }
 
 void MainMenu::setupTextures() {
-	_logoTexture = loadImageOntoTexture(_logo, "images/MazelLogo.bmp", _logoTextureRef, _renderer);
-	if (!_logoTexture) {
-		printErrorMessage("Main Menu", "image texture");
-	}
-	_logoRect = plotImage(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
+	_logo->loadImageOntoTexture("images/MazelLogo.bmp", _renderer);
+	_logo->plotGui(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
 	
-	_mainMenuHalfBackgroundTexture = loadImageOntoTexture(_mainMenuHalfBackground, "images/main_menu_half_background.bmp", _mainMenuHalfBackgroundTextureRef, _renderer);
-	if (!_mainMenuHalfBackgroundTexture) {
-		printErrorMessage("Main Menu", "Half Background");
-	}
-	_mainMenuHalfBackgroundRect = plotImage(0, WINDOW_HEIGHT / 2 + 40, WINDOW_WIDTH, 200);
+	_grass->loadImageOntoTexture("images/main_menu_half_background.bmp", _renderer);
+	_grass->plotBackground(0, WINDOW_HEIGHT / 2 + 40, WINDOW_WIDTH, 200);
 	
-	_startTexture = loadImageOntoTexture(_startImage, "images/mazelstart.bmp", _startTextureRef, _renderer);
-	if (!_startTexture) {
-		printErrorMessage("Main Menu", "Start image");
-	}
-	_startRect = plotImage(START_IMAGE_XPOS, START_IMAGE_YPOS, START_IMAGE_WIDTH, START_IMAGE_HEIGHT);
+	_start->loadImageOntoTexture("images/mazelstart.bmp", _renderer);
+	_start->plotStartImage(WINDOW_WIDTH / 2 - 200, WINDOW_HEIGHT - 130);
 	
-	_ballTexture = loadImageOntoTexture(_ballImage, "images/ball.bmp", _ballTextureRef, _renderer);
-	if (!_ballTexture) {
-		printErrorMessage("Main Menu", "Ball texture");
-	}
+	_instructions->loadImageOntoTexture("images/mazel_instructions_label.bmp", _renderer);
+	_instructions->plotInstructionsImage(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 130);
+	
+	_ball->loadImageOntoTexture("images/ball.bmp", _renderer);
 }
 
 void MainMenu::setupBall() {
-	_ballRect.x = 20;
-	_ballRect.y = 20;
-	_ballRect.w = 40;
-	_ballRect.h = 40;
-	
-	_ballSpeedY = 5;
+	_ball->plotMainMenuBall(20, 20);
+	_ball->setMainMenuBallSpeed();
 }
 
 void MainMenu::run() {
 	while (_running) {
-		_ballRect.y += _ballSpeedY;
+		_ball->moveDown();
 	
 		event();
 		checkCollision();
@@ -109,10 +92,10 @@ void MainMenu::event() {
 			}
 		}
 #endif
-		
+		// continue to game
 		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
-			if (CLICK_AT_XPOS >= BEGIN_OF_START_IMAGE && CLICK_AT_XPOS <= END_OF_START_IMAGE) {
-				if (CLICK_AT_YPOS >= TOP_OF_START_IMAGE && CLICK_AT_YPOS <= BOTTOM_OF_START_IMAGE) {
+			if (CLICK_AT_XPOS >= _start->getX() && CLICK_AT_XPOS <= (_start->getX() + _start->getW())) {
+				if (CLICK_AT_YPOS >= _start->getY() && CLICK_AT_YPOS <= (_start->getY() + _start->getH())) {
 					_running = false;
 					
 					cleanup();
@@ -121,16 +104,29 @@ void MainMenu::event() {
 				}
 			}
 		}
+		
+		// continue to instructions page
+		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			if (CLICK_AT_XPOS >= _instructions->getX() && CLICK_AT_XPOS <= _instructions->getX() + _instructions->getW()) {
+				if (CLICK_AT_YPOS >= _instructions->getY() && CLICK_AT_YPOS <= _instructions->getY() + _instructions->getH()) {
+					_running = false;
+					
+					cleanup();
+					
+					changeState(_gameManager, INSTRUCTIONS_PAGE);
+				}
+			}
+		}
 	}
 }
 
 void MainMenu::checkCollision() {
-	if (_collision->ballDidCollideWithTopOfWindow(_ballRect)) {
-		_ballSpeedY = 5;
+	if (_ball->ballDidCollideWithTopOfWindow(_ball)) {
+		_ball->setMainMenuBallSpeed();
 	}
 	
-	if (_collision->ballDidCollideWithGround(_ballRect)) {
-		_ballSpeedY = -5;
+	if (_ball->ballDidCollideWithGround(_ball)) {
+		_ball->setMainMenuBallSpeedReversed();
 	}
 }
 
@@ -139,28 +135,15 @@ void MainMenu::update() {
 }
 
 void MainMenu::render() {
-	_render->renderMainMenuBackground(_renderer);
-	_render->renderTexture(_renderer, _logoTexture, _logoRect);
-	_render->renderTexture(_renderer, _mainMenuHalfBackgroundTexture, _mainMenuHalfBackgroundRect);
-	_render->renderTexture(_renderer, _startTexture, _startRect);
-	_render->renderTexture(_renderer, _ballTexture, _ballRect);
+	_background->renderMainMenuBackground(_renderer);
+	_logo->render(_renderer);
+	_grass->renderImage(_renderer);
+	_start->render(_renderer);
+	_instructions->render(_renderer);
+	_ball->render(_renderer);
 }
 
 void MainMenu::cleanup() {
-	SDL_DestroyTexture(_logoTexture);
-	_logoTexture = NULL;
-	SDL_DestroyTexture(_mainMenuHalfBackgroundTexture);
-	_mainMenuHalfBackgroundTexture = NULL;
-	SDL_DestroyTexture(_startTexture);
-	_startTexture = NULL;
-	SDL_DestroyTexture(_ballTexture);
-	_ballTexture = NULL;
-	
-	delete _collision;
-	_collision = NULL;
-	delete _render;
-	_render = NULL;
-	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

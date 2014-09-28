@@ -1,5 +1,16 @@
 CHANGELOG
 
+v0.5.0-beta 28 September 2014
+* Added instructions page
+* Added instructions button in main menu
+* Added a screen indicating the next level
+* Added a scene indicating the end of the game
+* Added enemies
+* Refactored codebase
+* Reduced macros for performance and maintenance 
+* Fixed a bug where closing the game window would cause the game
+  to switch to the screen indicating the next level
+
 v0.4.0-beta.1 11 September 2014
 * Refactored rendering code
 * Refactored collision code

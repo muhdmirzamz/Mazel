@@ -8,6 +8,15 @@
 
 #include "GameOverScene.h"
 
+// this set of gui class constants stay here
+// since there's no specific mapping of the "GO" word
+static const int START_OF_RETRY_BUTTON = 150;
+static const int END_OF_RETRY_BUTTON = (START_OF_RETRY_BUTTON + 120);
+static const int START_OF_MAIN_MENU_BUTTON = 290;
+static const int END_OF_MAIN_MENU_BUTTON = (START_OF_MAIN_MENU_BUTTON + 210);
+static const int TOP_OF_BUTTON = 260;
+static const int BOTTOM_OF_BUTTON = (TOP_OF_BUTTON + 40);
+
 using namespace std;
 
 GameOverScene::GameOverScene() {
@@ -33,18 +42,13 @@ void GameOverScene::setup() {
 }
 
 void GameOverScene::setupObjects() {
-	_render = new Render();
-	if (!_render) {
-		printErrorMessage("GameOverScene", "render object");
-	}
+	_background = &_backgroundObject;
+	_image = &_imageObject;
 }
 
 void GameOverScene::setupTextures() {
-	_gameOverBackgroundTexture = loadImageOntoTexture(_gameOverBackground, "images/gameover.bmp", _gameOverBackgroundTextureRef, _renderer);
-	if (!_gameOverBackgroundTexture) {
-		printErrorMessage("GameOverScene", "background texture");
-	}
-	_gameOverBackgroundRect = plotImage(WINDOW_WIDTH / 2, 100, 100, 100);
+	_image->loadImageOntoTexture("images/gameover.bmp", _renderer);
+	_image->plotGui(WINDOW_WIDTH / 8 + 50, 50, 400, 400);
 }
 
 void GameOverScene::run() {
@@ -65,27 +69,24 @@ void GameOverScene::event() {
 			changeState(_gameManager, EXIT);
 		}
 #if DEBUG_MODE == true
-		// tracks mouse coordinates
 		if (EVENT_TYPE == SDL_MOUSEMOTION) {
-			cout << "X-axis: " << POINT_AT_XPOS << endl;
-			cout << "Y-axis: " << POINT_AT_YPOS << endl;
+			cout << "X axis: " << POINT_AT_XPOS << endl;
+			cout << "X axis: " << POINT_AT_XPOS << endl;
 		}
 #endif
 		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
-			// clicked retry
-			if (CLICK_AT_XPOS >= 147 && CLICK_AT_XPOS <= 260) {
-				if (CLICK_AT_YPOS >= 255 && CLICK_AT_YPOS <= 287) {
+			if (CLICK_AT_YPOS >= TOP_OF_BUTTON && CLICK_AT_YPOS <= BOTTOM_OF_BUTTON) {
+				// retry button
+				if (CLICK_AT_XPOS >= START_OF_RETRY_BUTTON && CLICK_AT_XPOS <= END_OF_RETRY_BUTTON) {
 					_running = false;
 					
 					cleanup();
 					
 					changeState(_gameManager, BASIC_LEVEL);
 				}
-			}
-			
-			// clicked main menu
-			if (CLICK_AT_XPOS >= 288 && CLICK_AT_XPOS <= 488) {
-				if (CLICK_AT_YPOS >= 258 && CLICK_AT_YPOS <= 289) {
+				
+				// main menu button
+				if (CLICK_AT_XPOS >= START_OF_MAIN_MENU_BUTTON && CLICK_AT_XPOS <= END_OF_MAIN_MENU_BUTTON) {
 					_running = false;
 					
 					cleanup();
@@ -102,16 +103,11 @@ void GameOverScene::update() {
 }
 
 void GameOverScene::render() {
-	_render->renderGameOverSceneBackground(_renderer, _gameOverBackgroundTexture);
+	_background->renderGameOverSceneBackground(_renderer);
+	_image->render(_renderer);
 }
 
 void GameOverScene::cleanup() {
-	SDL_DestroyTexture(_gameOverBackgroundTexture);
-	_gameOverBackgroundTexture = NULL;
-	
-	delete _render;
-	_render = NULL;
-
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

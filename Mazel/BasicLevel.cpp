@@ -18,7 +18,11 @@ using namespace std;
 	only way is to declare a static global variable
 	cant use a private variable as value cannot be set straight away
 */
-static int levelCount = 1; // change to level number for easy debugging
+#if DEBUG_MODE == true
+	static int levelCount = 5; // change to level number for easy debugging
+#else 
+	static int levelCount = 1; // start in level 1
+#endif
 
 BasicLevel::BasicLevel() {
 #if DEBUG_MODE == true
@@ -28,9 +32,9 @@ BasicLevel::BasicLevel() {
 	setup();
 	setupObjects();
 	setupTextures();
-	setupFinishRect();
 	setupBall();
-	setupObstacles();
+	setupFinishRect();
+	setupObstaclesAndEnemies();
 }
 
 void BasicLevel::setup() {
@@ -50,201 +54,130 @@ void BasicLevel::setup() {
 }
 
 void BasicLevel::setupObjects() {
-	_render = new Render();
-	if (!_render) {
-		printErrorMessage("Level 1", "render object for level 1");
-	}
+	_background = &_backgroundObject;
 	
-	_collision = new Collision();
-	if (!_collision) {
-		printErrorMessage("Level 1", "Collision pointer");
-	}
+	_ball = &_ballObject;
+	
+	_obstacle1 = &_obstacle1Object;
+	_obstacle2 = &_obstacle2Object;
+	_obstacle3 = &_obstacle3Object;
+	_obstacle4 = &_obstacle4Object;
+	_obstacle5 = &_obstacle5Object;
+	
+	_enemy1 = &_enemy1Object;
+	_enemy2 = &_enemy2Object;
+	_enemy3 = &_enemy3Object;
+	
+	_finishImage = &_finishImageObject;
 }
 
 void BasicLevel::setupTextures() {
-	_ballTexture = loadImageOntoTexture(_ballImage, "images/ball.bmp", _ballTextureRef, _renderer);
-	if (!_ballTexture) {
-		printErrorMessage("Level 1", "ball");
-	}
-	
-	_finishImageTexture = loadImageOntoTexture(_finishImage, "images/finish.bmp", _finishImageTextureRef, _renderer);
-	if (!_finishImageTexture) {
-		printErrorMessage("Level 1 ", "Finish image");
-	}
+	_ball->loadImageOntoTexture("images/ball.bmp", _renderer);
+	_finishImage->loadImageOntoTexture("images/finish.bmp", _renderer);
 }
 
 void BasicLevel::setupBall() {
-	_ballRect.x = 30;
-	_ballRect.y = 30;
-	_ballRect.w = BASIC_LEVEL_BALL_WIDTH;
-	_ballRect.h = BASIC_LEVEL_BALL_HEIGHT;
-	
-	_ballSpeedXLeft = BASIC_LEVEL_BALL_SPEED;
-	_ballSpeedXRight = BASIC_LEVEL_BALL_SPEED;
-	_ballSpeedYUp = BASIC_LEVEL_BALL_SPEED;
-	_ballSpeedYDown = BASIC_LEVEL_BALL_SPEED;
+	_ball->plotBall(30, 30);
+	_ball->setBallSpeed();
 }
 
 void BasicLevel::setupFinishRect() {
 	if (levelCount <= 5) {
-		_finishImageRect.x = 550;
-		_finishImageRect.y = 380;
-		_finishImageRect.w = BASIC_LEVEL_FINISH_RECT_WIDTH;
-		_finishImageRect.h = BASIC_LEVEL_FINISH_RECT_HEIGHT;
-#if DEBUG_MODE == true
-		cout << "Finish image x pos: " << _finishImageRect.x << endl;
-#endif
+		_finishImage->plotFinishRect(550, 380);
 	}
 }
 
 // pretty much level design right here
-void BasicLevel::setupObstacles() {
-	// level 1
+void BasicLevel::setupObstaclesAndEnemies() {
 	if (levelCount == 1) {
-		_obstacle1 = plotImage(540, 0, 100, 250);
-		_obstacle2 = plotImage(100, 0, 100, 200);
-		_obstacle3 = plotImage(0, 300, 100, 100);
-		_obstacle4 = plotImage(0, 400, 300, 100);
-		_obstacle5 = plotImage(300, 200, 100, 500);
-		/*
-		_obstacle1.x = 540;
-		_obstacle1.y = 0;
-		_obstacle1.w = 100;
-		_obstacle1.h = 250;
+		_obstacle1->plotObstacle(540, 0, 100, 250);
+		_obstacle2->plotObstacle(100, 0, 100, 200);
+		_obstacle3->plotObstacle(0, 300, 100, 100);
+		_obstacle4->plotObstacle(0, 400, 300, 100);
+		_obstacle5->plotObstacle(300, 200, 100, 500);
 		
-		_obstacle2.x = 100;
-		_obstacle2.y = 0;
-		_obstacle2.w = 100;
-		_obstacle2.h = 200;
-		
-		_obstacle3.x = 0;
-		_obstacle3.y = 300;
-		_obstacle3.w = 100;
-		_obstacle3.h = 100;
-		
-		_obstacle4.x = 0;
-		_obstacle4.y = 400;
-		_obstacle4.w = 300;
-		_obstacle4.h = 100;
-		
-		_obstacle5.x = 300;
-		_obstacle5.y = 200;
-		_obstacle5.w = 100;
-		_obstacle5.h = 500;
-		*/
+		_enemy1->plotEnemy(0, 210);
+		_enemy1->setSpeedX();
+		_enemy2->plotEnemy(210, 170);
+		_enemy2->setSpeedX();
+		_enemy3->plotEnemy(400, 260);
+		_enemy3->setSpeedX();
 	}
 	
-	// level 2
 	if (levelCount == 2) {
-		_obstacle1 = plotImage(0, 100, 200, 50);
-		_obstacle2 = plotImage(400, 0, 240, 200);
-		_obstacle3 = plotImage(0, 200, 300, 50);
-		_obstacle4 = plotImage(200, 300, 440, 50);
-		_obstacle5 = plotImage(400, 400, 50, 80);
-		/*
-		_obstacle1.x = 0;
-		_obstacle1.y = 100;
-		_obstacle1.w = 200;
-		_obstacle1.h = 50;
+		_obstacle1->plotObstacle(0, 100, 200, 50);
+		_obstacle2->plotObstacle(400, 0, 240, 200);
+		_obstacle3->plotObstacle(0, 200, 300, 50);
+		_obstacle4->plotObstacle(200, 300, 440, 50);
+		_obstacle5->plotObstacle(400, 400, 50, 80);
 		
-		_obstacle2.x = 400;
-		_obstacle2.y = 0;
-		_obstacle2.w = 240;
-		_obstacle2.h = 200;
-		
-		_obstacle3.x = 0;
-		_obstacle3.y = 200;
-		_obstacle3.w = 300;
-		_obstacle3.h = 50;
-		
-		_obstacle4.x = 200;
-		_obstacle4.y = 300;
-		_obstacle4.w = 440;
-		_obstacle4.h = 50;
-		
-		_obstacle5.x = 400;
-		_obstacle5.y = 400;
-		_obstacle5.w = 50;
-		_obstacle5.h = 80;
-		*/
+		_enemy1->plotEnemy(310, 0);
+		_enemy1->setSpeedY();
+		_enemy2->plotEnemy(170, 250);
+		_enemy2->setSpeedY();
+		_enemy3->plotEnemy(370, 350);
+		_enemy3->setSpeedY();
 	}
 	
-	// level 3
 	if (levelCount == 3) {
-		_obstacle1 = plotImage(0, 100, 200, 50);
-		_obstacle2 = plotImage(400, 0, 50, 300);
-		_obstacle3 = plotImage(60, 300, 390, 50);
-		_obstacle4 = plotImage(500, 200, 40, 280);
-		_obstacle5 = plotImage(590, 280, 50, 50);
-		/*
-		_obstacle1.x = 0;
-		_obstacle1.y = 100;
-		_obstacle1.w = 200;
-		_obstacle1.h = 50;
-		
-		_obstacle2.x = 400;
-		_obstacle2.y = 0;
-		_obstacle2.w = 50;
-		_obstacle2.h = 300;
-		
-		_obstacle3.x = 60;
-		_obstacle3.y = 300;
-		_obstacle3.w = 390;
-		_obstacle3.h = 50;
-		
-		_obstacle4.x = 500;
-		_obstacle4.y = 200;
-		_obstacle4.w = 40;
-		_obstacle4.h = 280;
-		
-		_obstacle5.x = 590;
-		_obstacle5.y = 280;
-		_obstacle5.w = 50;
-		_obstacle5.h = 50;
-		*/
+		_obstacle1->plotObstacle(0, 100, 200, 50);
+		_obstacle2->plotObstacle(400, 0, 50, 300);
+		_obstacle3->plotObstacle(60, 300, 390, 50);
+		_obstacle4->plotObstacle(500, 200, 40, 280);
+		_obstacle5->plotObstacle(590, 280, 50, 50);
+
+		_enemy1->plotEnemy(220, 0);
+		_enemy1->setSpeedY();
+		_enemy2->plotEnemy(510, 165);
+		_enemy2->setSpeedX();
+		_enemy3->plotEnemy(0, 365);
+		_enemy3->setSpeedX();
 	}
 	
-	// level 4
 	if (levelCount == 4) {
-		_obstacle1 = plotImage(100, 0, 540, 200);
-		_obstacle2 = plotImage(0, 250, 200, 230);
-		_obstacle3 = plotImage(270, 200, 370, 80);
-		_obstacle4 = plotImage(200, 330, 200, 150);
-		_obstacle5 = plotImage(450, 280, 190, 90);
-		/*
-		_obstacle1.x = 100;
-		_obstacle1.y = 0;
-		_obstacle1.w = 540;
-		_obstacle1.h = 200;
+		_obstacle1->plotObstacle(200, 0, 540, 200);
+		_obstacle2->plotObstacle(0, 250, 200, 230);
+		_obstacle3->plotObstacle(300, 200, 370, 80);
+		_obstacle4->plotObstacle(200, 380, 200, 150);
+		_obstacle5->plotObstacle(500, 280, 190, 90);
 		
-		_obstacle2.x = 0;
-		_obstacle2.y = 250;
-		_obstacle2.w = 200;
-		_obstacle2.h = 230;
+		_enemy1->plotEnemy(250, 200);
+		_enemy1->setSpeedY();
+		_enemy2->plotEnemy(430, 280);
+		_enemy2->setSpeedY();
+		_enemy3->plotEnemy(0, 170);
+		_enemy3->setSpeedX();
+	}
+	
+	if (levelCount == 5) {
+		_obstacle1->plotObstacle(100, 0, 250, 400);
+		_obstacle2->plotObstacle(0, 150, 50, 50);
+		_obstacle3->plotObstacle(0, 300, 60, 80);
+		_obstacle4->plotObstacle(350, 0, 300, 300);
+		_obstacle5->plotObstacle(450, 350, 50, 130);
 		
-		_obstacle3.x = 270;
-		_obstacle3.y = 200;
-		_obstacle3.w = 370;
-		_obstacle3.h = 80;
-		
-		_obstacle4.x = 200;
-		_obstacle4.y = 330;
-		_obstacle4.w = 200;
-		_obstacle4.h = 150;
-		
-		_obstacle5.x = 450;
-		_obstacle5.y = 280;
-		_obstacle5.w = 190;
-		_obstacle5.h = 90;
-		*/
+		_enemy1->plotEnemy(450, 300);
+		_enemy1->setSpeedX();
+		_enemy2->plotEnemy(355, 300);
+		_enemy2->setSpeedY();
+		_enemy3->plotEnemy(0, 405);
+		_enemy3->setSpeedX();
 	}
 }
 
 void BasicLevel::run() {
 	while (_running) {
 		event();
+		moveEnemy();
+
+		checkBallAndWindowCollision();
+		checkBallAndObstacleCollision();
+		checkBallAndFinishRectangleCollision();
+		checkBallAndEnemiesCollision();
+		checkEnemiesAndWindowCollision();
+		checkEnemiesAndObstacleCollision();
+		
 		update();
-		checkCollision();
 		render();
 	}
 }
@@ -270,76 +203,77 @@ void BasicLevel::event() {
 			}
 			
 			if (PRESSED_KEY == SDLK_c) {
+				levelCount++;
 				_running = false;
 				
 				cleanup();
 				
-				changeState(_gameManager, BASIC_LEVEL);
+				changeState(_gameManager, NEXT_LEVEL_PAGE);
 			}
 #endif
 			// ball controls
-			if (PRESSED_KEY == SDLK_w) {
-				_ballSpeedYDown = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedXRight = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedXLeft = BASIC_LEVEL_BALL_SPEED;
+			if (PRESSED_KEY == SDLK_UP) {
+				_ball->setBallSpeedYDown();
+				_ball->setBallSpeedXRight();
+				_ball->setBallSpeedXLeft();
 				
-				_ballRect.y -= _ballSpeedYUp;
+				_ball->moveUp();
 #if DEBUG_MODE == true
-				cout << "BallSpeedYUp: " << _ballSpeedYUp << endl;
-				cout << "BallSpeedYDown: " << _ballSpeedYDown << endl;
-				cout << "BallSpeedXLeft: " << _ballSpeedXLeft << endl;
-				cout << "BallSpeedXRight: " << _ballSpeedXRight << endl;
+				cout << "BallSpeedYUp: " << _ball->getSpeedYUp() << endl;
+				cout << "BallSpeedYDown: " << _ball->getSpeedYDown() << endl;
+				cout << "BallSpeedXLeft: " << _ball->getSpeedXLeft() << endl;
+				cout << "BallSpeedXRight: " << _ball->getSpeedXRight() << endl;
 				
 				cout << endl;
 				cout << endl;
 #endif
 			}
 			
-			if (PRESSED_KEY == SDLK_s) {
-				_ballSpeedYUp = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedXRight = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedXLeft  = BASIC_LEVEL_BALL_SPEED;
+			if (PRESSED_KEY == SDLK_DOWN) {
+				_ball->setBallSpeedYUp();
+				_ball->setBallSpeedXRight();
+				_ball->setBallSpeedXLeft();
 				
-				_ballRect.y += _ballSpeedYDown;
+				_ball->moveDown();
 #if DEBUG_MODE == true
-				cout << "BallSpeedYUp: " << _ballSpeedYUp << endl;
-				cout << "BallSpeedYDown: " << _ballSpeedYDown << endl;
-				cout << "BallSpeedXLeft: " << _ballSpeedXLeft << endl;
-				cout << "BallSpeedXRight: " << _ballSpeedXRight << endl;
+				cout << "BallSpeedYUp: " << _ball->getSpeedYUp() << endl;
+				cout << "BallSpeedYDown: " << _ball->getSpeedYDown() << endl;
+				cout << "BallSpeedXLeft: " << _ball->getSpeedXLeft() << endl;
+				cout << "BallSpeedXRight: " << _ball->getSpeedXRight() << endl;
 				
 				cout << endl;
 				cout << endl;
 #endif
 			}
 			
-			if (PRESSED_KEY == SDLK_a) {
-				_ballSpeedXRight = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedYUp = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedYDown = BASIC_LEVEL_BALL_SPEED;
+			if (PRESSED_KEY == SDLK_LEFT) {
+				_ball->setBallSpeedXRight();
+				_ball->setBallSpeedYUp();
+				_ball->setBallSpeedYDown();
 				
-				_ballRect.x -= _ballSpeedXLeft;
+				_ball->moveLeft();
 #if DEBUG_MODE == true
-				cout << "BallSpeedYUp: " << _ballSpeedYUp << endl;
-				cout << "BallSpeedYDown: " << _ballSpeedYDown << endl;
-				cout << "BallSpeedXLeft: " << _ballSpeedXLeft << endl;
-				cout << "BallSpeedXRight: " << _ballSpeedXRight << endl;
+				cout << "BallSpeedYUp: " << _ball->getSpeedYUp() << endl;
+				cout << "BallSpeedYDown: " << _ball->getSpeedYDown() << endl;
+				cout << "BallSpeedXLeft: " << _ball->getSpeedXLeft() << endl;
+				cout << "BallSpeedXRight: " << _ball->getSpeedXRight() << endl;
 				
 				cout << endl;
 				cout << endl;
 #endif
 			}
 			
-			if (PRESSED_KEY == SDLK_d) {
-				_ballSpeedXLeft = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedYUp = BASIC_LEVEL_BALL_SPEED;
-				_ballSpeedYDown = BASIC_LEVEL_BALL_SPEED;
+			if (PRESSED_KEY == SDLK_RIGHT) {
+				_ball->setBallSpeedXLeft();
+				_ball->setBallSpeedYUp();
+				_ball->setBallSpeedYDown();
 				
-				_ballRect.x += _ballSpeedXRight;
+				_ball->moveRight();
 #if DEBUG_MODE == true
-				cout << "BallSpeedYUp: " << _ballSpeedYUp << endl;
-				cout << "BallSpeedYDown: " << _ballSpeedYDown << endl;
-				cout << "BallSpeedXLeft: " << _ballSpeedXLeft << endl;
-				cout << "BallSpeedXRight: " << _ballSpeedXRight << endl;
+				cout << "BallSpeedYUp: " << _ball->getSpeedYUp() << endl;
+				cout << "BallSpeedYDown: " << _ball->getSpeedYDown() << endl;
+				cout << "BallSpeedXLeft: " << _ball->getSpeedXLeft() << endl;
+				cout << "BallSpeedXRight: " << _ball->getSpeedXRight() << endl;
 				
 				cout << endl;
 				cout << endl;
@@ -349,9 +283,51 @@ void BasicLevel::event() {
 	}
 }
 
-void BasicLevel::checkCollision() {
-	// wall collision
-	if (_collision->ballDidCollideWithWindow(_ballRect)) {
+void BasicLevel::moveEnemy() {
+	if (levelCount == 1) {
+		_enemy1->moveHorizontally();
+		_enemy2->moveHorizontally();
+		_enemy3->moveHorizontally();
+	}
+	
+	if (levelCount == 2) {
+		_enemy1->moveVertically();
+		_enemy2->moveVertically();
+		_enemy3->moveVertically();
+	}
+
+	if (levelCount == 3) {
+		_enemy1->moveVertically();
+		_enemy2->moveHorizontally();
+		_enemy3->moveHorizontally();
+	}
+	
+	if (levelCount == 4) {
+		_enemy1->moveVertically();
+		_enemy2->moveVertically();
+		_enemy3->moveHorizontally();
+	}
+	
+	if (levelCount == 5) {
+		_enemy1->moveHorizontally();
+		_enemy2->moveVertically();
+		_enemy3->moveHorizontally();
+	}
+}
+
+void BasicLevel::checkBallAndWindowCollision() {
+	if (_ball->ballDidCollideWithWindow(_ball)) {
+		levelCount = 1; // go back to level 1
+		_running = false;
+		
+		cleanup();
+		
+		changeState(_gameManager, GAME_OVER);
+	}
+}
+
+void BasicLevel::checkBallAndObstacleCollision() {
+	if (_ball->ballDidCollideWithObstacle(_ball, _obstacle1)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -360,8 +336,7 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	// obstacle collision
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle1)) {
+	if (_ball->ballDidCollideWithObstacle(_ball, _obstacle2)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -370,7 +345,7 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle2)) {
+	if (_ball->ballDidCollideWithObstacle(_ball, _obstacle3)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -379,7 +354,7 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle3)) {
+	if (_ball->ballDidCollideWithObstacle(_ball, _obstacle4)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -388,7 +363,38 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle4)) {
+	if (_ball->ballDidCollideWithObstacle(_ball, _obstacle5)) {
+		levelCount = 1; // go back to level 1
+		_running = false;
+		
+		cleanup();
+		
+		changeState(_gameManager, GAME_OVER);
+	}
+}
+
+void BasicLevel::checkBallAndFinishRectangleCollision() {
+	if (_ball->ballDidCollideWithObstacle(_ball, _finishImage)) {
+		// if game is over
+		if (levelCount == 5) {
+			_running = false;
+			
+			cleanup();
+			
+			changeState(_gameManager, GAME_END);
+		} else {
+			levelCount++; // increment level flag
+			_running = false;
+			
+			cleanup();
+			
+			changeState(_gameManager, NEXT_LEVEL_PAGE);
+		}
+	}
+}
+
+void BasicLevel::checkBallAndEnemiesCollision() {
+	if (_ball->ballDidCollideWithEnemy(_ball, _enemy1)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -397,7 +403,7 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _obstacle5)) {
+	if (_ball->ballDidCollideWithEnemy(_ball, _enemy2)) {
 		levelCount = 1; // go back to level 1
 		_running = false;
 		
@@ -406,15 +412,161 @@ void BasicLevel::checkCollision() {
 		changeState(_gameManager, GAME_OVER);
 	}
 	
-	
-	// finish rectangle collision
-	if (_collision->ballDidCollideWithObstacle(_ballRect, _finishImageRect)) {
-		levelCount++; // go to next level
+	if (_ball->ballDidCollideWithEnemy(_ball, _enemy3)) {
+		levelCount = 1; // go back to level 1
 		_running = false;
 		
 		cleanup();
 		
-		changeState(_gameManager, BASIC_LEVEL);
+		changeState(_gameManager, GAME_OVER);
+	}
+}
+
+void BasicLevel::checkEnemiesAndWindowCollision() {
+	if (levelCount == 1) {
+		if (_enemy1->enemyDidCollideWithWindow(_enemy1)) {
+			_enemy1->setSpeedX();
+		}
+		
+		if (_enemy3->enemyDidCollideWithWindow(_enemy3)) {
+			_enemy3->setSpeedXReversed();
+		}
+	}
+	
+	if (levelCount == 2) {
+		if (_enemy1->enemyDidCollideWithWindow(_enemy1)) {
+			_enemy1->setSpeedY();
+		}
+		
+		if (_enemy2->enemyDidCollideWithWindow(_enemy2)) {
+			_enemy2->setSpeedYReversed();
+		}
+		
+		if (_enemy3->enemyDidCollideWithWindow(_enemy3)) {
+			_enemy3->setSpeedYReversed();
+		}
+	}
+
+	if (levelCount == 3) {
+		if (_enemy1->enemyDidCollideWithWindow(_enemy1)) {
+			_enemy1->setSpeedY();
+		}
+		
+		if (_enemy2->enemyDidCollideWithWindow(_enemy2)) {
+			_enemy2->setSpeedXReversed();
+		}
+		
+		if (_enemy3->enemyDidCollideWithWindow(_enemy3)) {
+			_enemy3->setSpeedX();
+		}
+	}
+	
+	if (levelCount == 4) {
+		if (_enemy2->enemyDidCollideWithWindow(_enemy2)) {
+			_enemy2->setSpeedYReversed();
+		}
+		
+		if (_enemy3->enemyDidCollideWithWindow(_enemy3)) {
+			_enemy3->setSpeedX();
+		}
+	}
+	
+	if (levelCount == 5) {
+		if (_enemy1->enemyDidCollideWithWindow(_enemy1)) {
+			_enemy1->setSpeedXReversed();
+		}
+		
+		if (_enemy2->enemyDidCollideWithWindow(_enemy2)) {
+			_enemy2->setSpeedYReversed();
+		}
+	
+		if (_enemy3->enemyDidCollideWithWindow(_enemy3)) {
+			_enemy3->setSpeedX();
+		}
+	}
+}
+
+void BasicLevel::checkEnemiesAndObstacleCollision() {
+	if (levelCount == 1) {
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle5)) {
+			_enemy1->setSpeedXReversed();
+		}
+		
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle1)) {
+			_enemy2->setSpeedXReversed();
+		}
+		
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle2)) {
+			_enemy2->setSpeedX();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
+			_enemy3->setSpeedX();
+		}
+	}
+	
+	if (levelCount == 2) {
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle4)) {
+			_enemy1->setSpeedYReversed();
+		}
+		
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle3)) {
+			_enemy2->setSpeedY();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
+			_enemy3->setSpeedY();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle4)) {
+			_enemy3->setSpeedY();
+		}
+	}
+	
+	if (levelCount == 3) {
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle3)) {
+			_enemy1->setSpeedYReversed();
+		}
+		
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle2)) {
+			_enemy2->setSpeedX();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle4)) {
+			_enemy3->setSpeedXReversed();
+		}
+	}
+	
+	if (levelCount == 4) {
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle1)) {
+			_enemy1->setSpeedY();
+		}
+		
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle4)) {
+			_enemy1->setSpeedYReversed();
+		}
+	
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle3)) {
+			_enemy2->setSpeedY();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle1)) {
+			_enemy3->setSpeedXReversed();
+		}
+	}
+	
+	if (levelCount == 5) {
+		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle1)) {
+			_enemy1->setSpeedX();
+		}
+		
+		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle4)) {
+			_enemy2->setSpeedY();
+		}
+		
+		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
+			_enemy3->setSpeedXReversed();
+		}
 	}
 }
 
@@ -423,29 +575,23 @@ void BasicLevel::update() {
 }
 
 void BasicLevel::render() {
-	_render->renderLevelBackground(_renderer);
-	_render->renderTexture(_renderer, _ballTexture, _ballRect);
+	_background->renderBasicLevelBackground(_renderer);
+	_ball->render(_renderer);
 	
-	_render->renderLevelObstacle(_renderer, _obstacle1);
-	_render->renderLevelObstacle(_renderer, _obstacle2);
-	_render->renderLevelObstacle(_renderer, _obstacle3);
-	_render->renderLevelObstacle(_renderer, _obstacle4);
-	_render->renderLevelObstacle(_renderer, _obstacle5);
+	_obstacle1->render(_renderer);
+	_obstacle2->render(_renderer);
+	_obstacle3->render(_renderer);
+	_obstacle4->render(_renderer);
+	_obstacle5->render(_renderer);
 	
-	_render->renderTexture(_renderer, _finishImageTexture, _finishImageRect);
+	_finishImage->renderImage(_renderer);
+	
+	_enemy1->renderEnemy(_renderer);
+	_enemy2->renderEnemy(_renderer);
+	_enemy3->renderEnemy(_renderer);
 }
 
 void BasicLevel::cleanup() {
-	delete _render;
-	_render = NULL;
-	delete _collision;
-	_collision = NULL;
-	
-	SDL_DestroyTexture(_ballTexture);
-	_ballTexture = NULL;
-	SDL_DestroyTexture(_finishImageTexture);
-	_finishImageTexture = NULL;
-	
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

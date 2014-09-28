@@ -34,31 +34,14 @@ class IntroScene: public GameState {
 		void cleanup();
 	
 	private:
-		SDL_Window *_window; // free
-		SDL_Window *_windowRef;
-		SDL_Renderer *_renderer; // free
-		SDL_Renderer *_rendererRef;
-		SDL_Event _event;
+		Background backgroundObject;
+		Background *_background;
 		
-		bool _running;
+		Gui _introLogoObject;
+		Gui *_introLogo;
 		
-		SDL_Surface *_icon;
-		
-		Render *_render; // free
-		
-		// logo
-		SDL_Surface *_introLogo;
-		SDL_Texture *_introLogoTexture; // free
-		SDL_Texture *_introLogoTextureRef;
-		SDL_Rect _introLogoRect;
-		
-		// continue button
-		SDL_Surface *_continueButton;
-		SDL_Texture *_continueButtonTexture; // free
-		SDL_Texture *_continueButtonTextureRef;
-		SDL_Rect _continueButtonRect;
-		
-		GameManager *_gameManager; 
+		Gui _continueButtonObject;
+		Gui *_continueButton;
 };
 
 #endif /* defined(__Mazel__IntroScene__) */

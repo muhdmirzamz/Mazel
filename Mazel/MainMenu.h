@@ -36,41 +36,23 @@ class MainMenu: public GameState {
 		void cleanup();
 		
 	private:
-		SDL_Window *_window; // free
-		SDL_Window *_windowRef;
-		SDL_Renderer *_renderer; // free
-		SDL_Renderer *_rendererRef;
-		SDL_Event _event;
+		Background _backgroundObject;
+		Background *_background;
 		
-		bool _running;
+		Background _grassObject;
+		Background *_grass;
 		
-		SDL_Surface *_icon;
+		Gui _logoObject;
+		Gui *_logo;
 		
-		Collision *_collision; // free
-		Render *_render; // free
+		Gui _startObject;
+		Gui *_start;
 		
-		SDL_Surface *_logo;
-		SDL_Texture *_logoTexture; // free
-		SDL_Texture *_logoTextureRef;
-		SDL_Rect _logoRect;
+		Gui _instructionsObject;
+		Gui *_instructions;
 		
-		SDL_Surface *_mainMenuHalfBackground;
-		SDL_Texture *_mainMenuHalfBackgroundTexture; // free
-		SDL_Texture *_mainMenuHalfBackgroundTextureRef;
-		SDL_Rect _mainMenuHalfBackgroundRect;
-		
-		SDL_Surface *_ballImage;
-		SDL_Texture *_ballTexture; // free
-		SDL_Texture *_ballTextureRef;
-		SDL_Rect _ballRect;
-		int _ballSpeedY;
-		
-		SDL_Surface *_startImage;
-		SDL_Texture *_startTexture; // free
-		SDL_Texture *_startTextureRef;
-		SDL_Rect _startRect;
-		
-		GameManager *_gameManager;
+		Ball ballObject;
+		Ball *_ball;
 };
 
 #endif /* defined(__Mazel__MainMenu__) */

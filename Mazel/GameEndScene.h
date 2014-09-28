@@ -1,14 +1,14 @@
 //
-//  GameOverScene.h
+//  GameEndScene.h
 //  Mazel
-//	A game over screen
+//	Screen when the user finishes the game
 //
-//  Created by Muhd Mirza on 21/8/14.
+//  Created by Muhd Mirza on 16/9/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#ifndef __Mazel__GameOverScene__
-#define __Mazel__GameOverScene__
+#ifndef __Mazel__GameEndScene__
+#define __Mazel__GameEndScene__
 
 #include <iostream>
 
@@ -16,9 +16,9 @@
 
 using namespace std;
 
-class GameOverScene: public GameState {
+class GameEndScene: public GameState {
 	public:
-		GameOverScene();
+		GameEndScene();
 		
 		void setup();
 		void setupObjects();
@@ -30,15 +30,15 @@ class GameOverScene: public GameState {
 		
 		void update();
 		void render();
-		
+	
 		void cleanup();
 		
 	private:
 		Background _backgroundObject;
 		Background *_background;
 		
-		Gui _imageObject;
-		Gui *_image;
+		Gui _backgroundImageObject;
+		Gui *_backgroundImage;
 };
 
-#endif /* defined(__Mazel__GameOverScene__) */
+#endif /* defined(__Mazel__GameEndScene__) */
