@@ -37,6 +37,7 @@ void MainMenu::setupObjects() {
 	_logo = &_logoObject;
 	_start = &_startObject;
 	_instructions = &_instructionsObject;
+	_ball = &_ballObject;
 }
 
 void MainMenu::setupTextures() {
