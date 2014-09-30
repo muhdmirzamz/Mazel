@@ -1,125 +1,190 @@
-/* restricts the webpage height */
+/* sets the page boundaries and center point */
 body {
-	height: 600px;
-}
-
-/* fullscreen effect for all parts of website */
-/* 
-	- background colour
-	- centralising 
-	- width 
-	- positioning 
-*/
-.fullscreen_effect {
-	background-color: #00CCFF;
+	width: 1280px;
+	height: 720px;
 
 	margin: auto;
+}
 
-	width: 1300px;
-	
-	padding-top: 5px;
-	padding-bottom: 5px;
+/* sets header properties */
+header {
+	background-color: #00CCFF;
+	height: 500px; 
 
 	position: relative;
-	right: 10px;
-	bottom: 10px;
+	bottom: 120px;
 }
 
-/* applies to every part of the website */
-.fullscreen_effect p {
-	text-align: center;
+/* sets wrap div boundaries and position */
+#wrap {
+	/*background-color: red;  debugging use */
+
+	width: 1050px;
+	height: 300px;
+
+	position: relative;
+	top: 180px; /* centralise div from top */
+	margin: auto; /* centralise div from left and right */
+}
+
+#site_title {
+	background-color: white; /*debugging use */
+
+	width: 550px;
+	height: 200px;
 
 	font-family: Helvetica;
+	font-size: 80px;
 
-	color: white;
+	border-style: solid;
+	border-color: white;
+	border-radius: 10px;
+
+	position: relative;
+	top: 30px; /* 50px from the top of wrap div to make it look vertically centralised */
 }
 
-/* sets font size for header */
-#header {
-	font-size: 70px;
-}
+/* this is needed to position the word inside the site_title div */
+#site_title h1 {
+	text-align: center; /* align to div */
+	position: relative;
+	bottom: 100px; /* position inside div */
 
-/* 
-	- the place to hold #outer_div 
-	- sets font size for anything inside nav area 
-	- sets height for anything inside nav area
-*/
-#navigation {
-	/* background-color: brown; */
-	font-size: 40px;
-
-	height: 140px;
-}
-
-/* the place to hold #inner_div */
-#outer_div {
-	/* background-color: yellow; */
-
-	width: 500px;
-	height: 140px;
-
-	margin: auto;
-
-	text-align: center;
+	color: #00CCFF;
 }
 
 a {
 	text-decoration: none;
+	color: white;
 }
 
-/* applies to all the links */
-.inner_div {
+#download {
+	background-color: #00CCFF;
+
+	float: right; /* makes div go to the right of the wrap div */
+	position: relative;
+	bottom: 140px; /* makes div look horizontally aligned to the title div */
+	right: 10px;
+
+	height: 130px;
+
+	font-size: 40px;
+
+	padding-left: 30px;
+	padding-right: 30px;
+
 	border-style: solid;
 	border-color: white;
-
-	width: 200px;
-
-	display: inline-block;
-
-	padding-left: 15px;
-	padding-right: 15px;
+	border-radius: 10px;
 }
 
-/* sets background colour for section _for debugging_ */
-/* can adjust height to accomodate different parts */
-#section {
-	background-color: red; 
-	height: 500px;
-}
-
-/* a holder for photos */
-#photos {
-	/* background-color: yellow; */
-
-	height: 300px;
-
+/* this is needed to position the word inside the download div */
+#download h1 {
 	position: relative;
-	top: 15px;
-}
+	bottom: 30px; /* makes sure text looks vertically aligned to border and title div */
 
-/* adjusts each image to make them centralised */
-#photos ul li {
-	display: inline;
+	text-align: center;
 
-	padding-left: 25px;
-	padding-right: 25px;
+	color: black;
 }
 
 img {
-	width: 250px;
-	height: 250px;
+	width: 200px;
+	height: 200px;
 }
 
-/* 
-	sets:
-	- font
-	- position
-*/
-#summary_para {
-	/* background-color: green; */
+section {
+	background-color: #009988; 
+	/*background-color: red; debugging use */
 
-	font-size: 30px;
+	height: 750px; /* make sure this height accomodates the photos, summary and updates section */
 
 	position: relative;
-	top:10px;
+	bottom: 150px; /* make sure this covers the gap between header and section */
+}
+
+.updates {
+	/*background-color: red; debugging use */
+
+	width: 800px;
+
+	position: relative;
+	top: 20px;
+	left: 200px; /* make it vertically aligned with start of photos */
+}
+
+.updates #updates_title {
+	background-color: black;
+
+	color: #00CCFF;
+
+	font-size: 30px;
+	font-weight: bold;
+
+	border-style: solid;
+	border-color: black;
+	border-radius: 80px;
+
+	width: 120px;
+	height: 40px;
+
+	text-align: center;
+}
+
+.updates #version {
+	font-size: 20px;
+
+	position: relative;
+	bottom: 10px;
+	left: 20px;
+}
+
+.updates ul {
+	position: relative;
+	bottom: 30px;
+}
+
+#photos {
+	/*background-color: blue; debugging use */
+
+	width: 1000px;
+
+	position: relative; /* relative to section, move as a div */
+	top: 30px;
+	left: 150px;
+}
+
+#photos ul li {
+	display: inline;
+
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#summary {
+	/*background-color: blue; debugging use */
+
+	text-align: center; /* centralised in div */
+
+	width: 800px;
+
+	font-size: 30px;
+	font-weight: bold;
+
+	position: relative;
+	top: 20px; /* from the photo div */
+	margin: auto; /* in proportion to website */
+}
+
+footer {
+	background-color: black;
+
+	position: relative;
+	bottom: 170px;
+}
+
+#bottom_stuff {
+	color: white;
+
+	text-align: center;
 }

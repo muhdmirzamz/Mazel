@@ -6,34 +6,56 @@
 		<link rel="stylesheet" type="text/css" href="index.css" />
 	</head>
 	<body>
-		<header class="fullscreen_effect" id="header">
-			<p>Mazel</p>
-		</header>
-		<nav class="fullscreen_effect" id="navigation">
-			<div id="outer_div">
-				<a href="#" class="inner_div">
-					<p>Github</p>
-				</a>
-				<a href="#" class="inner_div">
-					<p>Download</p>
+		<header>
+			<div id="wrap">
+				<div id="site_title">
+					<h1>Mazel</h1>
+				</div>
+				<a href="https://github.com/muhdmirzamz/Mazel/archive/v0.5.0-beta.zip">
+					<div id="download">
+						<h1>Download</h1>
+					</div>
 				</a>
 			</div>
-		</nav>
-		<section class="fullscreen_effect" id="section">
-			<div id="photos">
+		</header>
+		<section>
+			<div class="updates">
+				<p id="updates_title">Updates</p>
+				<p id="version">v0.5.0-beta<br />28 September 2014</p>
 				<ul>
-					<li><img src="mazel_intro_scene.png" /></li>
-					<li><img src="mazel_main_menu.png" /></li>
-					<li><img src="mazel_instructions.png" /></li>
-					<li><img src="mazel_level.png" /></li>
+					<li>Added instructions page</li>
+					<li>Added instructions button in main menu</li>
+					<li>Added a screen indicating the next level</li>
+					<li>Added a scene indicating the end of the game</li>
+					<li>Added enemies</li>
+					<li>Refactored codebase</li>
+					<li>Reduced macros for performance and maintenance</li>
+					<li>
+						Fixed a bug where closing the game window would cause the game
+						to switch to the screen indicating the next level
+					</li>
 				</ul>
 			</div>
-			<div id="summary_para">
+			<div id="photos">
+				<ul>
+					<li><img src="mazel_intro_scene.png"/></li>
+					<li><img src="mazel_main_menu.png"/></li>
+					<li><img src="mazel_instructions.png"/></li>
+					<li><img src="mazel_level.png"/></li>
+				</ul>
+			</div>
+			<div id="summary">
 				<p>
-					Mazel combines the concept of a puzzle and maze game<br /> The aim of the game
-					is to move the green ball through the maze <br />And hit the finishing rectangle
+					Mazel combines the concept of a puzzle and maze game<br />
+					The objective is to control the ball around the maze<br />
+					and hit the finish rectangle
 				</p>
 			</div>
 		</section>
+		<footer>
+			<div id="bottom_stuff"> 
+				<p>Copyright (c) 2014 Muhd Mirza</p>
+			</div>
+		</footer>
 	</body>
 </html>
