@@ -1,0 +1,16 @@
+HOW TO RUN THE GAME:
+
+OSX:
+* Open up terminal
+* Navigate to this directory
+* Alternatively, you can just drag the folder named “Mazel” into terminal and
+  do the command ‘cd ..’ without the single quotes
+* type ‘make’ into terminal and wait for it to compile
+* Game will automatically run
+* If you want to keep the game, keep the executable produced
+
+Windows:
+* The executable file is in the windows folder 
+* Executable file should be ready for you!
+
+ENJOY!

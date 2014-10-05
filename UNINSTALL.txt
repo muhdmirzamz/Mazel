@@ -1,0 +1,3 @@
+HOW TO UNINSTALL
+
+Delete this whole directory
