@@ -1,6 +1,19 @@
+Requirements:
+* Make sure you have Xcode installed
+* do ‘xcode-select install’ to install dependancies
+* to check if installation is successful, do ‘xcode-select —-print-path’
+  if a directory appears, you did correctly
+
+* if that doesn’t work, just type in ‘gcc’ and a prompt to install will appear
+* same thing goes for typing ‘make’
+* You’re good to go!
+
 HOW TO RUN THE GAME:
 
-OSX:
+See that “build” folder?
+Open it and go inside Release. The executable is there. 
+
+Alternative: 
 * Open up terminal
 * Navigate to this directory
 * Alternatively, you can just drag the folder named “Mazel” into terminal and
@@ -8,9 +21,5 @@ OSX:
 * type ‘make’ into terminal and wait for it to compile
 * Game will automatically run
 * If you want to keep the game, keep the executable produced
-
-Windows:
-* The executable file is in the windows folder 
-* Executable file should be ready for you!
 
 ENJOY!
