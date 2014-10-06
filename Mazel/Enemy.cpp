@@ -11,7 +11,7 @@
 static const int ENEMY_WIDTH = 20;
 static const int ENEMY_HEIGHT = 20;
 static const int ENEMY_SPEED = 3;
-static const int ENEMY_SPEED_ZERO = 0;
+static const int ENEMY_SPEED_BOUNCE = -3;
 
 Enemy::Enemy() {
 	
@@ -24,32 +24,24 @@ void Enemy::plotEnemy(int x, int y) {
 	_enemyRect.h = ENEMY_HEIGHT;
 }
 
-void Enemy::setSpeedXLeft() {
-	_speedXLeft = ENEMY_SPEED;
-	_speedXRight = ENEMY_SPEED_ZERO;
-	_speedYUp = ENEMY_SPEED_ZERO;
-	_speedYDown = ENEMY_SPEED_ZERO;
+void Enemy::setSpeedX() {
+	_speedX = ENEMY_SPEED;
+	_speedY = ENEMY_SPEED_BOUNCE;
 }
 
-void Enemy::setSpeedXRight() {
-	_speedXRight = ENEMY_SPEED;
-	_speedXLeft = ENEMY_SPEED_ZERO;
-	_speedYUp = ENEMY_SPEED_ZERO;
-	_speedYDown = ENEMY_SPEED_ZERO;
+void Enemy::setSpeedXBounce() {
+	_speedX = ENEMY_SPEED_BOUNCE;
+	_speedY = ENEMY_SPEED;
 }
 
-void Enemy::setSpeedYUp() {
-	_speedYUp = ENEMY_SPEED;
-	_speedYDown = ENEMY_SPEED_ZERO;
-	_speedXRight = ENEMY_SPEED_ZERO;
-	_speedXLeft = ENEMY_SPEED_ZERO;
+void Enemy::setSpeedY() {
+	_speedY = ENEMY_SPEED;
+	_speedX = ENEMY_SPEED;
 }
 
-void Enemy::setSpeedYDown() {
-	_speedYDown = ENEMY_SPEED;
-	_speedYUp = ENEMY_SPEED_ZERO;
-	_speedXRight = ENEMY_SPEED_ZERO;
-	_speedXLeft = ENEMY_SPEED_ZERO;
+void Enemy::setSpeedYBounce() {
+	_speedY = ENEMY_SPEED_BOUNCE;
+	_speedX = ENEMY_SPEED_BOUNCE;
 }
 
 int Enemy::getX() {
@@ -68,55 +60,36 @@ int Enemy::getH() {
 	return _enemyRect.h;
 }
 
-int Enemy::getSpeedXRight() {
-	return _speedXRight;
+int Enemy::getSpeedX() {
+	return _speedX;
 }
 
-int Enemy::getSpeedXLeft() {
-	return _speedXLeft;
-}
-
-int Enemy::getSpeedYUp() {
-	return _speedYUp;
-}
-
-int Enemy::getSpeedYDown() {
-	return _speedYDown;
+int Enemy::getSpeedY() {
+	return _speedY;
 }
 
 void Enemy::moveHorizontally() {
-	if (_speedXRight == ENEMY_SPEED) {
-		_enemyRect.x += _speedXRight;
-	}
-	
-	if (_speedXLeft == ENEMY_SPEED) {
-		_enemyRect.x -= _speedXLeft;
-	}
+	_enemyRect.x += _speedX;
 }
 
 void Enemy::moveVertically() {
-	if (_speedYUp == ENEMY_SPEED) {
-		_enemyRect.y -= _speedYUp;
-	}
-	
-	if (_speedYDown == ENEMY_SPEED) {
-		_enemyRect.y += _speedYDown;
-	}
+	_enemyRect.y += _speedY;
+
 }
 
 void Enemy::bounceBack() {
 	// use else if
 	// using only if statements will cause the value to reset back to before function
-	if (_speedXRight == ENEMY_SPEED) {
-		setSpeedXLeft();
-	} else if (_speedXLeft == ENEMY_SPEED) {
-		setSpeedXRight();
+	if (_speedX == ENEMY_SPEED) {
+		setSpeedXBounce();
+	} else if (_speedX == ENEMY_SPEED_BOUNCE) {
+		setSpeedX();
 	}
 	
-	if (_speedYUp == ENEMY_SPEED) {
-		setSpeedYDown();
-	} else if (_speedYDown == ENEMY_SPEED) {
-		setSpeedYUp();
+	if (_speedY == ENEMY_SPEED) {
+		setSpeedYBounce();
+	} else if (_speedY == ENEMY_SPEED_BOUNCE) {
+		setSpeedY();
 	}
 }
 

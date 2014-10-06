@@ -22,20 +22,19 @@ class Enemy {
 		void plotEnemy(int x, int y);
 	
 		// set all speed values to ensure no arbitrary values are set
-		void setSpeedXLeft();
-		void setSpeedXRight();
-		void setSpeedYUp();
-		void setSpeedYDown();
+		// be very careful with the logic bugs here
+		void setSpeedX();
+		void setSpeedXBounce();
+		void setSpeedY();
+		void setSpeedYBounce();
 		
 		int getX();
 		int getY();
 		int getW();
 		int getH();
 	
-		int getSpeedXRight();
-		int getSpeedXLeft();
-		int getSpeedYUp();
-		int getSpeedYDown();
+		int getSpeedX();
+		int getSpeedY();
 		
 		void moveHorizontally();
 		void moveVertically();
@@ -49,11 +48,11 @@ class Enemy {
 		
 	private:
 		SDL_Rect _enemyRect;
-		
-		int _speedXLeft;
-		int _speedXRight;
-		int _speedYUp;
-		int _speedYDown;
+	
+		// two speed axis but each with two speed values
+		// normal speed and bouncing speed
+		int _speedX;
+		int _speedY;
 };
 
 #endif /* defined(__Mazel__Enemy__) */

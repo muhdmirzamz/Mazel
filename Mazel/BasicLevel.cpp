@@ -100,10 +100,8 @@ void BasicLevel::setupObstaclesAndEnemies() {
 		_enemy1->setSpeedX();
 // check if enemy speed values were actually set
 #if DEBUG_MODE == true
-		cout << "SpeedXRight: " << _enemy1->getSpeedXRight() << endl;
-		cout << "SpeedXLeft: " << _enemy1->getSpeedXLeft() << endl;
-		cout << "SpeedYup: " << _enemy1->getSpeedYUp() << endl;
-		cout << "SpeedYDown: " << _enemy1->getSpeedYDown() << endl;
+		cout << "SpeedX: " << _enemy1->getSpeedX() << endl;
+		cout << "SpeedY: " << _enemy1->getSpeedY() << endl;
 #endif
 		
 		_enemy2->plotEnemy(210, 170);
@@ -436,6 +434,8 @@ void BasicLevel::checkEnemiesAndWindowCollision() {
 		
 // debug output to check if enemy did hit the window
 #if DEBUG_MODE == true
+		cout << "SpeedX: " << _enemy1->getSpeedX() << endl;
+		cout << "SpeedY: " << _enemy1->getSpeedY() << endl;
 		cout << "Enemy hit\n";
 #endif
 	}
