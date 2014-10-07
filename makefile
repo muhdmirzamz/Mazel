@@ -20,6 +20,7 @@ MazelGame: $(OBJECT_FILES)
 	@echo "Linking files"
 	@$(CXX) $(LFLAGS) $@ $^
 	@echo "Done"
+	install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 @loader_path/SDL2.framework/Versions/A/SDL2 MazelGame
 	@./MazelGame 
 
 GameEndScene.o: GameEndScene.cpp

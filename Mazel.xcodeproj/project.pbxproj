@@ -50,7 +50,7 @@
 		AA4348211989511600E3F306 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		AA4348231989511C00E3F306 /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenu.cpp; sourceTree = "<group>"; };
 		AA4348241989511C00E3F306 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
-		AA682E3C1902593500058604 /* Mazel */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazel; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA682E3C1902593500058604 /* Mazel */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = Mazel; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA724B0419C3D57900B8B9DE /* NextLevelPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NextLevelPage.cpp; sourceTree = "<group>"; };
 		AA724B0519C3D57900B8B9DE /* NextLevelPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextLevelPage.h; sourceTree = "<group>"; };
 		AA7A8EE019C88C9100BA7BC8 /* GameEndScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEndScene.cpp; sourceTree = "<group>"; };
