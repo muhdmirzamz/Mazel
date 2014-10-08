@@ -50,6 +50,9 @@ class MainMenu: public GameState {
 		
 		Gui _instructionsObject;
 		Gui *_instructions;
+	
+		Gui _settingsPageObject;
+		Gui *_settingsPage;
 		
 		Ball _ballObject;
 		Ball *_ball;

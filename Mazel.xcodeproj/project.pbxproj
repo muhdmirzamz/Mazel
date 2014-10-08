@@ -17,6 +17,7 @@
 		AA724B0619C3D57900B8B9DE /* NextLevelPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA724B0419C3D57900B8B9DE /* NextLevelPage.cpp */; };
 		AA7A8EE219C88C9100BA7BC8 /* GameEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7A8EE019C88C9100BA7BC8 /* GameEndScene.cpp */; };
 		AA7BDEDA19ACA3700031A496 /* BasicLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7BDED819ACA3700031A496 /* BasicLevel.cpp */; };
+		AA9B7E2419E52E49008127D0 /* SettingsPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9B7E2219E52E49008127D0 /* SettingsPage.cpp */; };
 		AABB756919C5CD2A00241D30 /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABB756719C5CD2A00241D30 /* Obstacle.cpp */; };
 		AABB756C19C5CD8C00241D30 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABB756A19C5CD8C00241D30 /* Background.cpp */; };
 		AABB757519C5CDD500241D30 /* Gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AABB757319C5CDD500241D30 /* Gui.cpp */; };
@@ -57,6 +58,8 @@
 		AA7A8EE119C88C9100BA7BC8 /* GameEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEndScene.h; sourceTree = "<group>"; };
 		AA7BDED819ACA3700031A496 /* BasicLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicLevel.cpp; sourceTree = "<group>"; };
 		AA7BDED919ACA3700031A496 /* BasicLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicLevel.h; sourceTree = "<group>"; };
+		AA9B7E2219E52E49008127D0 /* SettingsPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsPage.cpp; sourceTree = "<group>"; };
+		AA9B7E2319E52E49008127D0 /* SettingsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPage.h; sourceTree = "<group>"; };
 		AABB756719C5CD2A00241D30 /* Obstacle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obstacle.cpp; sourceTree = "<group>"; };
 		AABB756819C5CD2A00241D30 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
 		AABB756A19C5CD8C00241D30 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				AA3788741992017500101005 /* IntroScene.h */,
 				AA4348231989511C00E3F306 /* MainMenu.cpp */,
 				AA4348241989511C00E3F306 /* MainMenu.h */,
+				AA9B7E2219E52E49008127D0 /* SettingsPage.cpp */,
+				AA9B7E2319E52E49008127D0 /* SettingsPage.h */,
 				AAD7E43519C32F1D0099D1AB /* InstructionsPage.cpp */,
 				AAD7E43619C32F1D0099D1AB /* InstructionsPage.h */,
 				AA7BDED819ACA3700031A496 /* BasicLevel.cpp */,
@@ -204,6 +209,7 @@
 				AA246A1D19D18084005BBFD8 /* Enemy.cpp in Sources */,
 				AABB757519C5CDD500241D30 /* Gui.cpp in Sources */,
 				AABB756C19C5CD8C00241D30 /* Background.cpp in Sources */,
+				AA9B7E2419E52E49008127D0 /* SettingsPage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

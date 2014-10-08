@@ -8,6 +8,7 @@
 
 #include "IntroScene.h"
 #include "MainMenu.h"
+#include "SettingsPage.h"
 #include "InstructionsPage.h"
 #include "BasicLevel.h"
 #include "NextLevelPage.h"
@@ -33,6 +34,13 @@ void GameManager::changeGameState(int state) {
 			MainMenu mainMenu;
 			GameState *mainMenuPointer = &mainMenu;
 			mainMenuPointer->run();
+			break;
+		}
+		
+		case SETTINGS_PAGE: {
+			SettingsPage settingsPage;
+			GameState *settingsPagePointer = &settingsPage;
+			settingsPagePointer->run();
 			break;
 		}
 		

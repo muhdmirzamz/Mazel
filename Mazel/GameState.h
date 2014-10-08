@@ -27,6 +27,7 @@
 enum GameStates {
 	INTRO_SCENE,
 	MAIN_MENU,
+	SETTINGS_PAGE,
 	INSTRUCTIONS_PAGE,
 	BASIC_LEVEL, // a bunch of levels
 	NEXT_LEVEL_PAGE,

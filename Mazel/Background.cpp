@@ -47,6 +47,11 @@ void Background::renderMainMenuBackground(SDL_Renderer *mainMenuRenderer) {
 	SDL_RenderClear(mainMenuRenderer);
 }
 
+void Background::renderSettingsPageBackground(SDL_Renderer *settingsPageRenderer) {
+	SDL_SetRenderDrawColor(settingsPageRenderer, 240, 240, 240, 0);
+	SDL_RenderClear(settingsPageRenderer);
+}
+
 void Background::renderBasicLevelBackground(SDL_Renderer *basicLevelRenderer) {
 	SDL_SetRenderDrawColor(basicLevelRenderer, 240, 240, 240, 0);
 	SDL_RenderClear(basicLevelRenderer);

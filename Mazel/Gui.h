@@ -23,8 +23,9 @@ class Gui {
 		void loadImageOntoTexture(string filePathOfImage, SDL_Renderer *renderer);
 		
 		void plotGui(int x, int y, int w, int h);
-		void plotStartImage(int xPos, int yPos);
-		void plotInstructionsImage(int xPosition, int yPosition);
+		void plotStartImage(int startXPos, int startYPos);
+		void plotInstructionsImage(int instructionsXPosition, int instructionsYPosition);
+		void plotSettingsImage(int settingsXPosition, int settingsYPosition);
 		
 		int getX();
 		int getY();
@@ -32,6 +33,7 @@ class Gui {
 		int getH();
 		
 		void render(SDL_Renderer *guiRenderer);
+		void renderGUI(SDL_Renderer *guiRenderer2, int r, int g, int b);
 	
 	private:
 		SDL_Surface *_guiImage;
