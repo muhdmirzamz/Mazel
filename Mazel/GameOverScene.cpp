@@ -7,6 +7,7 @@
 //
 
 #include "GameOverScene.h"
+#include "SettingsPage.h"
 
 // this set of gui class constants stay here
 // since there's no specific mapping of the "GO" word

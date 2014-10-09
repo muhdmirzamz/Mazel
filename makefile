@@ -11,7 +11,7 @@ GLOBAL_INCLUDE=-I./Mazel
 CFLAGS=-c -Wall -std=c++11 $(SDL_INCLUDE) $(GLOBAL_INCLUDE)
 LFLAGS=-Wall $(SDL_FRAMEWORK) -o
 
-OBJECT_FILES = main.o GameManager.o GameState.o Background.o Ball.o Obstacle.o Gui.o Enemy.o IntroScene.o GameOverScene.o MainMenu.o InstructionsPage.o BasicLevel.o NextLevelPage.o GameEndScene.o
+OBJECT_FILES = main.o GameManager.o GameState.o Background.o Ball.o Obstacle.o Gui.o Enemy.o IntroScene.o GameOverScene.o MainMenu.o InstructionsPage.o BasicLevel.o SettingsPage.o NextLevelPage.o GameEndScene.o
 
 #look for files in Mazel folder
 VPATH=Mazel
@@ -27,6 +27,9 @@ GameEndScene.o: GameEndScene.cpp
 	@$(CXX) $(CFLAGS) $^
 
 NextLevelPage.o: NextLevelPage.cpp
+	@$(CXX) $(CFLAGS) $^
+
+SettingsPage.o: SettingsPage.cpp
 	@$(CXX) $(CFLAGS) $^
 
 BasicLevel.o: BasicLevel.cpp

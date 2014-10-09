@@ -13,7 +13,6 @@
 #include <iostream>
 
 #include "GameState.h"
-#include "SettingsPage.h"
 
 using namespace std;
 
@@ -74,9 +73,6 @@ class BasicLevel: public GameState {
 		
 		Enemy _enemy3Object;
 		Enemy *_enemy3;
-	
-		SettingsPage _settingsPageObject;
-		SettingsPage *_settingsPage;
 };
 
 #endif /* defined(__Mazel__BasicLevel__) */

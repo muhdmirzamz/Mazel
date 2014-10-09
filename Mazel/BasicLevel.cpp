@@ -7,6 +7,7 @@
 //
 
 #include "BasicLevel.h"
+#include "SettingsPage.h"
 
 using namespace std;
 
@@ -23,6 +24,15 @@ using namespace std;
 #else 
 	static int levelCount = 1; // start in level 1
 #endif
+
+// use this to check the player's difficulty selection
+static SettingsPage _settingsPageObject;
+static SettingsPage *_settingsPage;
+
+// decrement based on the player's difficulty selection
+static int playerLivesOnEasyDifficulty = 5;
+static int playerLivesOnDifficultDifficulty = 3;
+static int playerLivesOnHardDifficulty = 1;
 
 BasicLevel::BasicLevel() {
 #if DEBUG_MODE == true
@@ -324,12 +334,13 @@ void BasicLevel::moveEnemy() {
 
 void BasicLevel::checkBallAndWindowCollision() {
 	if (_ball->ballDidCollideWithWindow(_ball)) {
-		levelCount = 1; // go back to level 1
-		_running = false;
+		_settingsPage->decrementLives(playerLivesOnEasyDifficulty, playerLivesOnDifficultDifficulty, playerLivesOnHardDifficulty);
 		
-		cleanup();
+		if (_settingsPage->isPlayerDead(playerLivesOnEasyDifficulty, playerLivesOnDifficultDifficulty, playerLivesOnHardDifficulty)) {
+			cleanup();
 		
-		changeState(_gameManager, GAME_OVER);
+			changeState(_gameManager, GAME_OVER);
+		}
 	}
 }
 

@@ -52,10 +52,10 @@ void MainMenu::setupTextures() {
 	_instructions->plotInstructionsImage(WINDOW_WIDTH / 10, WINDOW_HEIGHT - 130);
 	
 	_start->loadImageOntoTexture("images/mazelstart.bmp", _renderer);
-	_start->plotStartImage(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT - 130);
+	_start->plotStartImage(WINDOW_WIDTH / 2 - 80, WINDOW_HEIGHT - 130);
 	
 	_settingsPage->loadImageOntoTexture("images/mazel_settings.bmp", _renderer);
-	_settingsPage->plotSettingsImage(WINDOW_WIDTH / 3 + 200, WINDOW_HEIGHT - 135);
+	_settingsPage->plotGui(WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT - 135, 150, 150);
 	
 	_ball->loadImageOntoTexture("images/ball.bmp", _renderer);
 }
@@ -119,10 +119,10 @@ void MainMenu::event() {
 					changeState(_gameManager, BASIC_LEVEL);
 				}
 			}
-
-			// continue to settings page
-			if (CLICK_AT_XPOS >= _settingsPage->getX() && CLICK_AT_XPOS <= (_settingsPage->getX() + _settingsPage->getW())) {
-				if (CLICK_AT_YPOS >= _settingsPage->getY() && CLICK_AT_YPOS <= (_settingsPage->getY() + _settingsPage->getH())) {
+			
+			// continue to settings
+			if (CLICK_AT_XPOS >= _settingsPage->getX() && CLICK_AT_XPOS <= _settingsPage->getX() + _settingsPage->getW()) {
+				if (CLICK_AT_YPOS >= _settingsPage->getY() && CLICK_AT_YPOS <= _settingsPage->getY() + _settingsPage->getH()) {
 					_running = false;
 					
 					cleanup();

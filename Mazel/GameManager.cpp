@@ -8,9 +8,9 @@
 
 #include "IntroScene.h"
 #include "MainMenu.h"
-#include "SettingsPage.h"
 #include "InstructionsPage.h"
 #include "BasicLevel.h"
+#include "SettingsPage.h"
 #include "NextLevelPage.h"
 #include "GameOverScene.h"
 #include "GameEndScene.h"
@@ -37,13 +37,6 @@ void GameManager::changeGameState(int state) {
 			break;
 		}
 		
-		case SETTINGS_PAGE: {
-			SettingsPage settingsPage;
-			GameState *settingsPagePointer = &settingsPage;
-			settingsPagePointer->run();
-			break;
-		}
-		
 		case INSTRUCTIONS_PAGE: {
 			InstructionsPage instructionsPage;
 			GameState *instructionsPagePointer = &instructionsPage;
@@ -55,6 +48,13 @@ void GameManager::changeGameState(int state) {
 			BasicLevel basicLevel;
 			GameState *basicLevelPointer = &basicLevel;
 			basicLevelPointer->run();
+			break;
+		}
+		
+		case SETTINGS_PAGE: {
+			SettingsPage settingsPage;
+			GameState *settingsPagePointer = &settingsPage;
+			settingsPagePointer->run();
 			break;
 		}
 		

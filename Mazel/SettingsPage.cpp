@@ -22,10 +22,7 @@ SettingsPage::SettingsPage() {
 }
 
 void SettingsPage::setup() {
-	_window = initWindow(_windowRef);
-	if (!_window) {
-		printErrorMessage("Main Menu", "Window");
-	}
+	_window = initWindow(_window);
 	_renderer = initRenderer(_window, _rendererRef);
 	if (!_renderer) {
 		printErrorMessage("Main Menu", "Renderer");
@@ -84,7 +81,7 @@ void SettingsPage::event() {
 					
 					cleanup();
 					
-					_gameManager->changeGameState(MAIN_MENU);
+					changeState(_gameManager, MAIN_MENU);
 				}
 			}
 		
@@ -133,20 +130,28 @@ void SettingsPage::event() {
 	}
 }
 
-int SettingsPage::getDifficulty() {
+void SettingsPage::decrementLives(int easy, int difficulty, int hard) {
+	// decrement lives based on difficulty chosen
 	if (easyDifficultyChosen == true) {
-		return 1;
+		easy--;
 	}
 	
 	if (difficultDifficultyChosen == true) {
-		return 2;
+		difficulty--;
 	}
 	
 	if (hardDifficultyChosen == true) {
-		return 3;
+		hard--;
+	}
+}
+
+bool SettingsPage::isPlayerDead(int easyDead, int difficultyDead, int hardDead) {
+	//if there are no more lives left, player is dead, return true
+	if (easyDead || difficultyDead || hardDead == 0) {
+		return true;
 	}
 	
-	return 4;
+	return false;
 }
 
 void SettingsPage::update() {

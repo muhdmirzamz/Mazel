@@ -27,7 +27,8 @@ class SettingsPage: public GameState {
 		void run();
 		
 		void event();
-		int getDifficulty();
+		void decrementLives(int easy, int difficulty, int hard);
+		bool isPlayerDead(int easyDead, int difficultyDead, int hardDead);
 		
 		void update();
 		void render();
