@@ -47,6 +47,6 @@
 #define CLICK_AT_YPOS _event.button.y
 
 /* Change to false if not debugging */
-#define DEBUG_MODE false
+#define DEBUG_MODE true
 
 #endif

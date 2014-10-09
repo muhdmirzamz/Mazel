@@ -97,8 +97,8 @@ void MainMenu::event() {
 			}
 		}
 #endif
-		// continue to instructions page
 		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+			// continue to instructions page
 			if (CLICK_AT_XPOS >= _instructions->getX() && CLICK_AT_XPOS <= _instructions->getX() + _instructions->getW()) {
 				if (CLICK_AT_YPOS >= _instructions->getY() && CLICK_AT_YPOS <= _instructions->getY() + _instructions->getH()) {
 					_running = false;
@@ -108,12 +108,10 @@ void MainMenu::event() {
 					changeState(_gameManager, INSTRUCTIONS_PAGE);
 				}
 			}
-		}
-		
-		// continue to game
-		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
-			if (CLICK_AT_XPOS >= _start->getX() && CLICK_AT_XPOS <= (_start->getX() + _start->getW())) {
-				if (CLICK_AT_YPOS >= _start->getY() && CLICK_AT_YPOS <= (_start->getY() + _start->getH())) {
+			
+			// continue to game
+			if (CLICK_AT_XPOS >= _start->getX() && CLICK_AT_XPOS <= _start->getX() + _start->getW()) {
+				if (CLICK_AT_YPOS >= _start->getY() && CLICK_AT_YPOS <= _start->getY() + _start->getH()) {
 					_running = false;
 					
 					cleanup();
@@ -121,10 +119,8 @@ void MainMenu::event() {
 					changeState(_gameManager, BASIC_LEVEL);
 				}
 			}
-		}
-		
-		// continue to settings page
-		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
+
+			// continue to settings page
 			if (CLICK_AT_XPOS >= _settingsPage->getX() && CLICK_AT_XPOS <= (_settingsPage->getX() + _settingsPage->getW())) {
 				if (CLICK_AT_YPOS >= _settingsPage->getY() && CLICK_AT_YPOS <= (_settingsPage->getY() + _settingsPage->getH())) {
 					_running = false;

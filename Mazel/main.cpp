@@ -34,7 +34,7 @@ int main(int argc, const char *argv[])
 
 	GameManager *gameManager = NULL;
 #if DEBUG_MODE == true
-	gameManager->changeGameState(BASIC_LEVEL);
+	gameManager->changeGameState(INTRO_SCENE);
 #else
 	gameManager->changeGameState(INTRO_SCENE); // go to intro scene
 #endif

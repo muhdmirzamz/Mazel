@@ -1,7 +1,7 @@
 //
 //  SettingsPage.h
 //  Mazel
-//	Settings page for the whole game
+//	Settings for the whole game
 //
 //  Created by Muhd Mirza on 8/10/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
@@ -27,6 +27,7 @@ class SettingsPage: public GameState {
 		void run();
 		
 		void event();
+		int getDifficulty();
 		
 		void update();
 		void render();
@@ -49,9 +50,8 @@ class SettingsPage: public GameState {
 		Gui _hardDifficultyObject;
 		Gui *_hardDifficulty;
 	
-		bool _easyDifficultyChosen;
-		bool _difficultDifficultyChosen;
-		bool _hardDifficultyChosen;
+		Gui _backButtonObject;
+		Gui *_backButton;
 };
 
 #endif /* defined(__Mazel__SettingsPage__) */

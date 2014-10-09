@@ -69,6 +69,8 @@ void BasicLevel::setupObjects() {
 	_enemy3 = &_enemy3Object;
 	
 	_finishImage = &_finishImageObject;
+	
+	_settingsPage = &_settingsPageObject;
 }
 
 void BasicLevel::setupTextures() {
@@ -103,7 +105,6 @@ void BasicLevel::setupObstaclesAndEnemies() {
 		cout << "SpeedX: " << _enemy1->getSpeedX() << endl;
 		cout << "SpeedY: " << _enemy1->getSpeedY() << endl;
 #endif
-		
 		_enemy2->plotEnemy(210, 170);
 		_enemy2->setSpeedX();
 		_enemy3->plotEnemy(400, 260);
@@ -512,90 +513,6 @@ void BasicLevel::checkEnemiesAndObstacleCollision() {
 	if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
 		_enemy3->bounceBack();
 	}
-	
-	/*
-	if (levelCount == 1) {
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle5)) {
-			_enemy1->setSpeedXReversed();
-		}
-		
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle1)) {
-			_enemy2->setSpeedXReversed();
-		}
-		
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle2)) {
-			_enemy2->setSpeedX();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
-			_enemy3->setSpeedX();
-		}
-	}
-	
-	if (levelCount == 2) {
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle4)) {
-			_enemy1->setSpeedYReversed();
-		}
-		
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle3)) {
-			_enemy2->setSpeedY();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
-			_enemy3->setSpeedY();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle4)) {
-			_enemy3->setSpeedY();
-		}
-	}
-	
-	if (levelCount == 3) {
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle3)) {
-			_enemy1->setSpeedYReversed();
-		}
-		
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle2)) {
-			_enemy2->setSpeedX();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle4)) {
-			_enemy3->setSpeedXReversed();
-		}
-	}
-	
-	if (levelCount == 4) {
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle1)) {
-			_enemy1->setSpeedY();
-		}
-		
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle4)) {
-			_enemy1->setSpeedYReversed();
-		}
-	
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle3)) {
-			_enemy2->setSpeedY();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle1)) {
-			_enemy3->setSpeedXReversed();
-		}
-	}
-	
-	if (levelCount == 5) {
-		if (_enemy1->enemyDidCollideWithObstacle(_enemy1, _obstacle1)) {
-			_enemy1->setSpeedX();
-		}
-		
-		if (_enemy2->enemyDidCollideWithObstacle(_enemy2, _obstacle4)) {
-			_enemy2->setSpeedY();
-		}
-		
-		if (_enemy3->enemyDidCollideWithObstacle(_enemy3, _obstacle5)) {
-			_enemy3->setSpeedXReversed();
-		}
-	}
-	*/
 }
 
 void BasicLevel::update() {
