@@ -2,7 +2,7 @@
 //  Includes.h
 //  Mazel
 //	global include
-//	all macros
+//	game-wide macros
 //
 //  Created by Muhd Mirza on 3/8/14.
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.

@@ -16,9 +16,9 @@
 
 using namespace std;
 
-class NextLevelPage: public GameState {
+class NextLevelScene: public GameState {
 	public:
-		NextLevelPage();
+		NextLevelScene();
 		
 		void setup();
 		void setupObjects();

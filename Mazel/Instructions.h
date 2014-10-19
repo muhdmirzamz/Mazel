@@ -16,9 +16,9 @@
 
 using namespace std;
 
-class InstructionsPage: public GameState {
+class Instructions: public GameState {
 	public:
-		InstructionsPage();
+		Instructions();
 		
 		void setup();
 		void setupObjects();

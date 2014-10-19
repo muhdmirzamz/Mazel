@@ -26,6 +26,10 @@ class Gui {
 		void plotStartImage(int startXPos, int startYPos);
 		void plotInstructionsImage(int instructionsXPosition, int instructionsYPosition);
 		void plotSettingsImage(int settingsXPosition, int settingsYPosition);
+	
+		void plotFullscreenStartImage(int fullscreenStartXPos, int fullscreenStartYPos);
+		void plotFullscreenInstructionsImage(int fullscreenInstructionsXPosition, int fullscreenInstructionsYPosition);
+		void plotFullscreenSettingsImage(int fullscreenSettingsXPosition, int fullscreenSettingsYPosition);
 		
 		int getX();
 		int getY();

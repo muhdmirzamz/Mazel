@@ -1,8 +1,15 @@
 CHANGELOG
 
+v1.0.0 19 October 2014
+* Added a settings screen
+* Added difficulty settings
+* Added settings to enable practice mode
+* Added settings to enable enemies in practice mode
+* Added a game mode selection screen
+* Added practice mode
+* Added survival mode
 * Fixed a bug which prevented game to be played on other machines
 * Removed new way to run game
-* Added a settings screen
 
 v0.5.0-beta.3 6 October 2014
 * Optimised collision code

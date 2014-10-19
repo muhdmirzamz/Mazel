@@ -17,6 +17,11 @@ static const int INSTRUCTIONS_IMAGE_WIDTH_HEIGHT = 150;
 // constants for main menu settings image
 static const int SETTINGS_IMAGE_WIDTH_HEIGHT = 150;
 
+// constants for images in fullscreen
+static const int FULLSCREEN_START_IMAGE_WIDTH_HEIGHT = 300;
+static const int FULLSCREEN_INSTRUCTIONS_IMAGE_WIDTH_HEIGHT = 300;
+static const int FULLSCREEN_SETTINGS_IMAGE_WIDTH_HEIGHT = 300;
+
 Gui::Gui() {
 	
 }
@@ -30,6 +35,7 @@ void Gui::loadImageOntoTexture(string filePathOfImage, SDL_Renderer *renderer) {
 	SDL_SetColorKey(_guiImage, SDL_TRUE, SDL_MapRGB(_guiImage->format, 255, 255, 255));
 	
 	_guiTexture = SDL_CreateTextureFromSurface(renderer, _guiImage);
+
 	if (!_guiTexture) {
 		cout << "Failed to create texture from surface\n";
 	}
@@ -65,6 +71,27 @@ void Gui::plotSettingsImage(int settingsXPosition, int settingsYPosition) {
 	_guiRect.y = settingsYPosition;
 	_guiRect.w = SETTINGS_IMAGE_WIDTH_HEIGHT;
 	_guiRect.h = SETTINGS_IMAGE_WIDTH_HEIGHT;
+}
+
+void Gui::plotFullscreenStartImage(int fullscreenStartXPos, int fullscreenStartYPos) {
+	_guiRect.x = fullscreenStartXPos;
+	_guiRect.y = fullscreenStartYPos;
+	_guiRect.w = FULLSCREEN_START_IMAGE_WIDTH_HEIGHT;
+	_guiRect.h = FULLSCREEN_START_IMAGE_WIDTH_HEIGHT;
+}
+
+void Gui::plotFullscreenInstructionsImage(int fullscreenInstructionsXPosition, int fullscreenInstructionsYPosition) {
+	_guiRect.x = fullscreenInstructionsXPosition;
+	_guiRect.y = fullscreenInstructionsYPosition;
+	_guiRect.w = FULLSCREEN_INSTRUCTIONS_IMAGE_WIDTH_HEIGHT;
+	_guiRect.h = FULLSCREEN_INSTRUCTIONS_IMAGE_WIDTH_HEIGHT;
+}
+
+void Gui::plotFullscreenSettingsImage(int fullscreenSettingsXPosition, int fullscreenSettingsYPosition) {
+	_guiRect.x = fullscreenSettingsXPosition;
+	_guiRect.y = fullscreenSettingsYPosition;
+	_guiRect.w = FULLSCREEN_SETTINGS_IMAGE_WIDTH_HEIGHT;
+	_guiRect.h = FULLSCREEN_SETTINGS_IMAGE_WIDTH_HEIGHT;
 }
 
 int Gui::getX() {

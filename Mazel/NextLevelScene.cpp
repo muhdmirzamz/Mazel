@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#include "NextLevelPage.h"
+#include "NextLevelScene.h"
 
 // this set of gui class constants stay here
 // since there's no specific mapping of the "GO" word
@@ -15,13 +15,13 @@ static const int END_OF_GO = START_OF_GO + 150;
 static const int TOP_OF_GO = 290;
 static const int BOTTOM_OF_GO = TOP_OF_GO + 140;
 
-NextLevelPage::NextLevelPage() {
+NextLevelScene::NextLevelScene() {
 	setup();
 	setupObjects();
 	setupTextures();
 }
 
-void NextLevelPage::setup() {
+void NextLevelScene::setup() {
 	_window = initWindow(_windowRef);
 	if (!_window) {
 		printErrorMessage("NextLevelPage", "_window");
@@ -37,16 +37,16 @@ void NextLevelPage::setup() {
 	_running = true;
 }
 
-void NextLevelPage::setupObjects() {
+void NextLevelScene::setupObjects() {
 	_gui = &_guiObject;
 }
 
-void NextLevelPage::setupTextures() {
+void NextLevelScene::setupTextures() {
 	_gui->loadImageOntoTexture("images/mazel_next_level.bmp", _renderer);
 	_gui->plotGui(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
-void NextLevelPage::run() {
+void NextLevelScene::run() {
 	while (_running) {
 		event();
 		update();
@@ -54,7 +54,7 @@ void NextLevelPage::run() {
 	}
 }
 
-void NextLevelPage::event() {
+void NextLevelScene::event() {
 	while (SDL_PollEvent(&_event) != 0) {
 		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
@@ -75,7 +75,7 @@ void NextLevelPage::event() {
 				
 				cleanup();
 				
-				changeState(_gameManager, BASIC_LEVEL);
+				changeState(_gameManager, BASIC_LEVEL_MODE);
 			}
 		}
 #endif
@@ -87,22 +87,22 @@ void NextLevelPage::event() {
 					
 					cleanup();
 					
-					changeState(_gameManager, BASIC_LEVEL);
+					changeState(_gameManager, BASIC_LEVEL_MODE);
 				}
 			}
 		}
 	}
 }
 
-void NextLevelPage::update() {
+void NextLevelScene::update() {
 	SDL_RenderPresent(_renderer);
 }
 
-void NextLevelPage::render() {
+void NextLevelScene::render() {
 	_gui->render(_renderer);
 }
 
-void NextLevelPage::cleanup() {
+void NextLevelScene::cleanup() {
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);

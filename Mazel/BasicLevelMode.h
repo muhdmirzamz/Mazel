@@ -16,9 +16,9 @@
 
 using namespace std;
 
-class BasicLevel: public GameState {
+class BasicLevelMode: public GameState {
 	public:
-		BasicLevel();
+		BasicLevelMode();
 		
 		void setup();
 		void setupObjects();

@@ -7,10 +7,16 @@
 //
 
 #include "MainMenu.h"
+#include "Settings.h"
 
 using namespace std;
 
+static Settings settingsObject;
+static Settings *settings;
+
 MainMenu::MainMenu() {
+	settings = &settingsObject;
+	
 	setup();
 	setupObjects();
 	setupTextures();
@@ -19,9 +25,7 @@ MainMenu::MainMenu() {
 
 void MainMenu::setup() {
 	_window = initWindow(_windowRef);
-	if (!_window) {
-		printErrorMessage("Main Menu", "Window");
-	}
+	
 	_renderer = initRenderer(_window, _rendererRef);
 	if (!_renderer) {
 		printErrorMessage("Main Menu", "Renderer");
@@ -37,26 +41,21 @@ void MainMenu::setupObjects() {
 	_logo = &_logoObject;
 	_instructions = &_instructionsObject;
 	_start = &_startObject;
-	_settingsPage = &_settingsPageObject;
+	_settings = &_settingsObject;
 	_ball = &_ballObject;
 }
 
 void MainMenu::setupTextures() {
 	_logo->loadImageOntoTexture("images/MazelLogo.bmp", _renderer);
 	_logo->plotGui(LOGO_XPOS, LOGO_YPOS, LOGO_WIDTH_HEIGHT, LOGO_WIDTH_HEIGHT);
-	
 	_grass->loadImageOntoTexture("images/main_menu_half_background.bmp", _renderer);
 	_grass->plotBackground(0, WINDOW_HEIGHT / 2 + 40, WINDOW_WIDTH, 200);
-	
 	_instructions->loadImageOntoTexture("images/mazel_instructions_label.bmp", _renderer);
 	_instructions->plotInstructionsImage(WINDOW_WIDTH / 10, WINDOW_HEIGHT - 130);
-	
 	_start->loadImageOntoTexture("images/mazelstart.bmp", _renderer);
 	_start->plotStartImage(WINDOW_WIDTH / 2 - 80, WINDOW_HEIGHT - 130);
-	
-	_settingsPage->loadImageOntoTexture("images/mazel_settings.bmp", _renderer);
-	_settingsPage->plotGui(WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT - 135, 150, 150);
-	
+	_settings->loadImageOntoTexture("images/mazel_settings.bmp", _renderer);
+	_settings->plotGui(WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT - 135, 150, 150);
 	_ball->loadImageOntoTexture("images/ball.bmp", _renderer);
 }
 
@@ -86,17 +85,6 @@ void MainMenu::event() {
 			changeState(_gameManager, EXIT);
 		}
 		
-#if DEBUG_MODE == true
-		if (EVENT_TYPE == SDL_KEYDOWN) {
-			if (PRESSED_KEY == SDLK_ESCAPE) {
-				_running = false;
-			
-				cleanup();
-				
-				changeState(_gameManager, EXIT);
-			}
-		}
-#endif
 		if (EVENT_TYPE == SDL_MOUSEBUTTONDOWN) {
 			// continue to instructions page
 			if (CLICK_AT_XPOS >= _instructions->getX() && CLICK_AT_XPOS <= _instructions->getX() + _instructions->getW()) {
@@ -105,29 +93,29 @@ void MainMenu::event() {
 					
 					cleanup();
 					
-					changeState(_gameManager, INSTRUCTIONS_PAGE);
+					changeState(_gameManager, INSTRUCTIONS);
 				}
 			}
 			
-			// continue to game
+			// continue to gameplay mode scene
 			if (CLICK_AT_XPOS >= _start->getX() && CLICK_AT_XPOS <= _start->getX() + _start->getW()) {
 				if (CLICK_AT_YPOS >= _start->getY() && CLICK_AT_YPOS <= _start->getY() + _start->getH()) {
 					_running = false;
 					
 					cleanup();
 					
-					changeState(_gameManager, BASIC_LEVEL);
+					changeState(_gameManager, GAMEPLAY_MODE_SCENE);
 				}
 			}
 			
 			// continue to settings
-			if (CLICK_AT_XPOS >= _settingsPage->getX() && CLICK_AT_XPOS <= _settingsPage->getX() + _settingsPage->getW()) {
-				if (CLICK_AT_YPOS >= _settingsPage->getY() && CLICK_AT_YPOS <= _settingsPage->getY() + _settingsPage->getH()) {
+			if (CLICK_AT_XPOS >= _settings->getX() && CLICK_AT_XPOS <= _settings->getX() + _settings->getW()) {
+				if (CLICK_AT_YPOS >= _settings->getY() && CLICK_AT_YPOS <= _settings->getY() + _settings->getH()) {
 					_running = false;
 					
 					cleanup();
 					
-					changeState(_gameManager, SETTINGS_PAGE);
+					changeState(_gameManager, SETTINGS);
 				}
 			}
 		}
@@ -154,7 +142,7 @@ void MainMenu::render() {
 	_grass->renderImage(_renderer);
 	_instructions->render(_renderer);
 	_start->render(_renderer);
-	_settingsPage->render(_renderer);
+	_settings->render(_renderer);
 	_ball->render(_renderer);
 }
 

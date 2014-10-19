@@ -11,7 +11,7 @@ GLOBAL_INCLUDE=-I./Mazel
 CFLAGS=-c -Wall -std=c++11 $(SDL_INCLUDE) $(GLOBAL_INCLUDE)
 LFLAGS=-Wall $(SDL_FRAMEWORK) -o
 
-OBJECT_FILES = main.o GameManager.o GameState.o Background.o Ball.o Obstacle.o Gui.o Enemy.o IntroScene.o GameOverScene.o MainMenu.o InstructionsPage.o BasicLevel.o SettingsPage.o NextLevelPage.o GameEndScene.o
+OBJECT_FILES = main.o GameManager.o GameState.o Background.o Ball.o Obstacle.o Gui.o Enemy.o IntroScene.o GameOverScene.o MainMenu.o Settings.o Instructions.o GameplayModeScene.o BasicLevelMode.o SurvivalMode.o Settings.o NextLevelScene.o GameOverScene.o GameOverOneLifeScene.o GameEndScene.o
 
 #look for files in Mazel folder
 VPATH=Mazel
@@ -19,30 +19,41 @@ VPATH=Mazel
 MazelGame: $(OBJECT_FILES)
 	@echo "Linking files"
 	@$(CXX) $(LFLAGS) $@ $^
-	@echo "Done"
+	@echo "Done linking"
+	@echo "Changing file search path..."
 	@install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 @loader_path/SDL2.framework/Versions/A/SDL2 MazelGame
+	@echo "Running game!"
 	@./MazelGame 
 
 GameEndScene.o: GameEndScene.cpp
 	@$(CXX) $(CFLAGS) $^
 
-NextLevelPage.o: NextLevelPage.cpp
+NextLevelScene.o: NextLevelScene.cpp
 	@$(CXX) $(CFLAGS) $^
 
-SettingsPage.o: SettingsPage.cpp
+SurvivalMode.o: SurvivalMode.cpp
 	@$(CXX) $(CFLAGS) $^
 
-BasicLevel.o: BasicLevel.cpp
+BasicLevelMode.o: BasicLevelMode.cpp
 	@$(CXX) $(CFLAGS) $^
 
-InstructionsPage.o: InstructionsPage.cpp
+Settings.o: Settings.cpp
+	@$(CXX) $(CFLAGS) $^
+
+Instructions.o: Instructions.cpp
 	@$(CXX) $(CFLAGS) $^
 
 MainMenu.o: MainMenu.cpp
 	@echo "Compiling game state classes"
 	@$(CXX) $(CFLAGS) $^
 
+GameOverOneLifeScene.o: GameOverOneLifeScene.cpp
+	@$(CXX) $(CFLAGS) $^
+
 GameOverScene.o: GameOverScene.cpp
+	@$(CXX) $(CFLAGS) $^
+
+GameplayModeScene.o: GameplayModeScene.cpp
 	@$(CXX) $(CFLAGS) $^
 
 IntroScene.o: IntroScene.cpp

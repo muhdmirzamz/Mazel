@@ -18,6 +18,7 @@
 #include "Includes.h"
 #include "GameManager.h"
 
+// game elements header files
 #include "Ball.h"
 #include "Obstacle.h"
 #include "Enemy.h"
@@ -26,14 +27,29 @@
 
 enum GameStates {
 	INTRO_SCENE,
+	INSTRUCTIONS,
 	MAIN_MENU,
-	INSTRUCTIONS_PAGE,
-	BASIC_LEVEL, // a bunch of levels
-	SETTINGS_PAGE,
-	NEXT_LEVEL_PAGE,
-	GAME_OVER,
-	GAME_END,
+	SETTINGS,
+	GAMEPLAY_MODE_SCENE,
+	BASIC_LEVEL_MODE, // a bunch of levels
+	SURVIVAL_MODE,
+	NEXT_LEVEL_SCENE,
+	GAME_OVER_SCENE,
+	GAME_OVER_ONE_LIFE_SCENE,
+	GAME_END_SCENE,
 	EXIT
+};
+
+enum difficulty {
+	EASY,
+	DIFFICULT,
+	HARD
+};
+
+enum mode {
+	PRACTICE_MODE,
+	LEVEL_MODE,
+	SURVIVAL
 };
 
 using namespace std;
@@ -64,7 +80,7 @@ class GameState {
 		virtual void setupBall(); // plots coordinates and sets speed
 		virtual void setupFinishRect(); // plots coordinates
 		virtual void setupObstaclesAndEnemies(); // plots coordinates and sets speed
-		
+	
 		SDL_Window* initWindow(SDL_Window *window);
 		SDL_Renderer* initRenderer(SDL_Window *window2, SDL_Renderer *renderer);
 		void setIcon(SDL_Window *window3, SDL_Surface *icon, const string filePathOfIcon);

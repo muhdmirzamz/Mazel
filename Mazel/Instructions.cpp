@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Muhd Mirza. All rights reserved.
 //
 
-#include "InstructionsPage.h"
+#include "Instructions.h"
 
-InstructionsPage::InstructionsPage() {
+Instructions::Instructions() {
 	setup();
 	setupObjects();
 	setupTextures();
 }
 
-void InstructionsPage::setup() {
+void Instructions::setup() {
 	_window = initWindow(_windowRef);
 	if (!_window) {
 		printErrorMessage("InstructionsPage", "Window");
@@ -28,16 +28,16 @@ void InstructionsPage::setup() {
 	_running = true;
 }
 
-void InstructionsPage::setupObjects() {
+void Instructions::setupObjects() {
 	_gui = &_guiObject;
 }
 
-void InstructionsPage::setupTextures() {
+void Instructions::setupTextures() {
 	_gui->loadImageOntoTexture("images/mazel_instructions.bmp", _renderer);
 	_gui->plotGui(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
-void InstructionsPage::run() {
+void Instructions::run() {
 	while (_running) {
 		event();
 		update();
@@ -45,7 +45,7 @@ void InstructionsPage::run() {
 	}
 }
 
-void InstructionsPage::event() {
+void Instructions::event() {
 	while (SDL_PollEvent(&_event) != 0) {
 		if (EVENT_TYPE == SDL_QUIT) {
 			_running = false;
@@ -75,15 +75,15 @@ void InstructionsPage::event() {
 	}
 }
 
-void InstructionsPage::update() {
+void Instructions::update() {
 	SDL_RenderPresent(_renderer);
 }
 
-void InstructionsPage::render() {
+void Instructions::render() {
 	_gui->render(_renderer);
 }
 
-void InstructionsPage::cleanup() {
+void Instructions::cleanup() {
 	SDL_DestroyRenderer(_renderer);
 	_renderer = NULL;
 	SDL_DestroyWindow(_window);
