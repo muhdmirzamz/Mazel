@@ -27,6 +27,16 @@ class Enemy {
 		void setSpeedXBounce();
 		void setSpeedY();
 		void setSpeedYBounce();
+	
+		void setSpeedXLeftZero();
+		void setSpeedXRightZero();
+		void setSpeedYUpZero();
+		void setSpeedYDownZero();
+	
+		void setSpeedXLeft();
+		void setSpeedXRight();
+		void setSpeedYUp();
+		void setSpeedYDown();
 		
 		int getX();
 		int getY();
@@ -35,15 +45,29 @@ class Enemy {
 	
 		int getSpeedX();
 		int getSpeedY();
-		
+	
+		int getSpeedXLeft();
+		int getSpeedXRight();
+		int getSpeedYUp();
+		int getSpeedYDown();
+	
 		void moveHorizontally();
 		void moveVertically();
+		void moveInAllDirections();
+	
+		void moveHorizontallyOnFourAxis();
+		void moveVerticallyOnFourAxis();
 	
 		void bounceBack();
 		
 		bool enemyDidCollideWithObstacle(Enemy *enemy, Obstacle *obstacle);
 		bool enemyDidCollideWithWindow(Enemy *enemy2);
-		
+	
+		bool enemyDidCollideWithTopOfWindow();
+		bool enemyDidCollideWithBottomOfWindow();
+		bool enemyDidCollideWithLeftOfWindow();
+		bool enemyDidCollideWithRightOfWindow();
+	
 		void renderEnemy(SDL_Renderer *renderer);
 		
 	private:
@@ -51,8 +75,15 @@ class Enemy {
 	
 		// two speed axis but each with two speed values
 		// normal speed and bouncing speed
+		// for level mode
 		int _speedX;
 		int _speedY;
+	
+		// for survival mode
+		int _speedXLeft;
+		int _speedXRight;
+		int _speedYUp;
+		int _speedYDown;
 };
 
 #endif /* defined(__Mazel__Enemy__) */

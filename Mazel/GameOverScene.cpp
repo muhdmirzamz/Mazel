@@ -7,6 +7,7 @@
 //
 
 #include "GameOverScene.h"
+#include "Settings.h"
 
 // this set of gui class constants stay here
 // since there's no specific mapping of the "GO" word
@@ -16,6 +17,9 @@ static const int START_OF_MAIN_MENU_BUTTON = 290;
 static const int END_OF_MAIN_MENU_BUTTON = (START_OF_MAIN_MENU_BUTTON + 210);
 static const int TOP_OF_BUTTON = 260;
 static const int BOTTOM_OF_BUTTON = (TOP_OF_BUTTON + 40);
+
+static Settings settingsObject;
+static Settings *settings;
 
 using namespace std;
 
@@ -42,6 +46,7 @@ void GameOverScene::setup() {
 }
 
 void GameOverScene::setupObjects() {
+	settings = &settingsObject;
 	_background = &_backgroundObject;
 	_image = &_imageObject;
 }
@@ -78,15 +83,26 @@ void GameOverScene::event() {
 			if (CLICK_AT_YPOS >= TOP_OF_BUTTON && CLICK_AT_YPOS <= BOTTOM_OF_BUTTON) {
 				// retry button
 				if (CLICK_AT_XPOS >= START_OF_RETRY_BUTTON && CLICK_AT_XPOS <= END_OF_RETRY_BUTTON) {
-					_running = false;
+					if (settings->selectedMode() == PRACTICE_MODE || settings->selectedMode() == LEVEL_MODE) {
+						_running = false;
+						
+						cleanup();
+						
+						changeState(_gameManager, BASIC_LEVEL_MODE);
+					}
 					
-					cleanup();
-					
-					changeState(_gameManager, BASIC_LEVEL);
+					if (settings->selectedMode() == SURVIVAL) {
+						_running = false;
+						
+						cleanup();
+						
+						changeState(_gameManager, SURVIVAL_MODE);
+					}
 				}
 				
 				// main menu button
 				if (CLICK_AT_XPOS >= START_OF_MAIN_MENU_BUTTON && CLICK_AT_XPOS <= END_OF_MAIN_MENU_BUTTON) {
+				
 					_running = false;
 					
 					cleanup();

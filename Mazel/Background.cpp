@@ -47,14 +47,29 @@ void Background::renderMainMenuBackground(SDL_Renderer *mainMenuRenderer) {
 	SDL_RenderClear(mainMenuRenderer);
 }
 
+void Background::renderSettingsPageBackground(SDL_Renderer *settingsPageRenderer) {
+	SDL_SetRenderDrawColor(settingsPageRenderer, 240, 240, 240, 0);
+	SDL_RenderClear(settingsPageRenderer);
+}
+
 void Background::renderBasicLevelBackground(SDL_Renderer *basicLevelRenderer) {
 	SDL_SetRenderDrawColor(basicLevelRenderer, 240, 240, 240, 0);
 	SDL_RenderClear(basicLevelRenderer);
 }
 
+void Background::renderSurvivalModeBackground(SDL_Renderer *survivalModeRenderer) {
+	SDL_SetRenderDrawColor(survivalModeRenderer, 240, 240, 240, 0);
+	SDL_RenderClear(survivalModeRenderer);
+}
+
 void Background::renderGameOverSceneBackground(SDL_Renderer *gameOverSceneRenderer) {
 	SDL_SetRenderDrawColor(gameOverSceneRenderer, 100, 150, 100, 0);
 	SDL_RenderClear(gameOverSceneRenderer);
+}
+
+void Background::renderGameOverOneLifeSceneBackground(SDL_Renderer *gameOverOneLifeSceneRenderer) {
+	SDL_SetRenderDrawColor(gameOverOneLifeSceneRenderer, 255, 255, 255, 0);
+	SDL_RenderClear(gameOverOneLifeSceneRenderer);
 }
 
 void Background::renderImage(SDL_Renderer *imageRenderer) {

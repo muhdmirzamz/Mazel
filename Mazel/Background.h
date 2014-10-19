@@ -26,8 +26,11 @@ class Background {
 		
 		void renderIntroSceneBackground(SDL_Renderer *introSceneRenderer);
 		void renderMainMenuBackground(SDL_Renderer *mainMenuRenderer);
+		void renderSettingsPageBackground(SDL_Renderer *settingsPageRenderer);
 		void renderBasicLevelBackground(SDL_Renderer *basicLevelRenderer);
+		void renderSurvivalModeBackground(SDL_Renderer *survivalModeRenderer);
 		void renderGameOverSceneBackground(SDL_Renderer *gameOverSceneRenderer);
+		void renderGameOverOneLifeSceneBackground(SDL_Renderer *gameOverOneLifeSceneRenderer);
 		
 		void renderImage(SDL_Renderer *imageRenderer);
 	

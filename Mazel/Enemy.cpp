@@ -44,6 +44,38 @@ void Enemy::setSpeedYBounce() {
 	_speedX = ENEMY_SPEED_BOUNCE;
 }
 
+void Enemy::setSpeedXLeftZero() {
+	_speedXLeft = 0;
+}
+
+void Enemy::setSpeedXRightZero() {
+	_speedXRight = 0;
+}
+
+void Enemy::setSpeedYUpZero() {
+	_speedYUp = 0;
+}
+
+void Enemy::setSpeedYDownZero() {
+	_speedYDown = 0;
+}
+
+void Enemy::setSpeedXLeft() {
+	_speedXLeft = ENEMY_SPEED;
+}
+
+void Enemy::setSpeedXRight() {
+	_speedXRight = ENEMY_SPEED;
+}
+
+void Enemy::setSpeedYUp() {
+	_speedYUp = ENEMY_SPEED;
+}
+
+void Enemy::setSpeedYDown() {
+	_speedYDown = ENEMY_SPEED;
+}
+
 int Enemy::getX() {
 	return _enemyRect.x;
 }
@@ -68,13 +100,53 @@ int Enemy::getSpeedY() {
 	return _speedY;
 }
 
+int Enemy::getSpeedXLeft() {
+	return _speedXLeft;
+}
+
+int Enemy::getSpeedXRight() {
+	return _speedXRight;
+}
+
+int Enemy::getSpeedYUp() {
+	return _speedYUp;
+}
+
+int Enemy::getSpeedYDown() {
+	return _speedYDown;
+}
+
 void Enemy::moveHorizontally() {
 	_enemyRect.x += _speedX;
 }
 
 void Enemy::moveVertically() {
 	_enemyRect.y += _speedY;
+}
 
+void Enemy::moveInAllDirections() {
+	_enemyRect.x += _speedX;
+	_enemyRect.y += _speedY;
+}
+
+void Enemy::moveHorizontallyOnFourAxis() {
+	if (_speedXLeft == ENEMY_SPEED) {
+		_enemyRect.x -= _speedXLeft;
+	}
+	
+	if (_speedXRight == ENEMY_SPEED) {
+		_enemyRect.x += _speedXRight;
+	}
+}
+
+void Enemy::moveVerticallyOnFourAxis() {
+	if (_speedYUp == ENEMY_SPEED) {
+		_enemyRect.y -= _speedYUp;
+	}
+	
+	if (_speedYDown == ENEMY_SPEED) {
+		_enemyRect.y += _speedYDown;
+	}
 }
 
 void Enemy::bounceBack() {
@@ -135,6 +207,38 @@ bool Enemy::enemyDidCollideWithWindow(Enemy *enemy2) {
 	}
 	
 	if (enemy2->getX() + enemy2->getW() >= WINDOW_WIDTH) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Enemy::enemyDidCollideWithTopOfWindow() {
+	if (_enemyRect.y <= 0) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Enemy::enemyDidCollideWithBottomOfWindow() {
+	if (_enemyRect.y + _enemyRect.h >= WINDOW_HEIGHT) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Enemy::enemyDidCollideWithLeftOfWindow() {
+	if (_enemyRect.x <= 0) {
+		return true;
+	}
+	
+	return false;
+}
+
+bool Enemy::enemyDidCollideWithRightOfWindow() {
+	if (_enemyRect.x + _enemyRect.w >= WINDOW_WIDTH) {
 		return true;
 	}
 	
